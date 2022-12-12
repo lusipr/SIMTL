@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Ncr;
+use App\Models\Ofi;
+use Illuminate\Http\Request;
+
+class MonitoringTLController extends Controller
+{
+    public function index()
+    {
+        if (auth()->user()->role == 'Auditee')
+        {
+            $ncr = Ncr::selectRaw("'ncr' AS type, ncr.id_ncr AS id, ncr.jenis_temuan, ncr.no_ncr AS no_dokumen, ncr.proses_audit, ncr.tema_audit, ncr.objek_audit, ncr.dokumen, ncr.tgl_terbitncr AS tgl_terbit, ncr.status, ncr.bukti, ncr.tgl_deadline, tlncr.tgl_action AS tgl_mulai, tlncr.tgl_verif")
+                ->join('tlncr', 'ncr.id_ncr', '=', 'tlncr.id_ncr')
+                ->where('ncr.objek_audit', '=', auth()->user()->id);
+            $ofi = Ofi::selectRaw("'ofi' AS type, ofi.id_ofi AS id, ofi.jenis_temuan, ofi.no_ofi AS no_dokumen, ofi.proses_audit, ofi.tema_audit, ofi.objek_audit, ofi.dokumen, ofi.tgl_terbitofi AS tgl_terbit, ofi.status, ofi.bukti, ofi.tgl_deadline, tlofi.tgl_tl AS tgl_mulai, tlofi.tgl_verif")
+                ->join('tlofi', 'ofi.id_ofi', '=', 'tlofi.id_ofi')
+                ->where('ofi.objek_audit', '=', auth()->user()->id)
+                ->unionAll($ncr)
+                ->get();
+        }
+        else
+        {
+            $ncr = Ncr::selectRaw("'ncr' AS type, ncr.id_ncr AS id, ncr.jenis_temuan, ncr.no_ncr AS no_dokumen, ncr.proses_audit, ncr.tema_audit, ncr.objek_audit, ncr.dokumen, ncr.tgl_terbitncr AS tgl_terbit, ncr.status, ncr.bukti, ncr.tgl_deadline, tlncr.tgl_action AS tgl_mulai, tlncr.tgl_verif")
+                ->join('tlncr', 'ncr.id_ncr', '=', 'tlncr.id_ncr')
+                ->whereNotNull('objek_audit');
+            $ofi = Ofi::selectRaw("'ofi' AS type, ofi.id_ofi AS id, ofi.jenis_temuan, ofi.no_ofi AS no_dokumen, ofi.proses_audit, ofi.tema_audit, ofi.objek_audit, ofi.dokumen, ofi.tgl_terbitofi AS tgl_terbit, ofi.status, ofi.bukti, ofi.tgl_deadline, tlofi.tgl_tl AS tgl_mulai, tlofi.tgl_verif")
+                ->join('tlofi', 'ofi.id_ofi', '=', 'tlofi.id_ofi')
+                ->whereNotNull('objek_audit')
+                ->unionAll($ncr)
+                ->get();
+        }
+
+        return view('monitoring-tl.index', ['monitoringtl' => $ofi]);
+    }
+}
