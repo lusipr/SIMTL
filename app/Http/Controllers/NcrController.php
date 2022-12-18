@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ncr;
 use App\Models\TLNcr;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -201,5 +202,16 @@ class NcrController extends Controller
         $tlncr = TLNcr::where('id_ncr', '=', $ncr->id_ncr)->first();
 
         return view('ncr.tlncr.view', ['ncr' => $ncr, 'tlncr' => $tlncr, 'usersAuditee' => $usersAuditee, 'ref_page' => $ref_page]);
+    }
+
+    public function print(Ncr $ncr)
+    {
+        $usersAuditee = User::where('role', '=', 'Auditee')->get();
+        $tlncr = TLNcr::where('id_ncr', '=', $ncr->id_ncr)->first();
+
+        $dompdf = Pdf::loadView('ncr.print', ['ncr' => $ncr, 'tlncr' => $tlncr, 'usersAuditee' => $usersAuditee]);
+        $dompdf->add_info('Title', 'Cetak NCR');
+        $dompdf->setPaper('A3');
+        return $dompdf->stream('Cetak NCR.pdf', array("Attachment" => false));
     }
 }

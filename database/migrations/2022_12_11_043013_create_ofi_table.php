@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('disetujui_oleh', 100)->nullable();
             $table->date('tgl_disetujui')->nullable();
             $table->string('disposisi', 100)->nullable();
+            $table->string('disposisi_diselesaikan_oleh', 100)->nullable();
             $table->date('tgl_deadline')->nullable();
             $table->timestamps();
         });

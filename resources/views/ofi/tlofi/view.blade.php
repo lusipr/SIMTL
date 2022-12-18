@@ -181,7 +181,7 @@
                                 </div>
                             </div>
 
-                            <div class="row-mb-3">
+                            <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Disposisi Wakil
                                     Manajemen</label>
                                 <div class="col-sm-6">
@@ -190,6 +190,14 @@
                                         <option {{ $ofi->disposisi == 'OFI ditolak' ? 'selected' : '' }}>OFI ditolak</option>
                                         <option {{ $ofi->disposisi == 'OFI diterima' ? 'selected' : '' }}>OFI diterima</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan Oleh</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="disposisi_diselesaikan_oleh" disabled class="form-control" id="disposisi_diselesaikan_oleh"
+                                        value="{{ $ofi->disposisi_diselesaikan_oleh }}">
                                 </div>
                             </div>
                             <br>
@@ -242,9 +250,17 @@
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Hasil Verifikasi</label>
-                                <div class="col-sm-6">
-                                    <textarea type="text" name="hasil_verif" disabled class="form-control" id="hasil_verif"
-                                        rows="5" placeholder="Masukkan hasil verifikasi" style="font-style:italic">{{ $tlofi->hasil_verif }}</textarea>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="hasil_verif" disabled
+                                        {{ $tlofi->hasil_verif == 'efektif' ? 'checked' : '' }} id="inlineRadio1"
+                                        value="efektif">
+                                    <label class="form-check-label" for="inlineRadio1">Efektif</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="hasil_verif" disabled
+                                        {{ $tlofi->hasil_verif == 'tdk_efektif' ? 'checked' : '' }} id="inlineRadio2"
+                                        value="tdk_efektif">
+                                    <label class="form-check-label" for="inlineRadio2">Tidak Efektif</label>
                                 </div>
                             </div>
 

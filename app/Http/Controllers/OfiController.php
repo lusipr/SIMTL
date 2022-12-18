@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ofi;
 use App\Models\TLOfi;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -162,6 +163,7 @@ class OfiController extends Controller
                 $validatedDataOfi['disetujui_oleh'] = $request->disetujui_oleh;
                 $validatedDataOfi['tgl_disetujui'] = $request->tgl_disetujui;
                 $validatedDataOfi['disposisi'] = $request->disposisi;
+                $validatedDataOfi['disposisi_diselesaikan_oleh'] = $request->disposisi_diselesaikan_oleh;
                 $validatedDataOfi['tgl_deadline'] = $request->tgl_deadline;
             }
             $validatedDataTLOfi = $request->validate([
@@ -203,5 +205,16 @@ class OfiController extends Controller
         $tlofi = TLOfi::where('id_ofi', '=', $ofi->id_ofi)->first();
 
         return view('ofi.tlofi.view', ['ofi' => $ofi, 'tlofi' => $tlofi, 'usersAuditee' => $usersAuditee, 'ref_page' => $ref_page]);
+    }
+
+    public function print(Ofi $ofi)
+    {
+        $usersAuditee = User::where('role', '=', 'Auditee')->get();
+        $tlofi = TLOfi::where('id_ofi', '=', $ofi->id_ofi)->first();
+
+        $dompdf = Pdf::loadView('ofi.print', ['ofi' => $ofi, 'tlofi' => $tlofi, 'usersAuditee' => $usersAuditee]);
+        $dompdf->add_info('Title', 'Cetak NCR');
+        $dompdf->setPaper('A3');
+        return $dompdf->stream('Cetak NCR.pdf', array("Attachment" => false));
     }
 }

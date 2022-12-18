@@ -32,6 +32,7 @@ class Ofi extends Model
         'disetujui_oleh',
         'tgl_disetujui',
         'disposisi',
+        'disposisi_diselesaikan_oleh',
         'tgl_deadline',
     ];
 

@@ -66,6 +66,8 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">
+                                                <a href="{{ url('data-ofi/print/' . $data_ofi->id_ofi) }}" target="_blank"
+                                                    class="btn btn-secondary"><i class="ti-printer"></i></a>
                                                 @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor' || auth()->user()->role == 'Auditee')
                                                     <a href="{{ url('data-ofi/tlofi/input/' . $data_ofi->id_ofi) }}"
                                                         class="btn btn-warning"><i class="ti-plus"></i></a>

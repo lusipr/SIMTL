@@ -123,6 +123,7 @@ class DatabaseSeeder extends Seeder
                 'disetujui_oleh' => '8',
                 'tgl_disetujui' => '2022-11-12',
                 'disposisi' => 'OFI ditolak',
+                'disposisi_diselesaikan_oleh' => '1',
                 'tgl_deadline' => $i != 2 ? '2022-11-10' : '2022-11-14',
             ]);
 
@@ -132,7 +133,7 @@ class DatabaseSeeder extends Seeder
                 'nama_pekerjatl' => '2',
                 'tgl_tl' => '2022-11-12',
                 'uraian_verif' => '3',
-                'hasil_verif' => '4',
+                'hasil_verif' => 'efektif',
                 'nama_verifikator' => '5',
                 'tgl_verif' => '2022-11-12',
                 'eval_saran' => '6',

@@ -128,6 +128,13 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan Oleh</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="disposisi_diselesaikan_oleh" class="form-control" id="disposisi_diselesaikan_oleh">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_deadline" class="form-control">

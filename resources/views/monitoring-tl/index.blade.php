@@ -58,6 +58,8 @@
                                             <td class="text-center">{{ $data_monitoringtl->tgl_mulai }}</td>
                                             <td class="text-center">{{ $data_monitoringtl->status }}</td>
                                             <td>
+                                                <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/print/' . $data_monitoringtl->id) : url('data-ofi/print/' . $data_monitoringtl->id) }}" target="_blank"
+                                                    class="btn btn-secondary"><i class="ti-printer"></i></a>
                                                 <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/tlncr/view/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/tlofi/view/' . $data_monitoringtl->id . '/monitoring-tl') }}"
                                                     class="btn btn-warning"><i class="ti-eye"></i></a>
                                                 @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')

@@ -44,6 +44,8 @@ Route::get('/data-ncr/tlncr/input/{ncr:id_ncr}/{ref_page?}', [NcrController::cla
 Route::post('/data-ncr/tlncr/input/{ncr:id_ncr}/{ref_page?}', [NcrController::class, 'store_tlncr'])->middleware('auth');
 Route::get('/data-ncr/tlncr/view/{ncr:id_ncr}/{ref_page?}', [NcrController::class, 'view_tlncr'])->middleware('auth');
 
+Route::get('/data-ncr/print/{ncr:id_ncr}', [NcrController::class, 'print'])->middleware('auth');
+
 Route::get('/data-ofi', [OfiController::class, 'index'])->middleware('auth')->name('data-ofi');
 Route::get('/data-ofi/add', [OfiController::class, 'index_add'])->middleware('auth');
 Route::post('/data-ofi/add', [OfiController::class, 'store_add'])->middleware('auth');
@@ -55,6 +57,8 @@ Route::get('/data-ofi/delete/{ofi:id_ofi}/{ref_page?}', [OfiController::class, '
 Route::get('/data-ofi/tlofi/input/{ofi:id_ofi}/{ref_page?}', [OfiController::class, 'index_tlofi'])->middleware('auth');
 Route::post('/data-ofi/tlofi/input/{ofi:id_ofi}/{ref_page?}', [OfiController::class, 'store_tlofi'])->middleware('auth');
 Route::get('/data-ofi/tlofi/view/{ofi:id_ofi}/{ref_page?}', [OfiController::class, 'view_tlofi'])->middleware('auth');
+
+Route::get('/data-ofi/print/{ofi:id_ofi}', [OfiController::class, 'print'])->middleware('auth');
 
 Route::get('/monitoring-tl', [MonitoringTLController::class, 'index'])->middleware('auth');
 
