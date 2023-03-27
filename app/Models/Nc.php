@@ -5,33 +5,31 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ncr extends Model
+class Nc extends Model
 {
     use HasFactory;
 
-    protected $table = "ncr";
+    protected $table = "nc";
 
     protected $fillable = [
-        'id_ncr',
-        'no_ncr',
+        'id_nc',
+        'opsi_temuan',
+        'no_nc',
         'proses_audit',
         'tema_audit',
         'objek_audit',
         'jenis_temuan',
         'dokumen',
-        'tgl_terbitncr',
+        'tgl_terbitnc',
         'status',
         'bukti',
         'bab_audit',
         'dok_acuan',
-        'uraian_ncr',
+        'uraian_nc',
         'kategori',
-        'ttd_auditor',
         'nama_auditor',
         'tgl_deadline',
-        'ttd_auditee',
         'diakui_oleh',
-        'ttd_auditee_gm_sm',
         'disetujui_oleh',
         'tgl_accgm',
         'tgl_planaction',
@@ -47,20 +45,20 @@ class Ncr extends Model
         return $this->belongsTo(User::class, 'tema_audit', 'id');
     }
 
-    public function tlncr()
+    public function tlnc()
     {
-        return $this->hasOne(TLNcr::class, 'id_ncr', 'id_ncr');
+        return $this->hasOne(TLNc::class, 'id_nc', 'id_nc');
     }
 
     public static function generateCode()
     {
         $tahun = date('y');
         $period = sprintf("%02d",ceil(date('n') / 6));
-        $lastCode = self::where('no_ncr', 'like', "{$tahun}/{$period}/%")->orderBy('no_ncr', 'desc')->first();
+        $lastCode = self::where('no_nc', 'like', "{$tahun}/{$period}/%")->orderBy('no_nc', 'desc')->first();
         if (!$lastCode) {
             $noUrut = 1;
         } else {
-            $noUrut = (int) substr($lastCode->no_ncr, -3) + 1;
+            $noUrut = (int) substr($lastCode->no_nc, -3) + 1;
             if (substr($lastCode->no_ncr, 0, 2) != $tahun) {
                 $noUrut = 1;
             }

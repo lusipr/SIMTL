@@ -18,7 +18,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">No. OFI</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="no_ofi" class="form-control" id="no_ofi"
-                                        placeholder="Masukkan Nomor OFI">
+                                        value="{{ $ofi->no_ofi }}" readonly>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -31,7 +31,7 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
                                 <div class="col-sm-6">
                                     <select name="tema_audit" id="tema_audit" class="form-control">
@@ -42,8 +42,21 @@
                                         <option>ISO 37001</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
 
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
+                                <div class="col-sm-6">
+                                    <select name="tema_audit" id="tema_audit" class="form-control">
+                                        <option value="">- Pilih -</option>
+                                        @foreach ($usersTema as $data_usersTema)
+                                            <option value="{{ $data_usersTema->id }}">{{ $data_usersTema->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Objek Audit</label>
                                 <div class="col-sm-6">
@@ -60,8 +73,8 @@
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" type="text" value="OFI" id="jenis_temuan" disabled
-                                        readonly>
+                                    <input class="form-control" type="text" value="OFI" id="jenis_temuan"
+                                        name="jenis_temuan" readonly>
                                 </div>
                             </div>
                             <br>
@@ -72,30 +85,38 @@
                                         placeholder="Pilih Tanggal">
                                 </div>
                             </div>
-
-                            <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
-                                <div class="col-sm-6">
-                                    <select name="status" id="status" class="form-control">
-                                        <option value="">- Pilih -</option>
-                                        <option>Data Belum Lengkap</option>
-                                        <option>Belum Ditindaklanjuti</option>
-                                        <option>Sudah Ditindaklanjuti</option>
-                                    </select>
-                                </div>
-                            </div>
                             <br>
-
-                            <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Bukti</label>
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline OFI</label>
                                 <div class="col-sm-6">
-                                    <input type="file" name="bukti" id="bukti" class="form-control"
-                                        accept="application/pdf">
-                                    <p class="help-block">
-                                        <font color="red">"Format file .pdf"</font>
-                                    </p>
+                                    <input type="date" name="tgl_deadline" class="form-control" id="tgl_deadline"
+                                        placeholder="Pilih Tanggal">
                                 </div>
                             </div>
+
+                            <!--<div class="row-mb-3">
+                                        <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
+                                        <div class="col-sm-6">
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="">- Pilih -</option>
+                                                <option>Data Belum Lengkap</option>
+                                                <option>Belum Ditindaklanjuti</option>
+                                                <option>Sudah Ditindaklanjuti</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <div class="row-mb-3">
+                                        <label for="colFormLabel" class="col-sm-2 col-form-label">Bukti</label>
+                                        <div class="col-sm-6">
+                                            <input type="file" name="bukti" id="bukti" class="form-control"
+                                                accept="application/pdf">
+                                            <p class="help-block">
+                                                <font color="red">"Format file .pdf"</font>
+                                            </p>
+                                        </div>
+                                    </div>-->
                             <br><br>
                             <input type="submit" value="Next" class="btn btn-info"></input>
                             <a href="{{ url('data-ofi') }}" title="Kembali" class="btn btn-secondary">Batal</a>
@@ -105,4 +126,20 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tgl_terbitofi = document.getElementById('tgl_terbitofi');
+            var tgl_deadline = document.getElementById('tgl_deadline');
+
+            tgl_terbitofi.addEventListener('change', function() {
+                if (tgl_terbitofi.value !== '') {
+                    var deadline = new Date(tgl_terbitofi.value);
+                    deadline.setDate(deadline.getDate() + 90);
+                    tgl_deadline.valueAsDate = deadline;
+                } else {
+                    tgl_deadline.value = '';
+                }
+            });
+        });
+    </script>
 @endsection

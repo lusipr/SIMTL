@@ -16,10 +16,12 @@ class TLOfi extends Model
     protected $fillable = [
         'id_ofi',
         'tl_usulanofi',
+        'ttd_tlofi_oleh',
         'nama_pekerjatl',
         'tgl_tl',
         'uraian_verif',
         'hasil_verif',
+        'ttd_tlofi_verif',
         'nama_verifikator',
         'tgl_verif',
         'eval_saran',

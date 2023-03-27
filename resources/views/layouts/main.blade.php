@@ -70,10 +70,9 @@
                             <li>
                                 <a href="{{ url('/') }}"><i class="ti-dashboard"></i><span>Dashboard</span></a>
                             </li>
-                            @if (auth()->user()->role == 'Admin')
+                            @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Admin2')
                                 {{-- <li>
-                                <a href="#" aria-expanded="true"><i class="ti-layout"></i><span>Input
-                                        Data</span></a>
+                                <a href="#" aria-expanded="true"><i class="ti-layout"></i><span>Input Data</span></a>
                                 <ul class="collapse">
                                     <li><a href="{{ url('/input-ncr') }}">NCR</a></li>
                                     <li><a href="{{ url('/input-ofi') }}">OFI</a></li>
@@ -84,19 +83,24 @@
                                     <a href="#" aria-expanded="true"><i class="ti-layout"></i><span>Master
                                             Data</span></a>
                                     <ul class="collapse">
+                                        <li><a href="{{ url('/data-nc') }}">Data NC</a></li>
                                         <li><a href="{{ url('/data-ncr') }}">Data NCR</a></li>
                                         <li><a href="{{ url('/data-ofi') }}">Data OFI</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a href="{{ url('/monitoring-tl') }}"><i class="ti-write"></i><span>Monitoring
-                                            Tindak
-                                            Lanjut</span></a>
+                                            Tindak Lanjut</span></a>
                                 </li>
                                 <hr
                                     style="display: block; height: 1px; border: 0; border-top: 1px solid #343e50; margin: 1em 0; margin-left: 32px; margin-right: 32px;">
                                 <li>
-                                    <a href="{{ url('/data-departemen') }}"><i class="ti-user"></i><span>Departemen</span></a>
+                                    <a href="{{ url('/data-tema') }}"><i class="ti-user"></i><span>Tema
+                                            Audit</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/data-departemen') }}"><i
+                                            class="ti-user"></i><span>Departemen</span></a>
                                 </li>
                                 <li>
                                     <a href="{{ url('/data-user') }}"><i class="ti-user"></i><span>Pengguna</span></a>
@@ -108,6 +112,7 @@
                                     <a href="#" aria-expanded="true"><i class="ti-layout"></i><span>Master
                                             Data</span></a>
                                     <ul class="collapse">
+                                        <li><a href="{{ url('/data-nc') }}">Data NC</a></li>
                                         <li><a href="{{ url('/data-ncr') }}">Data NCR</a></li>
                                         <li><a href="{{ url('/data-ofi') }}">Data OFI</a></li>
                                     </ul>
@@ -122,6 +127,7 @@
                                     <a href="#" aria-expanded="true"><i class="ti-layout"></i><span>Master
                                             Data</span></a>
                                     <ul class="collapse">
+                                        <li><a href="{{ url('/data-nc') }}">Data NC</a></li>
                                         <li><a href="{{ url('/data-ncr') }}">Data NCR</a></li>
                                         <li><a href="{{ url('/data-ofi') }}">Data OFI</a></li>
                                     </ul>
@@ -230,7 +236,8 @@
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
     <!-- start chart js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <!-- start highcharts js -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <!-- start zingchart js -->
@@ -246,9 +253,11 @@
     <script src="{{ asset('assets/js/bar-chart.js') }}"></script>
     <script>
         @if (Route::currentRouteName() != 'data-departemen-add' &&
-            Route::currentRouteName() != 'data-departemen-edit' &&
-            Route::currentRouteName() != 'data-user-add' &&
-            Route::currentRouteName() != 'data-user-edit')
+                Route::currentRouteName() != 'data-departemen-edit' &&
+                Route::currentRouteName() != 'data-user-add' &&
+                Route::currentRouteName() != 'data-user-edit' &&
+                Route::currentRouteName() != 'data-tema-add' &&
+                Route::currentRouteName() != 'data-tema-edit')
             $(document).ready(function() {
                 $('input').on('keydown', function(event) {
                     if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event
@@ -264,7 +273,9 @@
         @endif
 
         if ($('#dataTable3').length) {
-            @if (Route::currentRouteName() == 'data-ncr' || Route::currentRouteName() == 'data-ofi')
+            @if (Route::currentRouteName() == 'data-nc' ||
+                    Route::currentRouteName() == 'data-ncr' ||
+                    Route::currentRouteName() == 'data-ofi')
                 $.fn.dataTable.ext.search.push(
                     function(settings, data, dataIndex) {
                         var min = new Date($('#minDateFilter').val());
@@ -293,7 +304,9 @@
                     // ]
                 });
 
-                @if (Route::currentRouteName() == 'data-ncr' || Route::currentRouteName() == 'data-ofi')
+                @if (Route::currentRouteName() == 'data-nc' ||
+                        Route::currentRouteName() == 'data-ncr' ||
+                        Route::currentRouteName() == 'data-ofi')
                     $('#minDateFilter, #maxDateFilter').on('change', function() {
                         dataTable3.draw();
                     });

@@ -22,7 +22,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Departemen</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="name" class="form-control" required id="name"
-                                        placeholder="Masukkan Nama Pengguna">
+                                        placeholder="Masukkan Nama Departemen">
                                 </div>
                             </div>
                             <div class="row-mb-3">

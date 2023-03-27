@@ -13,12 +13,15 @@ class NcrController extends Controller
 {
     public function index()
     {
-        if (auth()->user()->role == 'Auditee')
-        {
+        if (auth()->user()->role == 'Auditee') {
             $ncr = Ncr::where('objek_audit', '=', auth()->user()->id)->get();
         }
-        else
-        {
+
+        // if (auth()->user()->role == 'Tema') {
+        //     $ncr = Ncr::where('tema_audit', '=', auth()->user()->id)->get();
+        // }
+
+        else {
             $ncr = Ncr::all();
         }
 
@@ -27,13 +30,10 @@ class NcrController extends Controller
 
     public function api_status_ncr()
     {
-        if (auth()->user()->role == 'Auditee')
-        {
-            $ncr = DB::select(DB::raw("SELECT * FROM (SELECT COUNT(id_ncr) AS jumlah, status AS name FROM ncr WHERE objek_audit = '" . auth()->user()->id . "' AND (status = 'Sudah Ditindaklanjuti' OR status = 'Belum Ditindaklanjuti') GROUP BY status) AS aa ORDER BY name DESC"));
-        }
-        else
-        {
-            $ncr = DB::select(DB::raw("SELECT * FROM (SELECT COUNT(id_ncr) AS jumlah, status AS name FROM ncr WHERE (status = 'Sudah Ditindaklanjuti' OR status = 'Belum Ditindaklanjuti') GROUP BY status) AS aa ORDER BY name DESC"));
+        if (auth()->user()->role == 'Auditee') {
+            $ncr = DB::select(DB::raw("SELECT * FROM (SELECT SUM(CASE WHEN status = 'Sudah Ditindaklanjuti' THEN 1 ELSE 0 END) AS jumlah_sudah, SUM(CASE WHEN status = 'Belum Ditindaklanjuti' THEN 1 ELSE 0 END) AS jumlah_belum, SUM(CASE WHEN status = 'Tindak Lanjut Belum Sesuai' THEN 1 ELSE 0 END) AS jumlah_tidak FROM ncr WHERE objek_audit = '" . auth()->user()->id . "') AS aa"));
+        } else {
+            $ncr = DB::select(DB::raw("SELECT * FROM (SELECT SUM(CASE WHEN status = 'Sudah Ditindaklanjuti' THEN 1 ELSE 0 END) AS jumlah_sudah, SUM(CASE WHEN status = 'Belum Ditindaklanjuti' THEN 1 ELSE 0 END) AS jumlah_belum, SUM(CASE WHEN status = 'Tindak Lanjut Belum Sesuai' THEN 1 ELSE 0 END) AS jumlah_tidak FROM ncr) AS aa"));
         }
         // $ncr = Ncr::selectRaw('COUNT(id_ncr) AS jumlah, status AS name')
         //     ->where('status', '=', 'Sudah Ditindaklanjuti')
@@ -47,23 +47,40 @@ class NcrController extends Controller
     public function index_add()
     {
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
+        $usersTema = User::where('role', '=', 'Tema')->get();
+        $ncr = new Ncr;
+        $ncr->no_ncr = Ncr::generateCode();
 
-        return view('ncr.add', ['usersAuditee' => $usersAuditee]);
+        return view('ncr.add', ['usersAuditee' => $usersAuditee, 'usersTema' => $usersTema], compact('ncr'));
     }
 
     public function store_add(Request $request)
     {
-        $dataSent = $request->except('_token', 'bukti');
+        $dataSent = $request->except('_token', 'bukti', 'ttd_auditor', 'ttd_auditee', 'ttd_auditee_gm_sm');
 
         $request->validate([
             'no_ncr' => 'required',
             'objek_audit' => 'required',
             'bukti' => 'mimes:pdf',
+            'ttd_auditor' => 'mimes:jpeg,jpg,png',
+            'ttd_auditee' => 'mimes:jpeg,jpg,png',
+            'ttd_auditee_gm_sm' => 'mimes:jpeg,jpg,png',
         ]);
 
-        if ($request->file('bukti'))
-        {
+        if ($request->file('bukti')) {
             $dataSent['bukti'] = $request->file('bukti')->store('bukti-ncr');
+        }
+
+        if ($request->file('ttd_auditor')) {
+            $dataSent['ttd_auditor'] = $request->file('ttd_auditor')->store('ttd_auditor');
+        }
+
+        if ($request->file('ttd_auditee')) {
+            $dataSent['ttd_auditee'] = $request->file('ttd_auditee')->store('ttd_auditee');
+        }
+
+        if ($request->file('ttd_auditee_gm_sm')) {
+            $dataSent['ttd_auditee_gm_sm'] = $request->file('ttd_auditee_gm_sm')->store('ttd_auditee_gm_sm');
         }
 
         $create = Ncr::create($dataSent);
@@ -74,17 +91,39 @@ class NcrController extends Controller
     public function index_form_ncr(Ncr $ncr)
     {
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
+        $usersTema = User::where('role', '=', 'Tema')->get();
 
-        return view('ncr.formncr.edit', ['ncr' => $ncr, 'usersAuditee' => $usersAuditee]);
+        return view('ncr.formncr.edit', ['ncr' => $ncr, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema], compact('ncr'));
     }
 
     public function store_form_ncr(Request $request, Ncr $ncr)
     {
-        // $validatedData = $request->validate([
-        //     'bab_audit' => ''
-        // ]);
+        $dataSent = $request->except('_token', 'bukti', 'ttd_auditor', 'ttd_auditee', 'ttd_auditee_gm_sm');
 
-        Ncr::where('id_ncr', '=', $ncr->id_ncr)->update($request->except('_token'));
+        $request->validate([
+            'bukti' => 'mimes:pdf',
+            'ttd_auditor' => 'mimes:jpeg,jpg,png',
+            'ttd_auditee' => 'mimes:jpeg,jpg,png',
+            'ttd_auditee_gm_sm' => 'mimes:jpeg,jpg,png',
+        ]);
+
+        if ($request->file('bukti')) {
+            $dataSent['bukti'] = $request->file('bukti')->store('bukti-ncr');
+        }
+
+        if ($request->file('ttd_auditor')) {
+            $dataSent['ttd_auditor'] = $request->file('ttd_auditor')->store('ttd_auditor');
+        }
+
+        if ($request->file('ttd_auditee')) {
+            $dataSent['ttd_auditee'] = $request->file('ttd_auditee')->store('ttd_auditee');
+        }
+
+        if ($request->file('ttd_auditee_gm_sm')) {
+            $dataSent['ttd_auditee_gm_sm'] = $request->file('ttd_auditee_gm_sm')->store('ttd_auditee_gm_sm');
+        }
+
+        Ncr::where('id_ncr', '=', $ncr->id_ncr)->update($dataSent);
 
         return redirect('data-ncr');
     }
@@ -92,21 +131,37 @@ class NcrController extends Controller
     public function index_edit(Ncr $ncr)
     {
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
+        $usersTema = User::where('role', '=', 'Tema')->get();
+        $tlncr = TLNcr::where('id_ncr', '=', $ncr->id_ncr)->first();
 
-        return view('ncr.edit', ['ncr' => $ncr, 'usersAuditee' => $usersAuditee]);
+        return view('ncr.edit', ['ncr' => $ncr, 'tlncr' => $tlncr, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);
     }
 
     public function store_edit(Request $request, Ncr $ncr)
     {
-        $dataSent = $request->except('_token', 'bukti');
+        $dataSent = $request->except('_token', 'bukti', 'ttd_auditor', 'ttd_auditee', 'ttd_auditee_gm_sm');
 
         $request->validate([
             'bukti' => 'mimes:pdf',
+            'ttd_auditor' => 'mimes:jpeg,jpg,png',
+            'ttd_auditee' => 'mimes:jpeg,jpg,png',
+            'ttd_auditee_gm_sm' => 'mimes:jpeg,jpg,png',
         ]);
 
-        if ($request->file('bukti'))
-        {
+        if ($request->file('bukti')) {
             $dataSent['bukti'] = $request->file('bukti')->store('bukti-ncr');
+        }
+
+        if ($request->file('ttd_auditor')) {
+            $dataSent['ttd_auditor'] = $request->file('ttd_auditor')->store('ttd_auditor');
+        }
+
+        if ($request->file('ttd_auditee')) {
+            $dataSent['ttd_auditee'] = $request->file('ttd_auditee')->store('ttd_auditee');
+        }
+
+        if ($request->file('ttd_auditee_gm_sm')) {
+            $dataSent['ttd_auditee_gm_sm'] = $request->file('ttd_auditee_gm_sm')->store('ttd_auditee_gm_sm');
         }
 
         Ncr::where('id_ncr', '=', $ncr->id_ncr)->update($dataSent);
@@ -125,30 +180,42 @@ class NcrController extends Controller
     public function index_tlncr(Ncr $ncr, $ref_page = '')
     {
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
+        $usersTema = User::where('role', '=', 'Tema')->get();
         $tlncr = TLNcr::where('id_ncr', '=', $ncr->id_ncr)->first();
 
-        return view('ncr.tlncr.edit', ['ncr' => $ncr, 'tlncr' => $tlncr, 'usersAuditee' => $usersAuditee, 'ref_page' => $ref_page]);
+        return view('ncr.tlncr.edit', ['ncr' => $ncr, 'tlncr' => $tlncr, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema,  'ref_page' => $ref_page]);
     }
 
     public function store_tlncr(Request $request, Ncr $ncr, $ref_page = '')
     {
-        if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditee')
-        {
+        if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditee') {
             $validatedDataNcr = $request->validate([
                 'diakui_oleh' => '',
                 'disetujui_oleh' => '',
                 'tgl_accgm' => '',
-                'tgl_planaction' => '',
                 'bukti' => 'mimes:pdf',
+                'ttd_auditor' => 'mimes:jpeg,jpg,png',
+                'ttd_auditee' => 'mimes:jpeg,jpg,png',
+                'ttd_auditee_gm_sm' => 'mimes:jpeg,jpg,png',
             ]);
 
-            if ($request->file('bukti'))
-            {
+            if ($request->file('bukti')) {
                 $validatedDataNcr['bukti'] = $request->file('bukti')->store('bukti-ncr');
             }
 
-            if (auth()->user()->role == 'Admin')
-            {
+            if ($request->file('ttd_auditor')) {
+                $validatedDataNcr['ttd_auditor'] = $request->file('ttd_auditor')->store('ttd_auditor');
+            }
+
+            if ($request->file('ttd_auditee')) {
+                $validatedDataNcr['ttd_auditee'] = $request->file('ttd_auditee')->store('ttd_auditee');
+            }
+
+            if ($request->file('ttd_auditee_gm_sm')) {
+                $validatedDataNcr['ttd_auditee_gm_sm'] = $request->file('ttd_auditee_gm_sm')->store('ttd_auditee_gm_sm');
+            }
+
+            if (auth()->user()->role == 'Admin') {
                 $validatedDataNcr['no_ncr'] = $request->no_ncr;
                 $validatedDataNcr['proses_audit'] = $request->proses_audit;
                 $validatedDataNcr['tema_audit'] = $request->tema_audit;
@@ -169,13 +236,28 @@ class NcrController extends Controller
                 'uraian_perbaikan' => '',
                 'uraian_pencegahan' => '',
                 'tgl_action' => '',
+                'disetujui_oleh' => '',
                 'tgl_accgm' => '',
+                'ttd_tl_gm' => 'mimes:jpeg,jpg,png',
+                'ttd_tl_verif_auditor' => 'mimes:jpeg,jpg,png',
+                'ttd_tl_verif_adm' => 'mimes:jpeg,jpg,png',
             ]);
+
+            if ($request->file('ttd_tl_gm')) {
+                $validatedDataTLNcr['ttd_tl_gm'] = $request->file('ttd_tl_gm')->store('ttd_tl_gm');
+            }
+
+            if ($request->file('ttd_tl_verif_auditor')) {
+                $validatedDataTLNcr['ttd_tl_verif_auditor'] = $request->file('ttd_tl_verif_auditor')->store('ttd_tl_verif_auditor');
+            }
+
+            if ($request->file('ttd_tl_verif_adm')) {
+                $validatedDataTLNcr['ttd_tl_verif_adm'] = $request->file('ttd_tl_verif_adm')->store('ttd_tl_verif_adm');
+            }
 
             $validatedDataTLNcr['id_ncr'] = $ncr->id_ncr;
 
-            if (auth()->user()->role == 'Admin')
-            {
+            if (auth()->user()->role == 'Admin') {
                 $validatedDataTLNcr['uraian_verifikasi'] = $request->uraian_verifikasi;
                 $validatedDataTLNcr['hasil_verif'] = $request->hasil_verif;
                 $validatedDataTLNcr['verifikator'] = $request->verifikator;
@@ -188,9 +270,51 @@ class NcrController extends Controller
             TLNcr::updateOrCreate(['id_ncr' => $ncr->id_ncr], $validatedDataTLNcr);
         }
 
-        if (auth()->user()->role == 'Auditor')
-        {
-            Ncr::where('id_ncr', '=', $ncr->id_ncr)->update(['status' => $request->status]);
+        if (auth()->user()->role == 'Auditor') {
+            $validatedDataTLNcr = $request->validate([
+                'ttd_tl_verif_adm' => 'mimes:jpeg,jpg,png',
+            ]);
+
+            if ($request->file('ttd_tl_verif_adm')) {
+                $validatedDataTLNcr['ttd_tl_verif_adm'] = $request->file('ttd_tl_verif_adm')->store('ttd_tl_verif_adm');
+            }
+
+            $validatedDataTLNcr['uraian_verifikasi'] = $request->uraian_verifikasi;
+            $validatedDataTLNcr['hasil_verif'] = $request->hasil_verif;
+            $validatedDataTLNcr['verifikator'] = $request->verifikator;
+            $validatedDataTLNcr['tgl_verif'] = $request->tgl_verif;
+
+            $validatedDataTLNcr['id_ncr'] = $ncr->id_ncr;
+
+            Ncr::where('id_ncr', '=', $ncr->id_ncr)->update([
+                'status' => $request->status,
+                'tgl_planaction' => $request->tgl_planaction,
+            ]);
+
+            TLNcr::updateOrCreate(['id_ncr' => $ncr->id_ncr], $validatedDataTLNcr);
+        }
+
+        if (auth()->user()->role == 'Admin2') {
+            $validatedDataTLNcr = $request->validate([
+                'ttd_tl_verif_auditor' => 'mimes:jpeg,jpg,png',
+            ]);
+
+            if ($request->file('ttd_tl_verif_auditor')) {
+                $validatedDataTLNcr['ttd_tl_verif_auditor'] = $request->file('ttd_tl_verif_auditor')->store('ttd_tl_verif_auditor');
+            }
+
+            $validatedDataTLNcr['rekomendasi'] = $request->rekomendasi;
+            $validatedDataTLNcr['namasm_verif'] = $request->namasm_verif;
+            $validatedDataTLNcr['tgl_verif_adm2'] = $request->tgl_verif_adm2;
+
+            $validatedDataTLNcr['id_ncr'] = $ncr->id_ncr;
+
+            Ncr::where('id_ncr', '=', $ncr->id_ncr)->update([
+                'status' => $request->status,
+                'tgl_planaction' => $request->tgl_planaction,
+            ]);
+
+            TLNcr::updateOrCreate(['id_ncr' => $ncr->id_ncr], $validatedDataTLNcr);
         }
 
         return redirect((!empty($ref_page) ? $ref_page : 'data-ncr'));
@@ -199,19 +323,35 @@ class NcrController extends Controller
     public function view_tlncr(Ncr $ncr, $ref_page = '')
     {
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
+        $usersTema = User::where('role', '=', 'Tema')->get();
         $tlncr = TLNcr::where('id_ncr', '=', $ncr->id_ncr)->first();
 
-        return view('ncr.tlncr.view', ['ncr' => $ncr, 'tlncr' => $tlncr, 'usersAuditee' => $usersAuditee, 'ref_page' => $ref_page]);
+        return view('ncr.tlncr.view', ['ncr' => $ncr, 'tlncr' => $tlncr, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema, 'ref_page' => $ref_page]);
     }
 
     public function print(Ncr $ncr)
     {
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
+        $usersTema = User::where('role', '=', 'Tema')->get();
         $tlncr = TLNcr::where('id_ncr', '=', $ncr->id_ncr)->first();
-
-        $dompdf = Pdf::loadView('ncr.print', ['ncr' => $ncr, 'tlncr' => $tlncr, 'usersAuditee' => $usersAuditee]);
+        $dompdf = Pdf::loadView('ncr.print', ['ncr' => $ncr, 'tlncr' => $tlncr, 'usersAuditee' => $usersAuditee,  'usersTema' => $usersTema]);
         $dompdf->add_info('Title', 'Cetak NCR');
         $dompdf->setPaper('A3');
         return $dompdf->stream('Cetak NCR.pdf', array("Attachment" => false));
+    }
+
+    public function excel()
+    {
+        if (auth()->user()->role == 'Auditee') {
+            $ncr = Ncr::where('objek_audit', '=', auth()->user()->id)->get();
+        }
+
+        if (auth()->user()->role == 'Tema') {
+            $ncr = Ncr::where('tema_audit', '=', auth()->user()->id)->get();
+        } else {
+            $ncr = Ncr::all();
+        }
+
+        return view('ncr.excel', ['ncr' => $ncr]);
     }
 }

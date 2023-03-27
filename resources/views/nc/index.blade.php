@@ -9,14 +9,14 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-sm-flex justify-content-between align-items-center">
-                            <h2>Data NCR</h2>
-                            <a href="{{ url('data-ncr/excel') }}" target="_blank"
+                            <h2>Data NC</h2>
+                            <a href="{{ url('data-nc/excel') }}" target="_blank"
                                 style="background-color: #107c41; margin-bottom: 20px; margin-left: auto; margin-right: 20px;"
                                 class="btn btn-success">Excel</a>
                             @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
-                                <a href="{{ url('data-ncr/add') }}" style="margin-bottom: 20px;"
+                                <a href="{{ url('data-nc/add') }}" style="margin-bottom: 20px;"
                                     class="btn btn-success">Tambah
-                                    NCR</a>
+                                    NC</a>
                             @endif
                         </div><br>
                         <div class="row mb-0 mb-lg-3">
@@ -38,7 +38,7 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th class="text-center">No</th>
-                                        <th class="text-center">No. NCR</th>
+                                        <th class="text-center">No. NC</th>
                                         <th class="text-center">Proses</th>
                                         <th class="text-center">Tema</th>
                                         <th class="text-center">Objek</th>
@@ -51,36 +51,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($ncr as $data_ncr)
+                                    @foreach ($nc as $data_nc)
                                         <tr>
                                             <td class="text-center">{{ $loop->index + 1 }}</td>
-                                            <td class="text-center">{{ $data_ncr->no_ncr }}<br>
+                                            <td class="text-center">{{ $data_nc->no_nc }}<br>
 
                                             </td>
-                                            <td class="text-center">{{ $data_ncr->proses_audit }}</td>
-                                            <td class="text-center">{{ $data_ncr->users_tema->name }}</td>
-                                            <td class="text-center">{{ $data_ncr->users->name }}</td>
-                                            <!--<td class="text-center">{{ $data_ncr->dokumen }}</td>-->
-                                            <td class="text-center">{{ $data_ncr->tgl_terbitncr }}</td>
-                                            <td class="text-center">{{ $data_ncr->tgl_deadline }}</td>
-                                            <td class="text-center">{{ $data_ncr->status }}</td>
+                                            <td class="text-center">{{ $data_nc->proses_audit }}</td>
+                                            <td class="text-center">{{ $data_nc->users_tema->name }}</td>
+                                            <td class="text-center">{{ $data_nc->users->name }}</td>
+                                            <!--<td class="text-center">{{ $data_nc->dokumen }}</td>-->
+                                            <td class="text-center">{{ $data_nc->tgl_terbitnc }}</td>
+                                            <td class="text-center">{{ $data_nc->tgl_deadline }}</td>
+                                            <td class="text-center">{{ $data_nc->status }}</td>
                                             <td class="text-center">
-                                                @if (!empty($data_ncr->bukti))
-                                                    <a href="{{ asset('storage/' . $data_ncr->bukti) }}"
+                                                @if (!empty($data_nc->bukti))
+                                                    <a href="{{ asset('storage/' . $data_nc->bukti) }}"
                                                         target="_blank">Lihat Bukti</a>
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ url('data-ncr/print/' . $data_ncr->id_ncr) }}" target="_blank"
+                                                <a href="{{ url('data-nc/print/' . $data_nc->id_nc) }}" target="_blank"
                                                     class="btn btn-secondary"><i class="ti-printer"></i></a>
-                                                <a href="{{ url('data-ncr/tlncr/input/' . $data_ncr->id_ncr) }}"
+                                                <a href="{{ url('data-nc/tlnc/input/' . $data_nc->id_nc) }}"
                                                     class="btn btn-warning"><i class="ti-plus"></i></a>
                                                 @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
-                                                    <a href="{{ url('data-ncr/edit/' . $data_ncr->id_ncr) }}"
+                                                    <a href="{{ url('data-nc/edit/' . $data_nc->id_nc) }}"
                                                         class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
                                                 @endif
                                                 @if (auth()->user()->role == 'Admin')
-                                                    <a href="{{ url('data-ncr/delete/' . $data_ncr->id_ncr) }}"
+                                                    <a href="{{ url('data-nc/delete/' . $data_nc->id_nc) }}"
                                                         class="btn btn-danger"><i class="ti-trash"></i></a>
                                                 @endif
                                             </td>

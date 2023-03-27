@@ -9,50 +9,38 @@
                         <div class="d-sm-flex justify-content-between align-items-center">
                             <h2>Tambah {{ $title }}</h2>
                         </div><br>
-                        <form action="{{ url('data-user/add') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('data-tema/edit/' . $user->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">NIP</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="nip" class="form-control" required id="nip"
+                                    <input type="text" name="nip" value="{{ $user->nip }}" class="form-control" required id="nip"
                                         placeholder="Masukkan NIP">
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Tema</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="name" class="form-control" required id="name"
-                                        placeholder="Masukkan Nama Pengguna">
-                                </div>
-                            </div>
-                            <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Role</label>
-                                <div class="col-sm-6">
-                                    <select name="role" id="role" class="form-control">
-                                        <option>- Pilih -</option>
-                                        <option>Admin</option>
-                                        <option>Admin2</option>
-                                        <option>Auditor</option>
-                                        <option>Auditee</option>
-                                    </select>
+                                    <input type="text" name="name" value="{{ $user->name }}" class="form-control" required id="name"
+                                        placeholder="Masukkan Nama Tema">
                                 </div>
                             </div>
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Username</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="username" class="form-control" required id="username"
+                                    <input type="text" name="username" value="{{ $user->username }}" class="form-control" required id="username"
                                         placeholder="Masukkan Username">
                                 </div>
                             </div>
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Password</label>
                                 <div class="col-sm-6">
-                                    <input type="password" name="password" class="form-control" required id="password"
+                                    <input type="password" name="password" class="form-control" id="password"
                                         placeholder="Masukkan Password">
                                 </div>
                             </div><br><br>
                             <input type="submit" value="Simpan" class="btn btn-info"></input>
-                            <a href="{{ url('data-user') }}" title="Batal" class="btn btn-secondary">Batal</a>
+                            <a href="{{ url('data-tema') }}" title="Batal" class="btn btn-secondary">Batal</a>
                         </form>
                     </div>
                 </div>

@@ -68,10 +68,10 @@
 <table style="width: 100%; padding-top: 5px;">
     <tr>
         <th style="width: 25%; vertical-align: middle; text-align: left;" colspan="3">
-            Dari (Bagian / Departemen)*: {{ $ofi->asal_dept }}
+            Dari (Bagian / Departemen)*: {{ !empty($ofi->user_asal_dept->name) ? $ofi->user_asal_dept->name : '' }}
         </th>
         <td style="width: 45%; vertical-align: middle; border-left-width: 1px;">
-            Kepada:
+            Kepada: Wakil Manajemen 
         </td>
     </tr>
     <tr>
@@ -98,7 +98,7 @@
             :
         </td>
         <td style="width: 28%; vertical-align: middle;">
-            {{ $ofi->dept_ygmngrjkn }}
+            {{ !empty($ofi->user_dept_ygmngrjkn->name) ? $ofi->user_dept_ygmngrjkn->name : '' }}
         </td>
     </tr>
 </table>
@@ -240,6 +240,9 @@
                         :
                     </td>
                     <td style="width: 60%; border: 0px;">
+                        <img width="50" height="60" src="{{ asset('storage/' . $ofi->ttd_dept_pengusul) }}"
+                            alt="ttd_dept_pengusul">
+                        <br>
                         {{ $ofi->dept_pengusul }}
                     </td>
                 </tr>
@@ -267,6 +270,9 @@
                         :
                     </td>
                     <td style="width: 60%; border: 0px;">
+                        <img width="50" height="60" src="{{ asset('storage/' . $ofi->ttd_disetujui_oleh_ofi) }}"
+                            alt="ttd_disetujui_oleh">
+                        <br>
                         {{ $ofi->disetujui_oleh }}
                     </td>
                 </tr>
@@ -312,8 +318,13 @@
                             <span
                                 style="padding-bottom: 1.55px; border-bottom: 3px solid #fff; line-height: 27px; padding-right: 25px;">
                                 OFI Diterima, diselesaikan oleh:
+                                <br>
+                                <img width="50" height="60"
+                                    src="{{ asset('storage/' . $ofi->ttd_disposisi) }}" alt="ttd_disposisi">
+                                <br>
                             </span>
                             <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
+
                                 {{ $ofi->disposisi_diselesaikan_oleh }}
                             </span>
                         </div>
@@ -341,10 +352,10 @@
                     Tindak Lanjut Usulan Peningkatan**:
                 </span>
                 <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
-                    : {{ $tlofi->tl_usulanofi }}
+                    : {{ !empty($tlofi->tl_usulanofi) ? $tlofi->tl_usulanofi : '' }}
                 </span>
             </div>
-            @if (strlen($tlofi->tl_usulanofi) <= 100)
+            @if (strlen(!empty($tlofi->tl_usulanofi) ? $tlofi->tl_usulanofi : '') <= 100)
                 <div style="text-align: justify; border-bottom: 1px solid #000;">
                     <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
                         &nbsp;
@@ -365,7 +376,7 @@
                         &nbsp;
                     </span>
                 </div>
-            @elseif (strlen($tlofi->tl_usulanofi) <= 200)
+            @elseif (strlen(!empty($tlofi->tl_usulanofi) ? $tlofi->tl_usulanofi : '') <= 200)
                 <div style="text-align: justify; border-bottom: 1px solid #000;">
                     <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
                         &nbsp;
@@ -398,7 +409,7 @@
                         :
                     </td>
                     <td style="width: 50%; border: 0px;">
-                        {{ $tlofi->tgl_tl }}
+                        {{ !empty($tlofi->tgl_tl) ? $tlofi->tgl_tl : '' }}
                     </td>
                 </tr>
                 <tr>
@@ -409,7 +420,11 @@
                         :
                     </td>
                     <td style="width: 50%; border: 0px;">
-                        {{ $tlofi->nama_pekerjatl }}
+                        <img width="50" height="60"
+                            src="{{ !empty($tlofi->ttd_tlofi_oleh) ? asset('storage/' . $tlofi->ttd_tlofi_oleh) : '' }}"
+                            alt="Ttd tl oleh">
+                        <br>
+                        {{ !empty($tlofi->nama_pekerjatl) ? $tlofi->nama_pekerjatl : '' }}
                     </td>
                 </tr>
             </table>
@@ -445,10 +460,10 @@
                     Uraian Verifikasi***:
                 </span>
                 <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
-                    {{ $tlofi->uraian_verif }}
+                    {{ !empty($tlofi->uraian_verif) ? $tlofi->uraian_verif : '' }}
                 </span>
             </div>
-            @if (strlen($tlofi->uraian_verif) <= 100)
+            @if (strlen(!empty($tlofi->uraian_verif) ? $tlofi->uraian_verif : '') <= 100)
                 <div style="text-align: justify; border-bottom: 1px solid #000;">
                     <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
                         &nbsp;
@@ -461,7 +476,7 @@
 
 <table style="width: 100%; padding-top: 1px;">
     <tr>
-        <td style="width: 35%; vertical-align: top; text-align: center;">
+        <td style="width: 70%; vertical-align: top; text-align: center;">
             <table style="width: 100%; border: 0px;">
                 <tr>
                     <td style="width: 35%; border: 0px;">
@@ -471,7 +486,7 @@
                         :
                     </td>
                     <td style="width: 60%; border: 0px;">
-                        {{ $tlofi->tgl_verif }}
+                        {{ !empty($tlofi->tgl_verif) ? $tlofi->tgl_verif : '' }}
                     </td>
                 </tr>
                 <tr>
@@ -482,12 +497,16 @@
                         :
                     </td>
                     <td style="width: 60%; border: 0px;">
-                        {{ $tlofi->nama_verifikator }}
+                        <img width="50" height="60"
+                            src="{{ !empty($tlofi->ttd_tlofi_verif) ? asset('storage/' . $tlofi->ttd_tlofi_verif) : '' }}"
+                            alt="Ttd diverif oleh">
+                        <br>
+                        {{ !empty($tlofi->nama_verifikator) ? $tlofi->nama_verifikator : '' }}
                     </td>
                 </tr>
             </table>
         </td>
-        <td style="width: 35%; vertical-align: top; text-align: center; border-left-width: 1px;">
+        <td style="width: 30%; vertical-align: top; text-align: center; border-left-width: 1px;">
             <table style="width: 100%; border: 0px;">
                 <tr>
                     <td style="width: 20%; border: 0px;">
@@ -495,7 +514,7 @@
                     </td>
                     <td style="width: 10%; border: 0px;">
                         <span
-                            style="padding: 0px 4px; border: 1px solid #000; font-family: DejaVu Sans, serif;">{!! $tlofi->hasil_verif == 'efektif' ? '&check;' : '&nbsp;&nbsp;&nbsp;' !!}</span>
+                            style="padding: 0px 4px; border: 1px solid #000; font-family: DejaVu Sans, serif;">{!! (!empty($tlofi->hasil_verif) ? $tlofi->hasil_verif : '') == 'efektif' ? '&check;' : '&nbsp;&nbsp;&nbsp;' !!}</span>
                     </td>
                     <td style="width: 70%; border: 0px;">
                         Efektif
@@ -507,7 +526,7 @@
                     </td>
                     <td style="width: 10%; border: 0px;">
                         <span
-                            style="padding: 0px 4px; border: 1px solid #000; font-family: DejaVu Sans, serif;">{!! $tlofi->hasil_verif == 'tdk_efektif' ? '&check;' : '&nbsp;&nbsp;&nbsp;' !!}</span>
+                            style="padding: 0px 4px; border: 1px solid #000; font-family: DejaVu Sans, serif;">{!! (!empty($tlofi->hasil_verif) ? $tlofi->hasil_verif : '') == 'tdk_efektif' ? '&check;' : '&nbsp;&nbsp;&nbsp;' !!}</span>
                     </td>
                     <td style="width: 70%; border: 0px;">
                         Tidak Efektif
@@ -515,7 +534,7 @@
                 </tr>
             </table>
         </td>
-        <td style="width: 30%; vertical-align: top; text-align: center; border-left-width: 1px;">
+        <!--<td style="width: 30%; vertical-align: top; text-align: center; border-left-width: 1px;">
             <table style="width: 100%; border: 0px;">
                 <tr>
                     <td style="width: 100%: text-align: center; border-top-width: 0px;" align="center"
@@ -529,7 +548,7 @@
                         :
                     </td>
                     <td style="width: 60%; border: 0px;">
-                        {{ $tlofi->nama_evaluator }}
+                        {{ !empty($tlofi->nama_evaluator) ? $tlofi->nama_evaluator : '' }}
                     </td>
                 </tr>
                 <tr>
@@ -540,11 +559,11 @@
                         :
                     </td>
                     <td style="width: 60%; border: 0px;">
-                        {{ $tlofi->skor }}
+                        {{ !empty($tlofi->skor) ? $tlofi->skor : '' }}
                     </td>
                 </tr>
             </table>
-        </td>
+        </td>-->
     </tr>
 </table>
 
@@ -565,7 +584,7 @@
     </tr>
     <tr>
         <td style="width: 10%; vertical-align: top; border-top-width: 0px; border-bottom-width: 0px;">
-            
+
         </td>
         <td style="width: 10%; vertical-align: top; border-top-width: 0px; border-bottom-width: 0px;">
             <div style="border-bottom: 1px solid #000;">4.</div>
@@ -586,6 +605,6 @@
     </tr>
     <tr>
         <td style="width: 30%; font-size: 14px; border: 0px;">*** Diisi oleh Wakil Manajemen.</td>
-        <td style="width: 70%; font-size: 14px; border: 0px;">**** Diisi Manajemen Mutu & LH (jika diperlukan).</td>
+        <td style="width: 70%; font-size: 14px; border: 0px;">**** Diisi oleh Fungsi Manajemen Sistem.</td>
     </tr>
 </table>

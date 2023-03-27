@@ -9,10 +9,14 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-sm-flex justify-content-between align-items-center">
-                            <h2>Data Ofi</h2>
+                            <h2>Data OFI</h2>
+                            <a href="{{ url('data-ofi/excel') }}" target="_blank"
+                                style="background-color: #107c41; margin-bottom: 20px; margin-left: auto; margin-right: 20px;"
+                                class="btn btn-success">Excel</a>
                             @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
-                                <a href="{{ url('data-ofi/add') }}" style="margin-bottom:20px" class="btn btn-success">Tambah
-                                    Ofi</a>
+                                <a href="{{ url('data-ofi/add') }}" style="margin-bottom:20px"
+                                    class="btn btn-success">Tambah
+                                    OFI</a>
                             @endif
                         </div><br>
                         <div class="row mb-0 mb-lg-3">
@@ -38,7 +42,8 @@
                                         <th class="text-center">Proses</th>
                                         <th class="text-center">Tema</th>
                                         <th class="text-center">Objek</th>
-                                        <th class="text-center">Dokumen</th>
+                                        <th class="text-center">Diselesaikan Oleh</th>
+                                        <!--<th class="text-center">Dokumen</th>-->
                                         <th class="text-center">Tanggal</th>
                                         <th class="text-center">Tgl. Deadline</th>
                                         <th class="text-center">Status</th>
@@ -50,28 +55,28 @@
                                     @foreach ($ofi as $data_ofi)
                                         <tr>
                                             <td class="text-center">{{ $loop->index + 1 }}</td>
-                                            <td class="text-center">{{ $data_ofi->no_ofi }}</td>
+                                            <td class="text-center">{{ $data_ofi->no_ofi }}<br>
+
+                                            </td>
                                             <td class="text-center">{{ $data_ofi->proses_audit }}</td>
-                                            <td class="text-center">{{ $data_ofi->tema_audit }}</td>
+                                            <td class="text-center">{{ $data_ofi->users_tema->name }}</td>
                                             <td class="text-center">{{ $data_ofi->users->name }}</td>
-                                            <td class="text-center">{{ $data_ofi->dokumen }}</td>
+                                            <td class="text-center">{{ $data_ofi->disposisi_diselesaikan_oleh }}</td>
+                                            <!--<td class="text-center">{{ $data_ofi->dokumen }}</td>-->
                                             <td class="text-center">{{ $data_ofi->tgl_terbitofi }}</td>
                                             <td class="text-center">{{ $data_ofi->tgl_deadline }}</td>
                                             <td class="text-center">{{ $data_ofi->status }}</td>
                                             <td class="text-center">
                                                 @if (!empty($data_ofi->bukti))
                                                     <a href="{{ asset('storage/' . $data_ofi->bukti) }}"
-                                                        target="_blank">Lihat
-                                                        Bukti</a>
+                                                        target="_blank">Lihat Bukti</a>
                                                 @endif
                                             </td>
                                             <td class="text-center">
                                                 <a href="{{ url('data-ofi/print/' . $data_ofi->id_ofi) }}" target="_blank"
                                                     class="btn btn-secondary"><i class="ti-printer"></i></a>
-                                                @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor' || auth()->user()->role == 'Auditee')
-                                                    <a href="{{ url('data-ofi/tlofi/input/' . $data_ofi->id_ofi) }}"
-                                                        class="btn btn-warning"><i class="ti-plus"></i></a>
-                                                @endif
+                                                <a href="{{ url('data-ofi/tlofi/input/' . $data_ofi->id_ofi) }}"
+                                                    class="btn btn-warning"><i class="ti-plus"></i></a>
                                                 @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
                                                     <a href="{{ url('data-ofi/edit/' . $data_ofi->id_ofi) }}"
                                                         class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
@@ -99,8 +104,7 @@
                 text: '',
                 icon: 'success',
                 confirmButtonText: 'OK'
-            }).then((result) => {
-            })
+            }).then((result) => {})
         </script>
     @endif
 @endsection

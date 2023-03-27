@@ -31,6 +31,7 @@
                                     <select name="role" id="role" class="form-control">
                                         <option>- Pilih -</option>
                                         <option {{ $user->role == 'Admin' ? 'selected' : '' }}>Admin</option>
+                                        <option {{ $user->role == 'Admin2' ? 'selected' : '' }}>Admin2</option>
                                         <option {{ $user->role == 'Auditor' ? 'selected' : '' }}>Auditor</option>
                                         <option {{ $user->role == 'Auditee' ? 'selected' : '' }}>Auditee</option>
                                     </select>

@@ -33,7 +33,7 @@
         <div class="container">
             <div style="color:white">
             </div><br>
-            <form action="/login" method="post">
+            <form action="{{ url('login') }}" method="post">
                 @csrf
                 @if (session()->has('loginError'))
                     <div class="form-group col-4">

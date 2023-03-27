@@ -5,36 +5,31 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TLNcr extends Model
+class TLNc extends Model
 {
     use HasFactory;
 
-    protected $table = "tlncr";
+    protected $table = "tlnc";
 
-    public $primaryKey = 'id_formncrtl';
+    public $primaryKey = 'id_formnctl';
 
     protected $fillable = [
-        'id_ncr',
+        'id_nc',
         'akar_masalah',
         'uraian_perbaikan',
         'uraian_pencegahan',
         'tgl_action',
-        'disetujui_oleh',
-        'ttd_tl_gm',
         'tgl_accgm',
         'uraian_verifikasi',
         'hasil_verif',
-        'ttd_tl_verif_auditor',
         'verifikator',
         'tgl_verif',
         'rekomendasi',
-        'ttd_tl_verif_adm',
         'namasm_verif',
-        'tgl_verif_adm2',
     ];
 
-    public function ncr()
+    public function nc()
     {
-        return $this->hasOne(Ncr::class, 'id_ncr', 'id_ncr');
+        return $this->hasOne(Nc::class, 'id_nc', 'id_nc');
     }
 }

@@ -9,7 +9,22 @@
                     <div class="card-body">
                         <div class="d-sm-flex justify-content-between align-items-center">
                             <h2>Data Tindak Lanjut</h2>
+                            <a href="{{ url('monitoring-tl/excel') }}" target="_blank" style="background-color: #107c41; margin-bottom: 20px;" class="btn btn-success">Excel</a>
                         </div><br>
+                        <div class="row mb-0 mb-lg-3">
+                            <div class="col-12">
+                                <label for="minDateFilter" class="form-label">Filter Tanggal</label>
+                            </div>
+                            <div class="col-lg-auto mb-3 my-lg-auto">
+                                <input type="date" id="minDateFilter" class="form-control form-control-sm">
+                            </div>
+                            <div class="col-lg-auto mb-3 my-lg-auto">
+                                s/d
+                            </div>
+                            <div class="col-lg-auto mb-3 my-lg-auto">
+                                <input type="date" id="maxDateFilter" class="form-control form-control-sm">
+                            </div>
+                        </div>
                         <div class="data-tables datatable-dark">
                             <table id="dataTable3" class="display" style="width:100%">
                                 <thead class="thead-dark">
@@ -23,6 +38,7 @@
                                         <th class="text-center">Tgl. Deadline</th>
                                         <th class="text-center">Tgl. Penyelesaian</th>
                                         <th class="text-center">Status</th>
+                                        <th class="text-center">Bukti</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -57,15 +73,21 @@
                                             </td>
                                             <td class="text-center">{{ $data_monitoringtl->tgl_mulai }}</td>
                                             <td class="text-center">{{ $data_monitoringtl->status }}</td>
+                                            <td class="text-center">
+                                                @if (!empty($data_monitoringtl->bukti))
+                                                    <a href="{{ asset('storage/' . $data_monitoringtl->bukti) }}"
+                                                        target="_blank">Lihat Bukti</a>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/print/' . $data_monitoringtl->id) : url('data-ofi/print/' . $data_monitoringtl->id) }}" target="_blank"
                                                     class="btn btn-secondary"><i class="ti-printer"></i></a>
-                                                <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/tlncr/view/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/tlofi/view/' . $data_monitoringtl->id . '/monitoring-tl') }}"
+                                                <!--<a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/tlncr/view/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/tlofi/view/' . $data_monitoringtl->id . '/monitoring-tl') }}"
                                                     class="btn btn-warning"><i class="ti-eye"></i></a>
                                                 @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
                                                     <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/tlncr/input/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/tlofi/input/' . $data_monitoringtl->id . '/monitoring-tl') }}"
                                                         class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
-                                                @endif
+                                                @endif-->
                                                 @if (auth()->user()->role == 'Admin')
                                                     <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/delete/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/delete/' . $data_monitoringtl->id . '/monitoring-tl') }}"
                                                         class="btn btn-danger"><i class="ti-trash"></i></a>

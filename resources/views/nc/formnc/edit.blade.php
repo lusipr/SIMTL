@@ -8,31 +8,34 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-sm-flex justify-content-between align-items-center">
-                            <h2>Input Form NCR</h2>
+                            <h2>Input Form NC</h2>
                         </div><br>
-                        <form action="{{ url('data-ncr/form/' . $ncr->id_ncr) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('data-nc/form/' . $nc->id_nc) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">No. NCR</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Opsi Temuan</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="no_ncr" class="form-control" id="no_ncr"
-                                        value="{{ $ncr->no_ncr }}" disabled>
+                                    <select name="opsi_temuan" disabled id="opsi_temuan" class="form-control">
+                                        <option value="NCR" {{ $nc->opsi_temuan == 'NCR' ? 'selected' : '' }}>NCR</option>
+                                        <option value="OFI" {{ $nc->opsi_temuan == 'OFI' ? 'selected' : '' }}>OFI</option>
+                                        <option value="Observasi" {{ $nc->opsi_temuan == 'Observasi' ? 'selected' : '' }}>Observasi</option>
+                                        <option value="CAR" {{ $nc->opsi_temuan == 'CAR' ? 'selected' : '' }}>CAR</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">No. NC</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="no_nc" class="form-control" id="no_nc"
+                                        value="{{ $nc->no_nc }}" disabled>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit</label>
                                 <div class="col-sm-6">
-                                    <input type="date" name="tgl_terbitncr" class="form-control" id="tgl_terbitncr"
-                                        value="{{ $ncr->tgl_terbitncr }}">
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline</label>
-                                <div class="col-sm-6">
-                                    <input type="date" name="tgl_deadline" id="tgl_deadline" class="form-control"
-                                        value="{{ $ncr->tgl_deadline }}">
+                                    <input type="date" name="tgl_terbitnc" class="form-control" id="tgl_terbitnc"
+                                        value="{{ $nc->tgl_terbitnc }}" disabled>
                                 </div>
                             </div>
 
@@ -43,7 +46,7 @@
                                         <option value="">- Pilih -</option>
                                         @foreach ($usersAuditee as $data_usersAuditee)
                                             <option value="{{ $data_usersAuditee->id }}"
-                                                {{ $ncr->objek_audit == $data_usersAuditee->id ? 'selected' : '' }}>
+                                                {{ $nc->objek_audit == $data_usersAuditee->id ? 'selected' : '' }}>
                                                 {{ $data_usersAuditee->name }}</option>
                                         @endforeach
                                     </select>
@@ -67,7 +70,7 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian Ketidaksesuaian</label>
                                 <div class="col-sm-6">
-                                    <textarea class="form-control" name="uraian_ncr" id="uraian_ncr" rows="5"></textarea>
+                                    <textarea class="form-control" name="uraian_nc" id="uraian_nc" rows="5"></textarea>
                                 </div>
                             </div>
 
@@ -82,14 +85,6 @@
                                 </div>
                             </div>
                             <br>
-
-                            <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Auditor</label>
-                                <div class="col-sm-6">
-                                    <input type="file" name="ttd_auditor" class="form-control" id="ttd_auditor">
-                                </div>
-                            </div>
-
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Auditor</label>
                                 <div class="col-sm-6">
@@ -98,78 +93,46 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diakui oleh
-                                    (M/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline</label>
                                 <div class="col-sm-6">
-                                    <input type="file" name="ttd_auditee" class="form-control" id="ttd_auditee"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <input type="date" name="tgl_deadline" class="form-control">
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (M/GM)</label>
                                 <div class="col-sm-6">
-                                    <input type="name" name="diakui_oleh" class="form-control" id="diakui_oleh"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <input type="name" name="diakui_oleh" class="form-control" id="diakui_oleh" {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui Oleh
-                                    (M/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui oleh (SM/GM)</label>
                                 <div class="col-sm-6">
-                                    <input type="file" name="ttd_auditee_gm_sm" class="form-control"
-                                        id="ttd_auditee_gm_sm"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <input type="name" name="disetujui_oleh" class="form-control" id="disetujui_oleh" {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui Oleh (SM/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui</label>
                                 <div class="col-sm-6">
-                                    <input type="name" name="disetujui_oleh" class="form-control" id="disetujui_oleh"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui GM</label>
-                                <div class="col-sm-6">
-                                    <input type="date" name="tgl_accgm" class="form-control" id="tgl_accgm"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <input type="date" name="tgl_accgm" class="form-control" id="tgl_accgm" {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">Rencana Tanggal
-                                    Penyelesaian</label>
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Rencana Tanggal Penyelesaian</label>
                                 <div class="col-sm-6">
-                                    <input type="date" name="tgl_planaction" class="form-control" id="tgl_planaction"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <input type="date" name="tgl_planaction" class="form-control"
+                                        id="tgl_planaction" {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                 </div>
                             </div>
                             <br>
                             <input type="submit" value="Simpan" class="btn btn-info"></input>
-                            <a href="{{ url('data-ncr') }}" title="Kembali" class="btn btn-secondary">Batal</a>
+                            <a href="{{ url('data-nc') }}" title="Kembali" class="btn btn-secondary">Batal</a>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var tgl_terbitncr = document.getElementById('tgl_terbitncr');
-            var tgl_deadline = document.getElementById('tgl_deadline');
-
-            tgl_terbitncr.addEventListener('change', function() {
-                if (tgl_terbitncr.value !== '') {
-                    var deadline = new Date(tgl_terbitncr.value);
-                    deadline.setDate(deadline.getDate() + 45);
-                    tgl_deadline.valueAsDate = deadline;
-                } else {
-                    tgl_deadline.value = '';
-                }
-            });
-        });
-    </script>
 @endsection
