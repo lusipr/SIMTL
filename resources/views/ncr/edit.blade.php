@@ -142,8 +142,10 @@
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_auditor" {{ empty($tlncr) ? '' : 'disabled' }}
                                         class="form-control" id="ttd_auditor" value="{{ $ncr->ttd_auditor }}">
-                                    <input type="text" name="ttd_auditor" class="form-control" id="ttd_auditor"
-                                        value="{{ $ncr->ttd_auditor }}" readonly>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
+                                    <input type="text" class="form-control" value="{{ $ncr->ttd_auditor }}" readonly>
                                 </div>
                             </div>
 
@@ -162,8 +164,10 @@
                                     <input type="file" name="ttd_auditee"
                                         {{ empty($tlncr) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
                                         class="form-control" id="ttd_auditee" value="{{ $ncr->ttd_auditee }}">
-                                    <input type="text" name="ttd_auditee" class="form-control" id="ttd_auditee"
-                                        value="{{ $ncr->ttd_auditee }}" readonly>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
+                                    <input type="text" class="form-control" value="{{ $ncr->ttd_auditee }}" readonly>
                                 </div>
                             </div>
 
@@ -184,8 +188,11 @@
                                         {{ empty($tlncr) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
                                         class="form-control" id="ttd_auditee_gm_sm"
                                         value="{{ $ncr->ttd_auditee_gm_sm }}">
-                                    <input type="text" name="ttd_auditee_gm_sm" class="form-control"
-                                        id="ttd_auditee_gm_sm" value="{{ $ncr->ttd_auditee_gm_sm }}" readonly>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
+                                    <input type="text" class="form-control" value="{{ $ncr->ttd_auditee_gm_sm }}"
+                                        readonly>
                                 </div>
                             </div>
 

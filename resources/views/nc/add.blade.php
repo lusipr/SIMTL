@@ -43,6 +43,19 @@
                                 </div>
                             </div>
 
+                            {{-- <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
+                                <div class="col-sm-6">
+                                    <select name="tema_audit" id="tema_audit" class="form-control">
+                                        <option value="">- Pilih -</option>
+                                        <option>ISO 9001</option>
+                                        <option>ISO 45001</option>
+                                        <option>ISO 14001</option>
+                                        <option>ISO 37001</option>
+                                    </select>
+                                </div>
+                            </div> --}}
+
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
                                 <div class="col-sm-6">

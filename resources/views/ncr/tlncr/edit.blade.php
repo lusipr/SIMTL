@@ -148,8 +148,10 @@
                                     <input type="file" name="ttd_auditor" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} id="ttd_auditor"
                                         value="{{ $ncr->ttd_auditor }}">
-                                    <input type="text" name="ttd_auditor" class="form-control"
-                                        value="{{ $ncr->ttd_auditor }}" readonly>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
+                                    <input type="text" class="form-control" value="{{ $ncr->ttd_auditor }}" readonly>
                                 </div>
                             </div>
 
@@ -169,8 +171,10 @@
                                     <input type="file" name="ttd_auditee" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
                                         id="ttd_auditee" value="{{ $ncr->ttd_auditee }}">
-                                    <input type="text" name="ttd_auditee" class="form-control" id="ttd_auditee"
-                                        value="{{ $ncr->ttd_auditee }}" readonly>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
+                                    <input type="text" class="form-control" value="{{ $ncr->ttd_auditee }}" readonly>
                                 </div>
                             </div>
 
@@ -190,8 +194,11 @@
                                     <input type="file" name="ttd_auditee_gm_sm" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
                                         id="ttd_auditee_gm_sm" value="{{ $ncr->ttd_auditee_gm_sm }}">
-                                    <input type="text" name="ttd_auditee_gm_sm" class="form-control"
-                                        id="ttd_auditee_gm_sm" value="{{ $ncr->ttd_auditee_gm_sm }}" readonly>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
+                                    <input type="text" class="form-control" value="{{ $ncr->ttd_auditee_gm_sm }}"
+                                        readonly>
                                 </div>
                             </div>
 
@@ -286,7 +293,10 @@
                                     <input type="file" name="ttd_tl_gm" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
                                         id="ttd_tl_gm" value="{{ isset($tlncr->ttd_tl_gm) ? $tlncr->ttd_tl_gm : '' }}">
-                                    <input type="text" name="ttd_tl_gm" class="form-control" id="ttd_tl_gm"
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
+                                    <input type="text" class="form-control"
                                         value="{{ isset($tlncr->ttd_tl_gm) ? $tlncr->ttd_tl_gm : '' }}" readonly>
                                 </div>
                             </div>
@@ -363,10 +373,12 @@
                                         class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}
                                         id="ttd_tl_verif_auditor" style="font-style:italic">
-                                    <input type="text" name="ttd_tl_verif_auditor"
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
+                                    <input type="text"
                                         value="{{ isset($tlncr->ttd_tl_verif_auditor) ? $tlncr->ttd_tl_verif_auditor : '' }}"
-                                        class="form-control" id="ttd_tl_verif_auditor" style="font-style:italic"
-                                        readonly>
+                                        class="form-control" style="font-style:italic" readonly>
                                 </div>
                             </div>
 
@@ -412,9 +424,12 @@
                                         class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
                                         id="ttd_tl_verif_adm" style="font-style:italic">
-                                    <input type="text" name="ttd_tl_verif_adm"
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
+                                    <input type="text"
                                         value="{{ isset($tlncr->ttd_tl_verif_adm) ? $tlncr->ttd_tl_verif_adm : '' }}"
-                                        class="form-control" id="ttd_tl_verif_adm" style="font-style:italic" readonly>
+                                        class="form-control" style="font-style:italic" readonly>
                                 </div>
                             </div>
 

@@ -160,8 +160,10 @@
                             <div class="col-sm-6">
                                 <input type="file" name="ttd_auditor" disabled class="form-control" id="ttd_auditor"
                                     value="{{ $ncr->ttd_auditor }}">
-                                <input type="text" name="ttd_auditor" disabled class="form-control" id="ttd_auditor"
-                                    value="{{ $ncr->ttd_auditor }}">
+                                <p class="help-block">
+                                    <font color="red">"Format file .jpeg,jpg,png"</font>
+                                </p>
+                                <input type="text" disabled class="form-control" value="{{ $ncr->ttd_auditor }}">
                             </div>
                         </div>
 
@@ -179,8 +181,10 @@
                             <div class="col-sm-6">
                                 <input type="file" name="ttd_auditee" disabled class="form-control" id="ttd_auditee"
                                     value="{{ $ncr->ttd_auditee }}">
-                                <input type="text" name="ttd_auditee" disabled class="form-control" id="ttd_auditee"
-                                    value="{{ $ncr->ttd_auditee }}">
+                                <p class="help-block">
+                                    <font color="red">"Format file .jpeg,jpg,png"</font>
+                                </p>
+                                <input type="text" disabled class="form-control" value="{{ $ncr->ttd_auditee }}">
                             </div>
                         </div>
 
@@ -198,8 +202,11 @@
                             <div class="col-sm-6">
                                 <input type="file" name="ttd_auditee_gm_sm" disabled class="form-control"
                                     id="ttd_auditee_gm_sm" value="{{ $ncr->ttd_auditee_gm_sm }}">
-                                <input type="text" name="ttd_auditee_gm_sm" disabled class="form-control"
-                                    id="ttd_auditee_gm_sm" value="{{ $ncr->ttd_auditee_gm_sm }}">
+                                <p class="help-block">
+                                    <font color="red">"Format file .jpeg,jpg,png"</font>
+                                </p>
+                                <input type="text" disabled class="form-control"
+                                    value="{{ $ncr->ttd_auditee_gm_sm }}">
                             </div>
                         </div>
 
@@ -281,8 +288,10 @@
                             <div class="col-sm-6">
                                 <input type="file" name="ttd_tl_gm" class="form-control" disabled id="ttd_tl_gm"
                                     value="{{ $tlncr->ttd_tl_gm }}">
-                                <input type="text" name="ttd_tl_gm" class="form-control" disabled id="ttd_tl_gm"
-                                    value="{{ $tlncr->ttd_tl_gm }}">
+                                <p class="help-block">
+                                    <font color="red">"Format file .jpeg,jpg,png"</font>
+                                </p>
+                                <input type="text" class="form-control" disabled value="{{ $tlncr->ttd_tl_gm }}">
                             </div>
                         </div>
 
@@ -335,9 +344,11 @@
                                 <input type="file" name="ttd_tl_verif_auditor" disabled
                                     value="{{ $tlncr->ttd_tl_verif_auditor }}" class="form-control"
                                     id="ttd_tl_verif_auditor" style="font-style:italic">
-                                <input type="text" name="ttd_tl_verif_auditor" disabled
-                                    value="{{ $tlncr->ttd_tl_verif_auditor }}" class="form-control"
-                                    id="ttd_tl_verif_auditor" style="font-style:italic">
+                                <p class="help-block">
+                                    <font color="red">"Format file .jpeg,jpg,png"</font>
+                                </p>
+                                <input type="text" disabled value="{{ $tlncr->ttd_tl_verif_auditor }}"
+                                    class="form-control" style="font-style:italic">
                             </div>
                         </div>
 
@@ -375,9 +386,11 @@
                                 <input type="file" name="ttd_tl_verif_adm" disabled
                                     value="{{ $tlncr->ttd_tl_verif_adm }}" class="form-control" id="ttd_tl_verif_adm"
                                     style="font-style:italic">
-                                <input type="text" name="ttd_tl_verif_adm" disabled
-                                    value="{{ $tlncr->ttd_tl_verif_adm }}" class="form-control" id="ttd_tl_verif_adm"
-                                    style="font-style:italic">
+                                <p class="help-block">
+                                    <font color="red">"Format file .jpeg,jpg,png"</font>
+                                </p>
+                                <input type="text" disabled value="{{ $tlncr->ttd_tl_verif_adm }}"
+                                    class="form-control" style="font-style:italic">
                             </div>
                         </div>
 

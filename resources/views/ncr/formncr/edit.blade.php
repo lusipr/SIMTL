@@ -39,7 +39,8 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Departemen yang diaudit</label>
                                 <div class="col-sm-6">
-                                    <select name="objek_audit" id="objek_audit" class="form-control" disabled>
+                                    <select name="objek_audit" id="objek_audit" class="form-control" disabled
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         @foreach ($usersAuditee as $data_usersAuditee)
                                             <option value="{{ $data_usersAuditee->id }}"
@@ -53,28 +54,32 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Bab yang diaudit</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="bab_audit" class="form-control" id="bab_audit">
+                                    <input type="text" name="bab_audit" class="form-control" id="bab_audit"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Dokumen Acuan</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="dok_acuan" class="form-control" id="dok_acuan">
+                                    <input type="text" name="dok_acuan" class="form-control" id="dok_acuan"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian Ketidaksesuaian</label>
                                 <div class="col-sm-6">
-                                    <textarea class="form-control" name="uraian_ncr" id="uraian_ncr" rows="5"></textarea>
+                                    <textarea class="form-control" name="uraian_ncr" id="uraian_ncr" rows="5"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}></textarea>
                                 </div>
                             </div>
 
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Kategori</label>
                                 <div class="col-sm-6">
-                                    <select name="kategori" id="kategori" class="form-control">
+                                    <select name="kategori" id="kategori" class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option>Mayor</option>
                                         <option>Minor</option>
@@ -86,14 +91,19 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Auditor</label>
                                 <div class="col-sm-6">
-                                    <input type="file" name="ttd_auditor" class="form-control" id="ttd_auditor">
+                                    <input type="file" name="ttd_auditor" class="form-control" id="ttd_auditor"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Auditor</label>
                                 <div class="col-sm-6">
-                                    <input type="name" name="nama_auditor" class="form-control" id="nama_auditor">
+                                    <input type="name" name="nama_auditor" class="form-control" id="nama_auditor"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
@@ -103,6 +113,9 @@
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_auditee" class="form-control" id="ttd_auditee"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
                                 </div>
                             </div>
 
@@ -121,6 +134,9 @@
                                     <input type="file" name="ttd_auditee_gm_sm" class="form-control"
                                         id="ttd_auditee_gm_sm"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
                                 </div>
                             </div>
 

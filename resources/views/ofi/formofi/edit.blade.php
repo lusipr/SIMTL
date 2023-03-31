@@ -116,6 +116,9 @@
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_dept_pengusul" class="form-control"
                                         id="ttd_dept_pengusul">
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
                                 </div>
                             </div>
 
@@ -140,6 +143,9 @@
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disetujui_oleh_ofi" class="form-control"
                                         id="ttd_disetujui_oleh_ofi">
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
                                 </div>
                             </div>
 
@@ -177,6 +183,9 @@
                                     Oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disposisi" class="form-control" id="ttd_disposisi">
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
                                 </div>
                             </div>
 

@@ -85,6 +85,14 @@
                                 </div>
                             </div>
                             <br>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Auditor</label>
+                                <div class="col-sm-6">
+                                    <input type="file" name="ttd_auditor_nc" class="form-control" id="ttd_auditor_nc">
+                                </div>
+                            </div>
+
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Auditor</label>
                                 <div class="col-sm-6">
@@ -100,9 +108,23 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label"> Tanda Tangan Diakui oleh (M/GM)</label>
+                                <div class="col-sm-6">
+                                    <input type="file" name="ttd_diakui_oleh_nc" class="form-control" id="ttd_diakui_oleh_nc" {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (M/GM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="diakui_oleh" class="form-control" id="diakui_oleh" {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui oleh (SM/GM)</label>
+                                <div class="col-sm-6">
+                                    <input type="file" name="ttd_disetujui_oleh_nc" class="form-control" id="ttd_disetujui_oleh_nc" {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 

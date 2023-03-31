@@ -98,18 +98,7 @@
             @endif
         </td>
     </tr>
-    {{-- <tr>
-        <td style="width: 100%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
-            colspan="3">
-            <div style="border-bottom: 1px solid #000;">&nbsp;</div>
-        </td>
-    </tr>
-    <tr>
-        <td style="width: 100%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
-            colspan="3">
-            <div style="border-bottom: 1px solid #000;">&nbsp;</div>
-        </td>
-    </tr> --}}
+
     <tr>
         <td style="width: 80%; vertical-align: top; border-top-width: 0px; border-bottom-width: 0px;">
             <div style="border-bottom: 1px solid #000;">&nbsp;</div>
@@ -260,20 +249,6 @@
                         @endif
                     </td>
                 </tr>
-                {{-- <tr>
-                    <td style="width: 25%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-                        Akar penyebab permasalahan * :
-                    </td>
-                    <td style="width: 75%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-                        <div style="border-bottom: 1px solid #000;">{{ !empty($tlncr->akar_masalah) ? $tlncr->akar_masalah : '' }}</div>
-                    </td>
-                </tr> --}}
-                {{-- <tr>
-                    <td style="width: 100%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
-                        colspan="2">
-                        <div style="border-bottom: 1px solid #000;">&nbsp;</div>
-                    </td>
-                </tr> --}}
             </table>
         </td>
     </tr>
@@ -301,20 +276,6 @@
                         @endif
                     </td>
                 </tr>
-                {{-- <tr>
-                    <td style="width: 15%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-                        Uraian Perbaikan * :
-                    </td>
-                    <td style="width: 85%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-                        <div style="border-bottom: 1px solid #000;">{{ !empty($tlncr->uraian_perbaikan) ? $tlncr->uraian_perbaikan : '' }}</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 100%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
-                        colspan="2">
-                        <div style="border-bottom: 1px solid #000;">&nbsp;</div>
-                    </td>
-                </tr> --}}
             </table>
         </td>
     </tr>
@@ -342,20 +303,6 @@
                         @endif
                     </td>
                 </tr>
-                {{-- <tr>
-                    <td style="width: 40%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-                        Uraian Pencegahan untuk menjamin tidak terulang * :
-                    </td>
-                    <td style="width: 60%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-                        <div style="border-bottom: 1px solid #000;">{{ !empty($tlncr->uraian_pencegahan) ? $tlncr->uraian_pencegahan : '' }}</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 100%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
-                        colspan="2">
-                        <div style="border-bottom: 1px solid #000;">&nbsp;</div>
-                    </td>
-                </tr> --}}
             </table>
         </td>
     </tr>
@@ -475,41 +422,6 @@
                         @endif
                     </td>
                 </tr>
-                {{-- <tr>
-                    <td style="width: 15%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-                        Verifikasi
-                    </td>
-                    <td style="width: 5%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-                        :
-                    </td>
-                    <td style="width: 80%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-                        <div style="border-bottom: 1px solid #000;">{{ !empty($tlncr->uraian_verifikasi) ? $tlncr->uraian_verifikasi : '' }}</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 100%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
-                        colspan="3">
-                        <div style="border-bottom: 1px solid #000;">&nbsp;</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 100%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
-                        colspan="3">
-                        <div style="border-bottom: 1px solid #000;">&nbsp;</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 100%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
-                        colspan="3">
-                        <div style="border-bottom: 1px solid #000;">&nbsp;</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 100%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
-                        colspan="3">
-                        <div style="border-bottom: 1px solid #000;">&nbsp;</div>
-                    </td>
-                </tr> --}}
             </table>
         </td>
         <td style="width: 20%; padding: 0; border-left-width: 1px; vertical-align: top;">
@@ -606,28 +518,6 @@
             @endif
         </td>
     </tr>
-    {{-- <tr>
-        <td style="width: 25%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            Rekomendasi Tinjauan Manajemen :
-        </td>
-        <td style="width: 75%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px solid #000;">{{ !empty($tlncr->rekomendasi) ? $tlncr->rekomendasi : '' }}</div>
-        </td>
-    </tr>
-    <tr>
-        <td style="width: 100%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
-            colspan="2">
-            <div style="border-bottom: 1px solid #000;">&nbsp;</div>
-        </td>
-        <td style="width: 100%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
-            colspan="2">
-            <div style="border-bottom: 1px solid #000;">&nbsp;</div>
-        </td>
-        <td style="width: 100%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
-            colspan="2">
-            <div style="border-bottom: 1px solid #000;">&nbsp;</div>
-        </td>
-    </tr> --}}
 </table>
 
 <table style="width: 100%; padding-top: 1px;">

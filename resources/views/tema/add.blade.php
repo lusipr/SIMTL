@@ -12,7 +12,7 @@
                         <form action="{{ url('data-tema/add') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">NIP</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">KODE</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="nip" class="form-control" required id="nip"
                                         placeholder="Masukkan NIP">

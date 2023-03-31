@@ -13,8 +13,7 @@ class NcController extends Controller
 {
     public function index()
     {
-        if (auth()->user()->role == 'Auditee')
-        {
+        if (auth()->user()->role == 'Auditee') {
             $nc = Nc::where('objek_audit', '=', auth()->user()->id)->get();
         }
 
@@ -22,8 +21,7 @@ class NcController extends Controller
         // {
         //     $nc = Nc::where('tema_audit', '=', auth()->user()->id)->get();
         // }
-        else
-        {
+        else {
             $nc = Nc::all();
         }
 
@@ -32,12 +30,9 @@ class NcController extends Controller
 
     public function api_status_nc()
     {
-        if (auth()->user()->role == 'Auditee')
-        {
+        if (auth()->user()->role == 'Auditee') {
             $nc = DB::select(DB::raw("SELECT * FROM (SELECT SUM(CASE WHEN status = 'Sudah Ditindaklanjuti' THEN 1 ELSE 0 END) AS jumlah_sudah, SUM(CASE WHEN status = 'Belum Ditindaklanjuti' THEN 1 ELSE 0 END) AS jumlah_belum, SUM(CASE WHEN status = 'Tindak Lanjut Belum Sesuai' THEN 1 ELSE 0 END) AS jumlah_tidak FROM nc WHERE objek_audit = '" . auth()->user()->id . "') AS aa"));
-        }
-        else
-        {
+        } else {
             $nc = DB::select(DB::raw("SELECT * FROM (SELECT SUM(CASE WHEN status = 'Sudah Ditindaklanjuti' THEN 1 ELSE 0 END) AS jumlah_sudah, SUM(CASE WHEN status = 'Belum Ditindaklanjuti' THEN 1 ELSE 0 END) AS jumlah_belum, SUM(CASE WHEN status = 'Tindak Lanjut Belum Sesuai' THEN 1 ELSE 0 END) AS jumlah_tidak FROM nc) AS aa"));
         }
         // $nc = Nc::selectRaw('COUNT(id_nc) AS jumlah, status AS name')
@@ -61,18 +56,22 @@ class NcController extends Controller
 
     public function store_add(Request $request)
     {
-        $dataSent = $request->except('_token', 'bukti');
+        $dataSent = $request->except('_token', 'bukti', 'ttd_auditor_nc');
 
         $request->validate([
             'opsi_temuan' => 'required',
             'no_nc' => 'required',
             'objek_audit' => 'required',
             'bukti' => 'mimes:pdf',
+            'ttd_auditor_nc' => 'mimes:jpeg,jpg,png',
         ]);
 
-        if ($request->file('bukti'))
-        {
+        if ($request->file('bukti')) {
             $dataSent['bukti'] = $request->file('bukti')->store('bukti-nc');
+        }
+
+        if ($request->file('ttd_auditor_nc')) {
+            $dataSent['ttd_auditor_nc'] = $request->file('ttd_auditor_nc')->store('ttd_auditor_nc');
         }
 
         $create = Nc::create($dataSent);
@@ -85,7 +84,7 @@ class NcController extends Controller
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
         $usersTema = User::where('role', '=', 'Tema')->get();
 
-        return view('nc.formnc.edit', ['nc' => $nc, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema ]);
+        return view('nc.formnc.edit', ['nc' => $nc, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);
     }
 
     public function store_form_nc(Request $request, Nc $nc)
@@ -94,7 +93,30 @@ class NcController extends Controller
         //     'bab_audit' => ''
         // ]);
 
-        Nc::where('id_nc', '=', $nc->id_nc)->update($request->except('_token'));
+        $request->validate([
+            'bukti' => 'mimes:pdf',
+            'ttd_auditor_nc' => 'mimes:jpeg,jpg,png',
+            'ttd_diakui_oleh_nc' => 'mimes:jpeg,jpg,png',
+            'ttd_disetujui_oleh_nc' => 'mimes:jpeg,jpg,png',
+        ]);
+
+        if ($request->file('bukti')) {
+            $dataSent['bukti'] = $request->file('bukti')->store('bukti-nc');
+        }
+
+        if ($request->file('ttd_auditor_nc')) {
+            $dataSent['ttd_auditor_nc'] = $request->file('ttd_auditor_nc')->store('ttd_auditor_nc');
+        }
+
+        if ($request->file('ttd_diakui oleh_nc')) {
+            $dataSent['ttd_diakui oleh_nc'] = $request->file('ttd_diakui oleh_nc')->store('ttd_diakui oleh_nc');
+        }
+
+        if ($request->file('ttd_disetujui oleh_nc')) {
+            $dataSent['ttd_disetujui oleh_nc'] = $request->file('ttd_disetujui oleh_nc')->store('ttd_disetujui oleh_nc');
+        }
+
+        Nc::where('id_nc', '=', $nc->id_nc)->update($dataSent);
 
         return redirect('data-nc');
     }
@@ -114,12 +136,26 @@ class NcController extends Controller
 
         $request->validate([
             'bukti' => 'mimes:pdf',
+            // 'ttd_auditor_nc' => 'mimes:jpeg,jpg,png',
+            // 'ttd_diakui_oleh_nc' => 'mimes:jpeg,jpg,png',
+            // 'ttd_disetujui_oleh_nc' => 'mimes:jpeg,jpg,png',
         ]);
 
-        if ($request->file('bukti'))
-        {
+        if ($request->file('bukti')) {
             $dataSent['bukti'] = $request->file('bukti')->store('bukti-nc');
         }
+
+        // if ($request->file('ttd_auditor_nc')) {
+        //     $dataSent['ttd_auditor_nc'] = $request->file('ttd_auditor_nc')->store('ttd_auditor_nc');
+        // }
+
+        // if ($request->file('ttd_diakui oleh_nc')) {
+        //     $dataSent['ttd_diakui oleh_nc'] = $request->file('ttd_diakui oleh_nc')->store('ttd_diakui oleh_nc');
+        // }
+
+        // if ($request->file('ttd_disetujui oleh_nc')) {
+        //     $dataSent['ttd_disetujui oleh_nc'] = $request->file('ttd_disetujui oleh_nc')->store('ttd_disetujui oleh_nc');
+        // }
 
         Nc::where('id_nc', '=', $nc->id_nc)->update($dataSent);
 
@@ -145,8 +181,7 @@ class NcController extends Controller
 
     public function store_tlnc(Request $request, Nc $nc, $ref_page = '')
     {
-        if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditee')
-        {
+        if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditee') {
             $validatedDataNc = $request->validate([
                 'diakui_oleh' => '',
                 'disetujui_oleh' => '',
@@ -154,13 +189,11 @@ class NcController extends Controller
                 'bukti' => 'mimes:pdf',
             ]);
 
-            if ($request->file('bukti'))
-            {
+            if ($request->file('bukti')) {
                 $validatedDataNc['bukti'] = $request->file('bukti')->store('bukti-nc');
             }
 
-            if (auth()->user()->role == 'Admin')
-            {
+            if (auth()->user()->role == 'Admin') {
                 $validatedDataNc['opsi_temuan'] = $request->opsi_temuan;
                 $validatedDataNc['no_nc'] = $request->no_nc;
                 $validatedDataNc['proses_audit'] = $request->proses_audit;
@@ -188,8 +221,7 @@ class NcController extends Controller
 
             $validatedDataTLNc['id_nc'] = $nc->id_nc;
 
-            if (auth()->user()->role == 'Admin')
-            {
+            if (auth()->user()->role == 'Admin') {
                 $validatedDataTLNc['uraian_verifikasi'] = $request->uraian_verifikasi;
                 $validatedDataTLNc['hasil_verif'] = $request->hasil_verif;
                 $validatedDataTLNc['verifikator'] = $request->verifikator;
@@ -202,8 +234,7 @@ class NcController extends Controller
             TLNc::updateOrCreate(['id_nc' => $nc->id_nc], $validatedDataTLNc);
         }
 
-        if (auth()->user()->role == 'Auditor')
-        {
+        if (auth()->user()->role == 'Auditor') {
             Nc::where('id_nc', '=', $nc->id_nc)->update([
                 'status' => $request->status,
                 'tgl_planaction' => $request->tgl_planaction,
@@ -243,17 +274,13 @@ class NcController extends Controller
 
     public function excel()
     {
-        if (auth()->user()->role == 'Auditee')
-        {
+        if (auth()->user()->role == 'Auditee') {
             $nc = Nc::where('objek_audit', '=', auth()->user()->id)->get();
         }
 
-        if (auth()->user()->role == 'Tema')
-        {
+        if (auth()->user()->role == 'Tema') {
             $nc = Nc::where('tema_audit', '=', auth()->user()->id)->get();
-        }
-        else
-        {
+        } else {
             $nc = Nc::all();
         }
 

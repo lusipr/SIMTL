@@ -56,7 +56,7 @@ class NcrController extends Controller
 
     public function store_add(Request $request)
     {
-        $dataSent = $request->except('_token', 'bukti', 'ttd_auditor', 'ttd_auditee', 'ttd_auditee_gm_sm');
+        $dataSent = $request->except('_token', 'bukti',  'ttd_auditee', 'ttd_auditee_gm_sm');
 
         $request->validate([
             'no_ncr' => 'required',
@@ -122,6 +122,7 @@ class NcrController extends Controller
         if ($request->file('ttd_auditee_gm_sm')) {
             $dataSent['ttd_auditee_gm_sm'] = $request->file('ttd_auditee_gm_sm')->store('ttd_auditee_gm_sm');
         }
+        
 
         Ncr::where('id_ncr', '=', $ncr->id_ncr)->update($dataSent);
 

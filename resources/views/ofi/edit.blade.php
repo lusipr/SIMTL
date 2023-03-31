@@ -190,8 +190,11 @@
                                     <input type="file" name="ttd_dept_pengusul" {{ empty($tlofi) ? '' : 'disabled' }}
                                         class="form-control" id="ttd_dept_pengusul"
                                         value="{{ $ofi->ttd_dept_pengusul }}">
-                                    <input type="text" name="ttd_dept_pengusul" class="form-control"
-                                        id="ttd_dept_pengusul" value="{{ $ofi->ttd_dept_pengusul }}" readonly>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
+                                    <input type="text" class="form-control" value="{{ $ofi->ttd_dept_pengusul }}"
+                                        readonly>
                                 </div>
                             </div>
 
@@ -218,8 +221,11 @@
                                     <input type="file" name="ttd_disetujui_oleh_ofi"
                                         {{ empty($tlofi) ? '' : 'disabled' }} class="form-control"
                                         id="ttd_disetujui_oleh_ofi" value="{{ $ofi->ttd_disetujui_oleh_ofi }}">
-                                    <input type="text" name="ttd_disetujui_oleh_ofi" class="form-control"
-                                        id="ttd_disetujui_oleh_ofi" value="{{ $ofi->ttd_disetujui_oleh_ofi }}" readonly>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
+                                    <input type="text" class="form-control"
+                                        value="{{ $ofi->ttd_disetujui_oleh_ofi }}" readonly>
                                 </div>
                             </div>
 
@@ -260,8 +266,11 @@
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disposisi" {{ empty($tlofi) ? '' : 'disabled' }}
                                         class="form-control" id="ttd_disposisi" value="{{ $ofi->ttd_disposisi }}">
-                                    <input type="text" name="ttd_disposisi" class="form-control" id="ttd_disposisi"
-                                        value="{{ $ofi->ttd_disposisi }}" readonly>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
+                                    <input type="text" class="form-control" value="{{ $ofi->ttd_disposisi }}"
+                                        readonly>
                                 </div>
                             </div>
 

@@ -31,19 +31,6 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
-                                <div class="col-sm-6">
-                                    <select name="tema_audit" id="tema_audit" class="form-control">
-                                        <option value="">- Pilih -</option>
-                                        <option>ISO 9001</option>
-                                        <option>ISO 45001</option>
-                                        <option>ISO 14001</option>
-                                        <option>ISO 37001</option>
-                                    </select>
-                                </div>
-                            </div> --}}
-
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
                                 <div class="col-sm-6">
@@ -94,29 +81,6 @@
                                 </div>
                             </div>
 
-                            <!--<div class="row-mb-3">
-                                        <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
-                                        <div class="col-sm-6">
-                                            <select name="status" id="status" class="form-control">
-                                                <option value="">- Pilih -</option>
-                                                <option>Data Belum Lengkap</option>
-                                                <option>Belum Ditindaklanjuti</option>
-                                                <option>Sudah Ditindaklanjuti</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <br>
-
-                                    <div class="row-mb-3">
-                                        <label for="colFormLabel" class="col-sm-2 col-form-label">Bukti</label>
-                                        <div class="col-sm-6">
-                                            <input type="file" name="bukti" id="bukti" class="form-control"
-                                                accept="application/pdf">
-                                            <p class="help-block">
-                                                <font color="red">"Format file .pdf"</font>
-                                            </p>
-                                        </div>
-                                    </div>-->
                             <br><br>
                             <input type="submit" value="Next" class="btn btn-info"></input>
                             <a href="{{ url('data-ofi') }}" title="Kembali" class="btn btn-secondary">Batal</a>
