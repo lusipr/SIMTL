@@ -147,12 +147,21 @@
                                 <div class="col-sm-6">
                                     {{-- <input type="text" name="dept_ygmngrjkn" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} class="form-control"
                                         id="dept_ygmngrjkn" value="{{ $ofi->dept_ygmngrjkn }}"> --}}
-                                    <select name="dept_ygmngrjkn" id="dept_ygmngrjkn" class="form-control"
+                                    {{-- <select name="dept_ygmngrjkn" id="dept_ygmngrjkn" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
                                         <option value="">- Pilih -</option>
                                         @foreach ($usersAuditee as $data_usersAuditee)
                                             <option value="{{ $data_usersAuditee->id }}"
                                                 {{ $ofi->dept_ygmngrjkn == $data_usersAuditee->id ? 'selected' : '' }}>
+                                                {{ $data_usersAuditee->name }}</option>
+                                        @endforeach
+                                    </select> --}}
+                                    <select name="objek_audit" {{ empty($tlofi) ? '' : 'disabled' }} id="objek_audit"
+                                        class="form-control">
+                                        <option value="">- Pilih -</option>
+                                        @foreach ($usersAuditee as $data_usersAuditee)
+                                            <option value="{{ $data_usersAuditee->id }}"
+                                                {{ $ofi->objek_audit == $data_usersAuditee->id ? 'selected' : '' }}>
                                                 {{ $data_usersAuditee->name }}</option>
                                         @endforeach
                                     </select>
@@ -301,11 +310,15 @@
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Tindak Lanjut Usulan
                                     Peningkatan</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="tl_usulanofi"
+                                    {{-- <input type="text" name="tl_usulanofi"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
                                         value="{{ isset($tlofi->tl_usulanofi) ? $tlofi->tl_usulanofi : '' }}"
                                         class="form-control" id="tl_usulanofi"
-                                        placeholder="Masukkan tindak lanjut usulan" style="font-style:italic">
+                                        placeholder="Masukkan tindak lanjut usulan" style="font-style:italic"> --}}
+                                    <textarea type="text" name="tl_usulanofi"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
+                                        class="form-control" id="tl_usulanofi" rows="5" placeholder="Masukkan uraian verifikasi"
+                                        style="font-style:italic">{{ isset($tlofi->tl_usulanofi) ? $tlofi->tl_usulanofi : '' }}</textarea>
                                 </div>
                             </div>
 
@@ -356,6 +369,18 @@
                                     <p class="help-block">
                                         <font color="red">"Format file .pdf"</font>
                                     </p>
+                                </div>
+                            </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Lampiran 1</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="lampiran1" id="lampiran1" class="form-control"
+                                        accept="application/pdf"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    {{-- <p class="help-block">
+                                        <font color="red">"Format file .pdf"</font>
+                                    </p> --}}
                                 </div>
                             </div>
 

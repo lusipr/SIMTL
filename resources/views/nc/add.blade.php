@@ -67,6 +67,7 @@
                                     </select>
                                 </div>
                             </div>
+                            <br>
 
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Objek Audit</label>
@@ -74,7 +75,8 @@
                                     <select name="objek_audit" id="objek_audit" class="form-control" required>
                                         <option value="">- Pilih -</option>
                                         @foreach ($usersAuditee as $data_usersAuditee)
-                                            <option value="{{ $data_usersAuditee->id }}">{{ $data_usersAuditee->name }}</option>
+                                            <option value="{{ $data_usersAuditee->id }}">{{ $data_usersAuditee->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -83,8 +85,8 @@
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control" type="text" value="NC" id="jenis_temuan" name="jenis_temuan"
-                                        readonly>
+                                    <input class="form-control" type="text" value="NC" id="jenis_temuan"
+                                        name="jenis_temuan" readonly>
                                 </div>
                             </div>
                             <br>
@@ -96,29 +98,14 @@
                                 </div>
                             </div>
 
-                            <!--<div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline NC</label>
                                 <div class="col-sm-6">
-                                    <select name="status" id="status" class="form-control">
-                                        <option>- Pilih -</option>
-                                        <option>Data Belum Lengkap</option>
-                                        <option>Belum Ditindaklanjuti</option>
-                                        <option>Sudah Ditindaklanjuti</option>
-                                    </select>
+                                    <input type="date" name="tgl_deadline" class="form-control" id="tgl_deadline"
+                                        placeholder="Pilih Tanggal">
                                 </div>
                             </div>
-                            <br>
 
-                            <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Bukti</label>
-                                <div class="col-sm-6">
-                                    <input type="file" name="bukti" id="bukti" class="form-control"
-                                        accept="application/pdf">
-                                    <p class="help-block">
-                                        <font color="red">"Format file .pdf"</font>
-                                    </p>
-                                </div>
-                            </div>-->
                             <br><br>
                             <input type="submit" name="Simpan" value="Next" class="btn btn-info"></input>
                             <a href="{{ url('data-nc') }}" title="Kembali" class="btn btn-secondary">Batal</a>
@@ -128,4 +115,20 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tgl_terbitnc = document.getElementById('tgl_terbitnc');
+            var tgl_deadline = document.getElementById('tgl_deadline');
+
+            tgl_terbitnc.addEventListener('change', function() {
+                if (tgl_terbitnc.value !== '') {
+                    var deadline = new Date(tgl_terbitnc.value);
+                    deadline.setDate(deadline.getDate() + 45);
+                    tgl_deadline.valueAsDate = deadline;
+                } else {
+                    tgl_deadline.value = '';
+                }
+            });
+        });
+    </script>
 @endsection

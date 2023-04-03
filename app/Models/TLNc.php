@@ -20,11 +20,15 @@ class TLNc extends Model
         'uraian_pencegahan',
         'tgl_action',
         'tgl_accgm',
+        'ttd_disetujui_oleh_tlnc',
+        'disetujui_oleh_tl',
         'uraian_verifikasi',
         'hasil_verif',
+        'ttd_verifikator_tlnc',
         'verifikator',
         'tgl_verif',
         'rekomendasi',
+        'ttd_verifsm_tlnc',
         'namasm_verif',
     ];
 

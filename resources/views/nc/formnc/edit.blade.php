@@ -16,10 +16,14 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Opsi Temuan</label>
                                 <div class="col-sm-6">
                                     <select name="opsi_temuan" disabled id="opsi_temuan" class="form-control">
-                                        <option value="NCR" {{ $nc->opsi_temuan == 'NCR' ? 'selected' : '' }}>NCR</option>
-                                        <option value="OFI" {{ $nc->opsi_temuan == 'OFI' ? 'selected' : '' }}>OFI</option>
-                                        <option value="Observasi" {{ $nc->opsi_temuan == 'Observasi' ? 'selected' : '' }}>Observasi</option>
-                                        <option value="CAR" {{ $nc->opsi_temuan == 'CAR' ? 'selected' : '' }}>CAR</option>
+                                        <option value="NCR" {{ $nc->opsi_temuan == 'NCR' ? 'selected' : '' }}>NCR
+                                        </option>
+                                        <option value="OFI" {{ $nc->opsi_temuan == 'OFI' ? 'selected' : '' }}>OFI
+                                        </option>
+                                        <option value="Observasi" {{ $nc->opsi_temuan == 'Observasi' ? 'selected' : '' }}>
+                                            Observasi</option>
+                                        <option value="CAR" {{ $nc->opsi_temuan == 'CAR' ? 'selected' : '' }}>CAR
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -35,7 +39,15 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_terbitnc" class="form-control" id="tgl_terbitnc"
-                                        value="{{ $nc->tgl_terbitnc }}" disabled>
+                                        value="{{ $nc->tgl_terbitnc }}">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline</label>
+                                <div class="col-sm-6">
+                                    <input type="date" name="tgl_deadline" id="tgl_deadline" class="form-control"
+                                        value="{{ $nc->tgl_deadline }}">
                                 </div>
                             </div>
 
@@ -90,6 +102,9 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Auditor</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_auditor_nc" class="form-control" id="ttd_auditor_nc">
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
                                 </div>
                             </div>
 
@@ -101,51 +116,60 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label"> Tanda Tangan Diakui oleh
+                                    (M/GM)</label>
                                 <div class="col-sm-6">
-                                    <input type="date" name="tgl_deadline" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label"> Tanda Tangan Diakui oleh (M/GM)</label>
-                                <div class="col-sm-6">
-                                    <input type="file" name="ttd_diakui_oleh_nc" class="form-control" id="ttd_diakui_oleh_nc" {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <input type="file" name="ttd_diakui_oleh_nc" class="form-control"
+                                        id="ttd_diakui_oleh_nc"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (M/GM)</label>
                                 <div class="col-sm-6">
-                                    <input type="name" name="diakui_oleh" class="form-control" id="diakui_oleh" {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <input type="name" name="diakui_oleh" class="form-control" id="diakui_oleh"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui oleh (SM/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui oleh
+                                    (SM/GM)</label>
                                 <div class="col-sm-6">
-                                    <input type="file" name="ttd_disetujui_oleh_nc" class="form-control" id="ttd_disetujui_oleh_nc" {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <input type="file" name="ttd_disetujui_oleh_nc" class="form-control"
+                                        id="ttd_disetujui_oleh_nc"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .jpeg,jpg,png"</font>
+                                    </p>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui oleh (SM/GM)</label>
                                 <div class="col-sm-6">
-                                    <input type="name" name="disetujui_oleh" class="form-control" id="disetujui_oleh" {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <input type="name" name="disetujui_oleh" class="form-control" id="disetujui_oleh"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui</label>
                                 <div class="col-sm-6">
-                                    <input type="date" name="tgl_accgm" class="form-control" id="tgl_accgm" {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                    <input type="date" name="tgl_accgm" class="form-control" id="tgl_accgm"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">Rencana Tanggal Penyelesaian</label>
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Rencana Tanggal
+                                    Penyelesaian</label>
                                 <div class="col-sm-6">
-                                    <input type="date" name="tgl_planaction" class="form-control"
-                                        id="tgl_planaction" {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
+                                    <input type="date" name="tgl_planaction" class="form-control" id="tgl_planaction"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                 </div>
                             </div>
                             <br>
@@ -157,4 +181,20 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tgl_terbitnc = document.getElementById('tgl_terbitnc');
+            var tgl_deadline = document.getElementById('tgl_deadline');
+
+            tgl_terbitnc.addEventListener('change', function() {
+                if (tgl_terbitnc.value !== '') {
+                    var deadline = new Date(tgl_terbitnc.value);
+                    deadline.setDate(deadline.getDate() + 45);
+                    tgl_deadline.valueAsDate = deadline;
+                } else {
+                    tgl_deadline.value = '';
+                }
+            });
+        });
+    </script>
 @endsection

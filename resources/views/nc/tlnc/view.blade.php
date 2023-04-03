@@ -16,7 +16,8 @@
                                 <select name="opsi_temuan" disabled id="opsi_temuan" class="form-control">
                                     <option value="NCR" {{ $nc->opsi_temuan == 'NCR' ? 'selected' : '' }}>NCR</option>
                                     <option value="OFI" {{ $nc->opsi_temuan == 'OFI' ? 'selected' : '' }}>OFI</option>
-                                    <option value="Observasi" {{ $nc->opsi_temuan == 'Observasi' ? 'selected' : '' }}>Observasi</option>
+                                    <option value="Observasi" {{ $nc->opsi_temuan == 'Observasi' ? 'selected' : '' }}>
+                                        Observasi</option>
                                     <option value="CAR" {{ $nc->opsi_temuan == 'CAR' ? 'selected' : '' }}>CAR</option>
                                 </select>
                             </div>
@@ -83,8 +84,8 @@
                         <div class="row-mb-3">
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
                             <div class="col-sm-6">
-                                <input class="form-control" type="text" value="NC" id="jenis_temuan" name="jenis_temuan"
-                                    disabled>
+                                <input class="form-control" type="text" value="NC" id="jenis_temuan"
+                                    name="jenis_temuan" disabled>
                                 {{-- <select name="jenis_temuan" disabled id="jenis_temuan" class="form-control">
                                     <option value="">- Pilih -</option>
                                     <option {{ $nc->jenis_temuan == 'Ketidaksesuaian' ? 'selected' : '' }}>Ketidaksesuaian
@@ -165,6 +166,19 @@
                             </div>
                         </div>
                         <br>
+
+                        <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Auditor</label>
+                            <div class="col-sm-6">
+                                <input type="file" name="ttd_auditor_nc" disabled class="form-control"
+                                    id="ttd_auditor_nc" value="{{ $nc->ttd_auditor_nc }}">
+                                <p class="help-block">
+                                    <font color="red">"Format file .jpeg,jpg,png"</font>
+                                </p>
+                                <input type="text" disabled class="form-control" value="{{ $nc->ttd_auditor_nc }}">
+                            </div>
+                        </div>
+
                         <div class="mb-3">
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Auditor</label>
                             <div class="col-sm-6">
@@ -174,10 +188,38 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diakui oleh
+                                (SM/GM)</label>
+                            <div class="col-sm-6">
+                                <input type="file" name="ttd_diakui_oleh_nc" disabled class="form-control"
+                                    id="ttd_diakui_oleh_nc" value="{{ $nc->ttd_diakui_oleh_nc }}">
+                                <p class="help-block">
+                                    <font color="red">"Format file .jpeg,jpg,png"</font>
+                                </p>
+                                <input type="text" disabled class="form-control"
+                                    value="{{ $nc->ttd_diakui_oleh_nc }}">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (SM/GM)</label>
                             <div class="col-sm-6">
                                 <input type="name" name="diakui_oleh" disabled class="form-control" id="diakui_oleh"
                                     value="{{ $nc->diakui_oleh }}">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui oleh
+                                (SM/GM)</label>
+                            <div class="col-sm-6">
+                                <input type="file" name="ttd_disetujui_oleh_nc" disabled class="form-control"
+                                    id="ttd_disetujui_oleh_nc" value="{{ $nc->ttd_disetujui_oleh_nc }}">
+                                <p class="help-block">
+                                    <font color="red">"Format file .jpeg,jpg,png"</font>
+                                </p>
+                                <input type="text" disabled class="form-control"
+                                    value="{{ $nc->ttd_disetujui_oleh_nc }}">
                             </div>
                         </div>
 
@@ -254,10 +296,24 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui oleh
+                                (SM/GM)</label>
+                            <div class="col-sm-6">
+                                <input type="file" name="ttd_disetujui_oleh_tlnc" class="form-control" disabled
+                                    id="ttd_disetujui_oleh_tlnc" value="{{ $tlnc->ttd_disetujui_oleh_tlnc }}">
+                                <p class="help-block">
+                                    <font color="red">"Format file .jpeg,jpg,png"</font>
+                                </p>
+                                <input type="text"class="form-control" disabled
+                                    value="{{ $tlnc->ttd_disetujui_oleh_tlnc }}">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui oleh (SM/GM)</label>
                             <div class="col-sm-6">
-                                <input type="name" name="disetujui_oleh" class="form-control" disabled id="disetujui_oleh"
-                                    value="{{ $tlnc->disetujui_oleh }}">
+                                <input type="name" name="disetujui_oleh" class="form-control" disabled
+                                    id="disetujui_oleh" value="{{ $tlnc->disetujui_oleh }}">
                             </div>
                         </div>
 
@@ -294,6 +350,22 @@
                         </div>
 
                         <br>
+
+                        <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diverifikasi
+                                oleh</label>
+                            <div class="col-sm-6">
+                                <input type="file" name="ttd_verifikator_tlnc" disabled
+                                    value="{{ $tlnc->ttd_verifikator_tlnc }}" class="form-control"
+                                    id="ttd_verifikator_tlnc" style="font-style:italic">
+                                <p class="help-block">
+                                    <font color="red">"Format file .jpeg,jpg,png"</font>
+                                </p>
+                                <input type="text" disabled value="{{ $tlnc->ttd_verifikator_tlnc }}"
+                                    class="form-control" style="font-style:italic">
+                            </div>
+                        </div>
+
                         <div class="mb-3">
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Diverifikasi oleh</label>
                             <div class="col-sm-6">
@@ -317,6 +389,22 @@
                             <div class="col-sm-6">
                                 <textarea type="name" name="rekomendasi" disabled class="form-control" id="rekomendasi" rows="5"
                                     placeholder="Masukkan rekomendasi tinjauan" style="font-style:italic">{{ $tlnc->rekomendasi }}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Diverifikasi oleh SM
+                                Departemen
+                                Tata Kelola Perusahaan</label>
+                            <div class="col-sm-6">
+                                <input type="file" name="ttd_verifsm_tlnc" disabled
+                                    value="{{ $tlnc->ttd_verifsm_tlnc }}" class="form-control" id="ttd_verifsm_tlnc"
+                                    style="font-style:italic">
+                                <p class="help-block">
+                                    <font color="red">"Format file .jpeg,jpg,png"</font>
+                                </p>
+                                <input type="text" disabled value="{{ $tlnc->ttd_verifsm_tlnc }}"
+                                    class="form-control" style="font-style:italic">
                             </div>
                         </div>
 

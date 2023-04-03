@@ -85,11 +85,20 @@
                                     Mengerjakan</label>
                                 <div class="col-sm-6">
                                     {{-- <input type="text" name="dept_ygmngrjkn" class="form-control" id="dept_ygmngrjkn"> --}}
-                                    <select name="dept_ygmngrjkn" id="dept_ygmngrjkn" class="form-control">
+                                    {{-- <select name="dept_ygmngrjkn" id="dept_ygmngrjkn" class="form-control">
                                         <option value="">- Pilih -</option>
                                         @foreach ($usersAuditee as $data_usersAuditee)
                                             <option value="{{ $data_usersAuditee->id }}"
                                                 {{ $ofi->dept_ygmngrjkn == $data_usersAuditee->id ? 'selected' : '' }}>
+                                                {{ $data_usersAuditee->name }}</option>
+                                        @endforeach
+                                    </select> --}}
+                                    <select name="objek_audit" {{ empty($tlofi) ? '' : 'disabled' }} id="objek_audit"
+                                        class="form-control">
+                                        <option value="">- Pilih -</option>
+                                        @foreach ($usersAuditee as $data_usersAuditee)
+                                            <option value="{{ $data_usersAuditee->id }}"
+                                                {{ $ofi->objek_audit == $data_usersAuditee->id ? 'selected' : '' }}>
                                                 {{ $data_usersAuditee->name }}</option>
                                         @endforeach
                                     </select>

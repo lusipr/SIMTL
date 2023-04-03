@@ -28,6 +28,7 @@
                                 </select>
                             </div>
                         </div>
+                       
                         {{-- <div class="mb-3">
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
                             <div class="col-sm-6">
@@ -189,7 +190,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui Oleh (SM/GM)</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui Oleh (M/SM)</label>
                             <div class="col-sm-6">
                                 <input type="name" name="diakui_oleh" disabled class="form-control" id="diakui_oleh"
                                     value="{{ $ncr->diakui_oleh }}">
@@ -251,9 +252,8 @@
                         <div class="mb-3">
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Akar Penyebab Masalah</label>
                             <div class="col-sm-6">
-                                <input type="text" name="akar_masalah" disabled value="{{ $tlncr->akar_masalah }}"
-                                    class="form-control" id="akar_masalah" placeholder="Masukkan akar penyebab masalah"
-                                    style="font-style:italic">
+                                <textarea name="akar_masalah" disabled class="form-control" id="akar_masalah" rows="5"
+                                    placeholder="Masukkan akar penyebab masalah" style="font-style:italic">{{ $tlncr->akar_masalah }}</textarea>
                             </div>
                         </div>
 

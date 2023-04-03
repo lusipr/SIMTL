@@ -62,7 +62,7 @@ class Nc extends Model
             $noUrut = 1;
         } else {
             $noUrut = (int) substr($lastCode->no_nc, -3) + 1;
-            if (substr($lastCode->no_ncr, 0, 2) != $tahun) {
+            if (substr($lastCode->no_nc, 0, 2) != $tahun) {
                 $noUrut = 1;
             }
         }

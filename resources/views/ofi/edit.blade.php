@@ -60,6 +60,7 @@
                                     </select>
                                 </div>
                             </div>
+                            <br>
 
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Objek Audit</label>
@@ -153,12 +154,21 @@
                                 <div class="col-sm-6">
                                     {{-- <input type="text" name="dept_ygmngrjkn" {{ empty($tlofi) ? '' : 'disabled' }} class="form-control" id="dept_ygmngrjkn"
                                         value="{{ $ofi->dept_ygmngrjkn }}"> --}}
-                                    <select name="dept_ygmngrjkn" {{ empty($tlofi) ? '' : 'disabled' }}
+                                    {{-- <select name="dept_ygmngrjkn" {{ empty($tlofi) ? '' : 'disabled' }}
                                         id="dept_ygmngrjkn" class="form-control">
                                         <option value="">- Pilih -</option>
                                         @foreach ($usersAuditee as $data_usersAuditee)
                                             <option value="{{ $data_usersAuditee->id }}"
                                                 {{ $ofi->dept_ygmngrjkn == $data_usersAuditee->id ? 'selected' : '' }}>
+                                                {{ $data_usersAuditee->name }}</option>
+                                        @endforeach
+                                    </select> --}}
+                                    <select name="objek_audit" {{ empty($tlofi) ? '' : 'disabled' }} id="objek_audit"
+                                        class="form-control">
+                                        <option value="">- Pilih -</option>
+                                        @foreach ($usersAuditee as $data_usersAuditee)
+                                            <option value="{{ $data_usersAuditee->id }}"
+                                                {{ $ofi->objek_audit == $data_usersAuditee->id ? 'selected' : '' }}>
                                                 {{ $data_usersAuditee->name }}</option>
                                         @endforeach
                                     </select>
@@ -250,6 +260,7 @@
                                     Manajemen</label>
                                 <div class="col-sm-6">
                                     <select name="disposisi" {{ empty($tlofi) ? '' : 'disabled' }} id="disposisi"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
                                         class="form-control" onchange="doChangeDisposisi(this)">
                                         <option>- Pilih -</option>
                                         <option {{ $ofi->disposisi == 'OFI ditolak' ? 'selected' : '' }}>OFI ditolak
@@ -265,6 +276,7 @@
                                     Oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disposisi" {{ empty($tlofi) ? '' : 'disabled' }}
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
                                         class="form-control" id="ttd_disposisi" value="{{ $ofi->ttd_disposisi }}">
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
@@ -273,7 +285,6 @@
                                         readonly>
                                 </div>
                             </div>
-
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan Oleh</label>
                                 <div class="col-sm-6">
@@ -321,7 +332,7 @@
             var tgl_terbitofi = document.getElementById('tgl_terbitofi');
             var tgl_deadline = document.getElementById('tgl_deadline');
 
-            tgl_terbitncr.addEventListener('change', function() {
+            tgl_terbitofi.addEventListener('change', function() {
                 if (tgl_terbitofi.value !== '') {
                     var deadline = new Date(tgl_terbitofi.value);
                     deadline.setDate(deadline.getDate() + 90);

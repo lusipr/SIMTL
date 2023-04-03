@@ -120,7 +120,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (M/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="diakui_oleh" class="form-control" id="diakui_oleh"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>

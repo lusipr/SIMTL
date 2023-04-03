@@ -194,6 +194,8 @@ class NcrController extends Controller
                 'diakui_oleh' => '',
                 'disetujui_oleh' => '',
                 'tgl_accgm' => '',
+                'tgl_planaction' => '',
+                'status' => '',
                 'bukti' => 'mimes:pdf',
                 'ttd_auditor' => 'mimes:jpeg,jpg,png',
                 'ttd_auditee' => 'mimes:jpeg,jpg,png',
@@ -273,23 +275,21 @@ class NcrController extends Controller
 
         if (auth()->user()->role == 'Auditor') {
             $validatedDataTLNcr = $request->validate([
-                'ttd_tl_verif_adm' => 'mimes:jpeg,jpg,png',
+                'ttd_tl_verif_auditor' => 'mimes:jpeg,jpg,png',
             ]);
 
-            if ($request->file('ttd_tl_verif_adm')) {
-                $validatedDataTLNcr['ttd_tl_verif_adm'] = $request->file('ttd_tl_verif_adm')->store('ttd_tl_verif_adm');
+            if ($request->file('ttd_tl_verif_auditor')) {
+                $validatedDataTLNcr['ttd_tl_verif_auditor'] = $request->file('ttd_tl_verif_auditor')->store('ttd_tl_verif_auditor');
             }
 
             $validatedDataTLNcr['uraian_verifikasi'] = $request->uraian_verifikasi;
             $validatedDataTLNcr['hasil_verif'] = $request->hasil_verif;
             $validatedDataTLNcr['verifikator'] = $request->verifikator;
             $validatedDataTLNcr['tgl_verif'] = $request->tgl_verif;
-
             $validatedDataTLNcr['id_ncr'] = $ncr->id_ncr;
 
             Ncr::where('id_ncr', '=', $ncr->id_ncr)->update([
                 'status' => $request->status,
-                'tgl_planaction' => $request->tgl_planaction,
             ]);
 
             TLNcr::updateOrCreate(['id_ncr' => $ncr->id_ncr], $validatedDataTLNcr);
@@ -297,11 +297,11 @@ class NcrController extends Controller
 
         if (auth()->user()->role == 'Admin2') {
             $validatedDataTLNcr = $request->validate([
-                'ttd_tl_verif_auditor' => 'mimes:jpeg,jpg,png',
+                'ttd_tl_verif_adm' => 'mimes:jpeg,jpg,png',
             ]);
 
-            if ($request->file('ttd_tl_verif_auditor')) {
-                $validatedDataTLNcr['ttd_tl_verif_auditor'] = $request->file('ttd_tl_verif_auditor')->store('ttd_tl_verif_auditor');
+            if ($request->file('ttd_tl_verif_adm')) {
+                $validatedDataTLNcr['ttd_tl_verif_adm'] = $request->file('ttd_tl_verif_adm')->store('ttd_tl_verif_adm');
             }
 
             $validatedDataTLNcr['rekomendasi'] = $request->rekomendasi;
@@ -312,7 +312,6 @@ class NcrController extends Controller
 
             Ncr::where('id_ncr', '=', $ncr->id_ncr)->update([
                 'status' => $request->status,
-                'tgl_planaction' => $request->tgl_planaction,
             ]);
 
             TLNcr::updateOrCreate(['id_ncr' => $ncr->id_ncr], $validatedDataTLNcr);

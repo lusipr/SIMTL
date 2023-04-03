@@ -56,7 +56,7 @@ class NcController extends Controller
 
     public function store_add(Request $request)
     {
-        $dataSent = $request->except('_token', 'bukti', 'ttd_auditor_nc');
+        $dataSent = $request->except('_token', 'bukti', 'ttd_auditor_nc', 'ttd_diakui_oleh_nc', 'ttd_disetujui_oleh_nc');
 
         $request->validate([
             'opsi_temuan' => 'required',
@@ -64,6 +64,8 @@ class NcController extends Controller
             'objek_audit' => 'required',
             'bukti' => 'mimes:pdf',
             'ttd_auditor_nc' => 'mimes:jpeg,jpg,png',
+            'ttd_diakui_oleh_nc' => 'mimes:jpeg,jpg,png',
+            'ttd_disetujui_oleh_nc' => 'mimes:jpeg,jpg,png',
         ]);
 
         if ($request->file('bukti')) {
@@ -72,6 +74,14 @@ class NcController extends Controller
 
         if ($request->file('ttd_auditor_nc')) {
             $dataSent['ttd_auditor_nc'] = $request->file('ttd_auditor_nc')->store('ttd_auditor_nc');
+        }
+
+        if ($request->file('ttd_diakui_oleh_nc')) {
+            $dataSent['ttd_diakui_oleh_nc'] = $request->file('ttd_diakui_oleh_nc')->store('ttd_diakui_oleh_nc');
+        }
+
+        if ($request->file('ttd_disetujui_oleh_nc')) {
+            $dataSent['ttd_disetujui_oleh_nc'] = $request->file('ttd_disetujui_oleh_nc')->store('ttd_disetujui_oleh_nc');
         }
 
         $create = Nc::create($dataSent);
@@ -136,26 +146,26 @@ class NcController extends Controller
 
         $request->validate([
             'bukti' => 'mimes:pdf',
-            // 'ttd_auditor_nc' => 'mimes:jpeg,jpg,png',
-            // 'ttd_diakui_oleh_nc' => 'mimes:jpeg,jpg,png',
-            // 'ttd_disetujui_oleh_nc' => 'mimes:jpeg,jpg,png',
+            'ttd_auditor_nc' => 'mimes:jpeg,jpg,png',
+            'ttd_diakui_oleh_nc' => 'mimes:jpeg,jpg,png',
+            'ttd_disetujui_oleh_nc' => 'mimes:jpeg,jpg,png',
         ]);
 
         if ($request->file('bukti')) {
             $dataSent['bukti'] = $request->file('bukti')->store('bukti-nc');
         }
 
-        // if ($request->file('ttd_auditor_nc')) {
-        //     $dataSent['ttd_auditor_nc'] = $request->file('ttd_auditor_nc')->store('ttd_auditor_nc');
-        // }
+        if ($request->file('ttd_auditor_nc')) {
+            $dataSent['ttd_auditor_nc'] = $request->file('ttd_auditor_nc')->store('ttd_auditor_nc');
+        }
 
-        // if ($request->file('ttd_diakui oleh_nc')) {
-        //     $dataSent['ttd_diakui oleh_nc'] = $request->file('ttd_diakui oleh_nc')->store('ttd_diakui oleh_nc');
-        // }
+        if ($request->file('ttd_diakui oleh_nc')) {
+            $dataSent['ttd_diakui oleh_nc'] = $request->file('ttd_diakui oleh_nc')->store('ttd_diakui oleh_nc');
+        }
 
-        // if ($request->file('ttd_disetujui oleh_nc')) {
-        //     $dataSent['ttd_disetujui oleh_nc'] = $request->file('ttd_disetujui oleh_nc')->store('ttd_disetujui oleh_nc');
-        // }
+        if ($request->file('ttd_disetujui oleh_nc')) {
+            $dataSent['ttd_disetujui oleh_nc'] = $request->file('ttd_disetujui oleh_nc')->store('ttd_disetujui oleh_nc');
+        }
 
         Nc::where('id_nc', '=', $nc->id_nc)->update($dataSent);
 
@@ -187,10 +197,25 @@ class NcController extends Controller
                 'disetujui_oleh' => '',
                 'tgl_accgm' => '',
                 'bukti' => 'mimes:pdf',
+                'ttd_auditor_nc' => 'mimes:jpeg,jpg,png',
+                'ttd_diakui_oleh_nc' => 'mimes:jpeg,jpg,png',
+                'ttd_disetujui_oleh_nc' => 'mimes:jpeg,jpg,png',
             ]);
 
             if ($request->file('bukti')) {
                 $validatedDataNc['bukti'] = $request->file('bukti')->store('bukti-nc');
+            }
+
+            if ($request->file('ttd_auditor_nc')) {
+                $validatedDataNc['ttd_auditor_nc'] = $request->file('ttd_auditor_nc')->store('ttd_auditor_nc');
+            }
+
+            if ($request->file('ttd_diakui_oleh_nc')) {
+                $validatedDataNc['ttd_diakui_oleh_nc'] = $request->file('ttd_diakui_oleh_nc')->store('ttd_diakui_oleh_nc');
+            }
+
+            if ($request->file('ttd_disetujui_oleh_nc')) {
+                $validatedDataNc['ttd_disetujui_oleh_nc'] = $request->file('ttd_disetujui_oleh_nc')->store('ttd_disetujui_oleh_nc');
             }
 
             if (auth()->user()->role == 'Admin') {
@@ -217,7 +242,22 @@ class NcController extends Controller
                 'tgl_action' => '',
                 'disetujui_oleh' => '',
                 'tgl_accgm' => '',
+                'ttd_disetujui_oleh_tlnc' => 'mimes:jpeg,jpg,png',
+                'ttd_verifikator_tlnc' => 'mimes:jpeg,jpg,png',
+                'ttd_verifsm_tlnc' => 'mimes:jpeg,jpg,png',
             ]);
+
+            if ($request->file('ttd_disetujui_oleh_tlnc')) {
+                $validatedDataTLNc['ttd_disetujui_oleh_tlnc'] = $request->file('ttd_disetujui_oleh_tlnc')->store('ttd_disetujui_oleh_tlnc');
+            }
+
+            if ($request->file('ttd_verifikator_tlnc')) {
+                $validatedDataTLNc['ttd_verifikator_tlnc'] = $request->file('ttd_verifikator_tlnc')->store('ttd_verifikator_tlnc');
+            }
+
+            if ($request->file('ttd_verifsm_tlnc')) {
+                $validatedDataTLNc['ttd_verifsm_tlnc'] = $request->file('ttd_verifsm_tlnc')->store('ttd_verifsm_tlnc');
+            }
 
             $validatedDataTLNc['id_nc'] = $nc->id_nc;
 

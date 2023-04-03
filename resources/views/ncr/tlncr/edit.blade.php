@@ -179,7 +179,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (SM/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="diakui_oleh" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
@@ -233,6 +233,7 @@
                     </div>
                 </div>
             </div>
+            
 
             <div class="row mt-5 mb-5">
                 <div class="col-12">
@@ -246,12 +247,9 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Akar Penyebab Masalah</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="akar_masalah"
-                                        value="{{ isset($tlncr->akar_masalah) ? $tlncr->akar_masalah : '' }}"
-                                        class="form-control"
+                                    <textarea name="akar_masalah" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
-                                        id="akar_masalah" placeholder="Masukkan akar penyebab masalah"
-                                        style="font-style:italic">
+                                        id="akar_masalah" rows="5" placeholder="Masukkan akar penyebab masalah" style="font-style:italic">{{ isset($tlncr->akar_masalah) ? $tlncr->akar_masalah : '' }}</textarea>
                                 </div>
                             </div>
 
@@ -462,7 +460,6 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
                                 <div class="col-sm-6">
                                     <select name="status"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}
                                         id="status" class="form-control">
                                         <option value="">- Pilih -</option>
                                         <option {{ $ncr->status == 'Tindak Lanjut Belum Sesuai' ? 'selected' : '' }}>Tindak

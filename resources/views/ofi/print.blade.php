@@ -98,7 +98,8 @@
             :
         </td>
         <td style="width: 28%; vertical-align: middle;">
-            {{ !empty($ofi->user_dept_ygmngrjkn->name) ? $ofi->user_dept_ygmngrjkn->name : '' }}
+            {{-- {{ !empty($ofi->user_dept_ygmngrjkn->name) ? $ofi->user_dept_ygmngrjkn->name : '' }} --}}
+            {{ !empty($ofi->users->name) ? $ofi->users->name : '' }}
         </td>
     </tr>
 </table>

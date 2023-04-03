@@ -32,7 +32,7 @@
         </td>
         <td style="width: 55%; vertical-align: middle; text-align: center; border-left-width: 1px;">
             <span style="font-size: 20px; font-weight: bold; text-transform: uppercase;">Laporan Ketidak Sesuaian
-                </span><br>
+            </span><br>
             <span style="font-size: 17px; text-transform: uppercase; font-style: italic;">(Non Conformity Report)</span>
         </td>
     </tr>
@@ -48,6 +48,14 @@
         </td>
         <td style="width: 20%; vertical-align: middle; border-left-width: 1px;">
             Tanggal: {{ $nc->tgl_terbitnc }}
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 20%; vertical-align: middle;">
+           Temuan
+        </td>
+        <td style="width: 80%; vertical-align: middle;" colspan="2">
+            : {{ $nc->opsi_temuan }}
         </td>
     </tr>
     <tr>
@@ -166,6 +174,8 @@
             &nbsp;
         </td>
         <td style="width: 40%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
+            <img width="50" height="60" src="{{ asset('storage/' . $nc->ttd_auditor_nc) }}" alt="ttd_auditor">
+            <br>
             <div style="border-bottom: 1px dotted #000;">{{ $nc->nama_auditor }}</div>
         </td>
         <td style="width: 7%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
@@ -176,6 +186,9 @@
             (M/SM)
         </td>
         <td style="width: 15%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
+            <img width="50" height="60" src="{{ asset('storage/' . $nc->ttd_diakui_oleh_nc) }}"
+                alt="ttd_diakui_oleh">
+            <br>
             <div style="border-bottom: 1px dotted #000;">{{ $nc->diakui_oleh }}</div>
         </td>
         <td style="width: 2%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
@@ -193,6 +206,9 @@
             :
         </td>
         <td style="width: 23%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
+            <img width="50" height="60" src="{{ asset('storage/' . $nc->ttd_disetujui_oleh_nc) }}"
+                alt="ttd_disetujui_oleh">
+            <br>
             <div style="border-bottom: 1px dotted #000;">{{ $nc->disetujui_oleh }}</div>
         </td>
         <td style="width: 4%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
@@ -287,7 +303,8 @@
                         </div>
                         @if (strlen(!empty($tlnc->uraian_perbaikan) ? $tlnc->uraian_perbaikan : '') <= 100)
                             <div style="text-align: justify; border-bottom: 1px solid #000;">
-                                <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
+                                <span
+                                    style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
                                     &nbsp;
                                 </span>
                             </div>
@@ -328,7 +345,8 @@
                         </div>
                         @if (strlen(!empty($tlnc->uraian_pencegahan) ? $tlnc->uraian_pencegahan : '') <= 100)
                             <div style="text-align: justify; border-bottom: 1px solid #000;">
-                                <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
+                                <span
+                                    style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
                                     &nbsp;
                                 </span>
                             </div>
@@ -364,7 +382,8 @@
         </td>
         <td style="width: 34%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
             colspan="3">
-            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->tgl_action) ? $tlnc->tgl_action : '' }}</div>
+            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->tgl_action) ? $tlnc->tgl_action : '' }}
+            </div>
         </td>
         <td style="width: 30%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
             colspan="3">
@@ -379,7 +398,11 @@
             :
         </td>
         <td style="width: 23%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px dotted #000;">{{ $nc->disetujui_oleh }}</div>
+            <img width="50" height="60"
+                src="{{ !empty($tlnc->ttd_disetujui_oleh_tlnc) ? asset('storage/' . $tlncr->ttd_disetujui_oleh_tlnc) : '' }}"
+                alt="Ttd disetujui oleh">
+            <br>
+            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->disetujui_oleh_tl) ? $tlnc->disetujui_oleh_tl : '' }}</div>
         </td>
         <td style="width: 4%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;
@@ -411,8 +434,7 @@
                             <span style="padding-bottom: 1.55px; border-bottom: 3px solid #fff; line-height: 27px;">
                                 Verifikasi
                             </span>
-                            <span
-                                style="padding-bottom: 1.55px; border-bottom: 3px solid #fff; line-height: 27px;">
+                            <span style="padding-bottom: 1.55px; border-bottom: 3px solid #fff; line-height: 27px;">
                                 :
                             </span>
                             <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
@@ -558,7 +580,12 @@
             &nbsp;
         </td>
         <td style="width: 20%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->verifikator) ? $tlnc->verifikator : '' }}</div>
+            <img width="50" height="60"
+                src="{{ !empty($tlncr->ttd_verifikator_tlnc) ? asset('storage/' . $tlncr->ttd_verifikator_tlnc) : '' }}"
+                alt="Ttd verif oleh">
+            <br>
+            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->verifikator) ? $tlnc->verifikator : '' }}
+            </div>
         </td>
         <td
             style="width: 46%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px; text-align: right;">
@@ -575,8 +602,7 @@
 
 <table style="width: 100%; padding-top: 1px;">
     <tr>
-        <td style="width: 100%; vertical-align: top; border-top-width: 0px; border-bottom-width: 0px;"
-            colspan="2">
+        <td style="width: 100%; vertical-align: top; border-top-width: 0px; border-bottom-width: 0px;" colspan="2">
             <div style="text-align: justify; border-bottom: 1px solid #000;">
                 <span
                     style="padding-bottom: 1.55px; border-bottom: 3px solid #fff; line-height: 27px; padding-right: 20px;">
@@ -622,7 +648,13 @@
 <table style="width: 100%; padding-top: 1px;">
     <tr>
         <td style="width: 44%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            Diverifikasi oleh Senior Manager Tata Kelola Perusahaan: {{ !empty($tlnc->namasm_verif) ? $tlnc->namasm_verif : '' }}
+            Diverifikasi oleh Senior Manager Tata Kelola Perusahaan:
+            <br>
+            <img width="50" height="60"
+                src="{{ !empty($tlncr->ttd_verifsm_tlnc) ? asset('storage/' . $tlncr->ttd_verifsm_tlnc) : '' }}"
+                alt="Ttd verif oleh">
+            <br>
+            {{ !empty($tlnc->namasm_verif) ? $tlnc->namasm_verif : '' }}
         </td>
         <td
             style="width: 10%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px; text-align: center;">
