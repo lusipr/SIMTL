@@ -194,6 +194,12 @@ class OfiController extends Controller
         if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditee') {
             $validatedDataOfi = $request->validate([
                 'bukti' => 'mimes:pdf',
+                'lampiran1' => '',
+                'lampiran2' => '',
+                'lampiran3' => '',
+                'lampiran4' => '',
+                'lampiran5' => '',
+                'lampiran6' => '',
                 'ttd_dept_pengusul' => 'mimes:jpeg,jpg,png',
                 'ttd_disetujui_oleh_ofi' => 'mimes:jpeg,jpg,png',
                 'ttd_disposisi' => 'mimes:jpeg,jpg,png',

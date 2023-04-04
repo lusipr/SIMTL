@@ -574,13 +574,13 @@
             Lampiran
         </td>
         <td style="width: 10%; vertical-align: top; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px solid #000;">1.</div>
+            <div style="border-bottom: 1px solid #000;">1. {{ $ofi->lampiran1 }}</div>
         </td>
         <td style="width: 10%; vertical-align: top; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px solid #000;">2.</div>
+            <div style="border-bottom: 1px solid #000;">2. {{ $ofi->lampiran2 }}</div>
         </td>
         <td style="width: 10%; vertical-align: top; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px solid #000;">3.</div>
+            <div style="border-bottom: 1px solid #000;">3. {{ $ofi->lampiran3 }}</div>
         </td>
     </tr>
     <tr>
@@ -588,13 +588,13 @@
 
         </td>
         <td style="width: 10%; vertical-align: top; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px solid #000;">4.</div>
+            <div style="border-bottom: 1px solid #000;">4. {{ $ofi->lampiran4 }}</div>
         </td>
         <td style="width: 10%; vertical-align: top; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px solid #000;">5.</div>
+            <div style="border-bottom: 1px solid #000;">5. {{ $ofi->lampiran5 }}</div>
         </td>
         <td style="width: 10%; vertical-align: top; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px solid #000;">6.</div>
+            <div style="border-bottom: 1px solid #000;">6. {{ $ofi->lampiran6 }}</div>
         </td>
     </tr>
 </table>

@@ -109,7 +109,7 @@
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diakui oleh
-                                    (M/GM)</label>
+                                    (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_auditee" class="form-control" id="ttd_auditee"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>

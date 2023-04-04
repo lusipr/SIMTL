@@ -376,11 +376,53 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Lampiran 1</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="lampiran1" id="lampiran1" class="form-control"
-                                        accept="application/pdf"
+                                        placeholder="Masukkan nama lampiran jika ada" value="{{ $ofi->lampiran1 }}"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
-                                    {{-- <p class="help-block">
-                                        <font color="red">"Format file .pdf"</font>
-                                    </p> --}}
+                                </div>
+                            </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Lampiran 2</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="lampiran2" id="lampiran2" class="form-control"
+                                        placeholder="Masukkan nama lampiran jika ada" value="{{ $ofi->lampiran2 }}"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                </div>
+                            </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Lampiran 3</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="lampiran3" id="lampiran3" class="form-control"
+                                        placeholder="Masukkan nama lampiran jika ada" value="{{ $ofi->lampiran3 }}"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                </div>
+                            </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Lampiran 4</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="lampiran4" id="lampiran4" class="form-control"
+                                        placeholder="Masukkan nama lampiran jika ada" value="{{ $ofi->lampiran4 }}"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                </div>
+                            </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Lampiran 5</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="lampiran5" id="lampiran5" class="form-control"
+                                        placeholder="Masukkan nama lampiran jika ada" value="{{ $ofi->lampiran5 }}"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                </div>
+                            </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Lampiran 6</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="lampiran6" id="lampiran6" class="form-control"
+                                        placeholder="Masukkan nama lampiran jika ada" value="{{ $ofi->lampiran6 }}"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
