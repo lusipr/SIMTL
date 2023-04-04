@@ -39,7 +39,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_terbitnc" class="form-control" id="tgl_terbitnc"
-                                        value="{{ $nc->tgl_terbitnc }}">
+                                        value="{{ $nc->tgl_terbitnc }}" disabled>
                                 </div>
                             </div>
 
@@ -47,7 +47,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_deadline" id="tgl_deadline" class="form-control"
-                                        value="{{ $nc->tgl_deadline }}">
+                                        value="{{ $nc->tgl_deadline }}" disabled>
                                 </div>
                             </div>
 
@@ -68,28 +68,32 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Bab yang diaudit</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="bab_audit" class="form-control" id="bab_audit">
+                                    <input type="text" name="bab_audit" class="form-control" id="bab_audit"
+                                    {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Dokumen Acuan</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="dok_acuan" class="form-control" id="dok_acuan">
+                                    <input type="text" name="dok_acuan" class="form-control" id="dok_acuan"
+                                    {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian Ketidaksesuaian</label>
                                 <div class="col-sm-6">
-                                    <textarea class="form-control" name="uraian_nc" id="uraian_nc" rows="5"></textarea>
+                                    <textarea class="form-control" name="uraian_nc" id="uraian_nc" rows="5"
+                                    {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}></textarea>
                                 </div>
                             </div>
 
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Kategori</label>
                                 <div class="col-sm-6">
-                                    <select name="kategori" id="kategori" class="form-control">
+                                    <select name="kategori" id="kategori" class="form-control"
+                                    {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option>Mayor</option>
                                         <option>Minor</option>
@@ -101,7 +105,8 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Auditor</label>
                                 <div class="col-sm-6">
-                                    <input type="file" name="ttd_auditor_nc" class="form-control" id="ttd_auditor_nc">
+                                    <input type="file" name="ttd_auditor_nc" class="form-control" id="ttd_auditor_nc"
+                                    {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
                                     </p>
@@ -111,13 +116,14 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Auditor</label>
                                 <div class="col-sm-6">
-                                    <input type="name" name="nama_auditor" class="form-control" id="nama_auditor">
+                                    <input type="name" name="nama_auditor" class="form-control" id="nama_auditor"
+                                    {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label"> Tanda Tangan Diakui oleh
-                                    (M/GM)</label>
+                                    (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_diakui_oleh_nc" class="form-control"
                                         id="ttd_diakui_oleh_nc"
@@ -129,7 +135,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (M/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="diakui_oleh" class="form-control" id="diakui_oleh"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
@@ -169,7 +175,7 @@
                                     Penyelesaian</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_planaction" class="form-control" id="tgl_planaction"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
                             <br>

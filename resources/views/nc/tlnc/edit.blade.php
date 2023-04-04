@@ -65,7 +65,8 @@
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
                                 <div class="col-sm-6">
-                                    <select name="tema_audit" id="tema_audit" class="form-control">
+                                    <select name="tema_audit" id="tema_audit" class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? 'disabled' : 'disabled' }}>
                                         <option value="">- Pilih -</option>
                                         @foreach ($usersTema as $data_usersTema)
                                             <option value="{{ $data_usersTema->id }}"
@@ -112,6 +113,15 @@
                                     <input type="date" name="tgl_terbitnc" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} id="tgl_terbitnc"
                                         value="{{ $nc->tgl_terbitnc }}">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline</label>
+                                <div class="col-sm-6">
+                                    <input type="date" name="tgl_deadline" class="form-control" id="tgl_deadline"
+                                        value="{{ $nc->tgl_deadline }}"
+                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
                                 </div>
                             </div>
 
@@ -188,7 +198,8 @@
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
                                     </p>
-                                    <input type="text" class="form-control" value="{{ $nc->ttd_auditor_nc }}">
+                                    <input type="text" class="form-control" value="{{ $nc->ttd_auditor_nc }}"
+                                        readonly>
                                 </div>
                             </div>
 
@@ -201,18 +212,10 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline</label>
-                                <div class="col-sm-6">
-                                    <input type="date" name="tgl_deadline" class="form-control" id="tgl_deadline"
-                                        value="{{ $nc->tgl_deadline }}"
-                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
-                                </div>
-                            </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diakui oleh
-                                    (SM/GM)</label>
+                                    (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_diakui_oleh_nc" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
@@ -220,12 +223,13 @@
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
                                     </p>
-                                    <input type="text" class="form-control" value="{{ $nc->ttd_diakui_oleh_nc }}">
+                                    <input type="text" class="form-control" value="{{ $nc->ttd_diakui_oleh_nc }}"
+                                        readonly>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (SM/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="diakui_oleh" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
@@ -243,7 +247,8 @@
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
                                     </p>
-                                    <input type="text" class="form-control" value="{{ $nc->ttd_disetujui_oleh_nc }}">
+                                    <input type="text" class="form-control" value="{{ $nc->ttd_disetujui_oleh_nc }}"
+                                        readonly>
                                 </div>
                             </div>
 
@@ -269,7 +274,7 @@
                                     Penyelesaian</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_planaction" class="form-control"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
                                         id="tgl_planaction" value="{{ $nc->tgl_planaction }}">
                                 </div>
                             </div>
@@ -291,12 +296,15 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Akar Penyebab Masalah</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="akar_masalah"
+                                    {{-- <input type="text" name="akar_masalah"
                                         value="{{ isset($tlnc->akar_masalah) ? $tlnc->akar_masalah : '' }}"
                                         class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
                                         id="akar_masalah" placeholder="Masukkan akar penyebab masalah"
-                                        style="font-style:italic">
+                                        style="font-style:italic"> --}}
+                                    <textarea name="akar_masalah" class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
+                                        id="akar_masalah" rows="10" placeholder="Masukkan akar penyebab masalah" style="font-style:italic">{{ isset($tlnc->akar_masalah) ? $tlnc->akar_masalah : '' }}</textarea>
                                 </div>
                             </div>
 
@@ -305,7 +313,7 @@
                                 <div class="col-sm-6">
                                     <textarea name="uraian_perbaikan" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
-                                        id="uraian_perbaikan" rows="5" placeholder="Masukkan uraian perbaikan" style="font-style:italic">{{ isset($tlnc->uraian_perbaikan) ? $tlnc->uraian_perbaikan : '' }}</textarea>
+                                        id="uraian_perbaikan" rows="10" placeholder="Masukkan uraian perbaikan" style="font-style:italic">{{ isset($tlnc->uraian_perbaikan) ? $tlnc->uraian_perbaikan : '' }}</textarea>
                                 </div>
                             </div>
 
@@ -343,7 +351,8 @@
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
                                     </p>
                                     <input type="name" class="form-control"
-                                        value="{{ isset($tlnc->ttd_disetujui_oleh_tlnc) ? $tlnc->ttd_disetujui_oleh_tlnc : '' }}">
+                                        value="{{ isset($tlnc->ttd_disetujui_oleh_tlnc) ? $tlnc->ttd_disetujui_oleh_tlnc : '' }}"
+                                        readonly>
                                 </div>
                             </div>
 
@@ -426,7 +435,7 @@
                                         value="{{ isset($tlnc->ttd_verifikator_tlnc) ? $tlnc->ttd_verifikator_tlnc : '' }}"
                                         class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}
-                                        style="font-style:italic">
+                                        style="font-style:italic" readonly>
                                 </div>
                             </div>
 
@@ -458,7 +467,7 @@
                                     manajemen</label>
                                 <div class="col-sm-6">
                                     <textarea type="name" name="rekomendasi" class="form-control"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
                                         id="rekomendasi" rows="5" placeholder="Masukkan rekomendasi tinjauan" style="font-style:italic">{{ isset($tlnc->rekomendasi) ? $tlnc->rekomendasi : '' }}</textarea>
                                 </div>
                             </div>
@@ -471,14 +480,14 @@
                                     <input type="file" name="ttd_verifsm_tlnc"
                                         value="{{ isset($tlnc->ttd_verifsm_tlnc) ? $tlnc->ttd_verifsm_tlnc : '' }}"
                                         class="form-control"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
                                         id="ttd_verifsm_tlnc" style="font-style:italic">
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
                                     </p>
                                     <input type="text"
                                         value="{{ isset($tlnc->ttd_verifsm_tlnc) ? $tlnc->ttd_verifsm_tlnc : '' }}"
-                                        class="form-control" style="font-style:italic">
+                                        class="form-control" style="font-style:italic" readonly>
                                 </div>
                             </div>
 
@@ -489,9 +498,21 @@
                                     <input type="name" name="namasm_verif"
                                         value="{{ isset($tlnc->namasm_verif) ? $tlnc->namasm_verif : '' }}"
                                         class="form-control"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
                                         id="namasm_verif" placeholder="Masukkan nama SM Dept. TKP"
                                         style="font-style:italic">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Verifikasi SM Departemen
+                                    Tata Kelola Perusahaan</label>
+                                <div class="col-sm-6">
+                                    <input type="date" name="tgl_verifsm"
+                                        value="{{ isset($tlnc->tgl_verifsm) ? $tlnc->tgl_verifsm : '' }}"
+                                        class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
+                                        id="tgl_verifsm">
                                 </div>
                             </div>
 
@@ -499,7 +520,6 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
                                 <div class="col-sm-6">
                                     <select name="status"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}
                                         id="status" class="form-control">
                                         <option value="">- Pilih -</option>
                                         <option {{ $nc->status == 'Tindak Lanjut Belum Sesuai' ? 'selected' : '' }}>Tindak

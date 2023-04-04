@@ -184,8 +184,8 @@
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
                                     </p>
-                                    <input type="name" name="ttd_auditor_nc" {{ empty($tlnc) ? '' : 'disabled' }}
-                                        class="form-control" id="ttd_auditor_nc" value="{{ $nc->ttd_auditor_nc }}"
+                                    <input type="name"  {{ empty($tlnc) ? '' : 'disabled' }}
+                                        class="form-control" value="{{ $nc->ttd_auditor_nc }}"
                                         readonly>
                                 </div>
                             </div>
@@ -200,7 +200,7 @@
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diakui oleh
-                                    (M/GM)</label>
+                                    (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_diakui_oleh_nc"
                                         {{ empty($tlnc) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
@@ -216,7 +216,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (M/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="diakui_oleh"
                                         {{ empty($tlnc) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}

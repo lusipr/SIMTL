@@ -30,6 +30,7 @@ class TLNc extends Model
         'rekomendasi',
         'ttd_verifsm_tlnc',
         'namasm_verif',
+        'tgl_verifsm',
     ];
 
     public function nc()

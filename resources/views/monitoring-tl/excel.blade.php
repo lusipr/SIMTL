@@ -31,7 +31,7 @@
                 </td>
                 </td>
                 <td class="text-center">{{ $data_monitoringtl->proses_audit }}</td>
-                <td class="text-center">{{ $data_monitoringtl->tema_audit }}</td>
+                <td class="text-center">{{ $data_monitoringtl->users_tema->name }}</td>
                 <td class="text-center">{{ $data_monitoringtl->users->name }}</td>
                 <td class="text-center">
                     @php

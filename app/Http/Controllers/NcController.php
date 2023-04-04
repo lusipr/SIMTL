@@ -99,11 +99,14 @@ class NcController extends Controller
 
     public function store_form_nc(Request $request, Nc $nc)
     {
-        // $validatedData = $request->validate([
-        //     'bab_audit' => ''
-        // ]);
+        $dataSent = $request->except('_token', 'bukti', 'ttd_auditor_nc', 'ttd_diakui_oleh_nc', 'ttd_disetujui_oleh_nc');
 
         $request->validate([
+            // 'bab_audit' => '',
+            // 'dok_acuan' => '',
+            // 'uraian_nc' => '',
+            // 'kategori' => '',
+            // 'nama_auditor' => '',
             'bukti' => 'mimes:pdf',
             'ttd_auditor_nc' => 'mimes:jpeg,jpg,png',
             'ttd_diakui_oleh_nc' => 'mimes:jpeg,jpg,png',
@@ -196,6 +199,7 @@ class NcController extends Controller
                 'diakui_oleh' => '',
                 'disetujui_oleh' => '',
                 'tgl_accgm' => '',
+                'tgl_planaction' => '',
                 'bukti' => 'mimes:pdf',
                 'ttd_auditor_nc' => 'mimes:jpeg,jpg,png',
                 'ttd_diakui_oleh_nc' => 'mimes:jpeg,jpg,png',
@@ -240,7 +244,7 @@ class NcController extends Controller
                 'uraian_perbaikan' => '',
                 'uraian_pencegahan' => '',
                 'tgl_action' => '',
-                'disetujui_oleh' => '',
+                'disetujui_oleh_tl' => '',
                 'tgl_accgm' => '',
                 'ttd_disetujui_oleh_tlnc' => 'mimes:jpeg,jpg,png',
                 'ttd_verifikator_tlnc' => 'mimes:jpeg,jpg,png',
@@ -268,6 +272,7 @@ class NcController extends Controller
                 $validatedDataTLNc['tgl_verif'] = $request->tgl_verif;
                 $validatedDataTLNc['rekomendasi'] = $request->rekomendasi;
                 $validatedDataTLNc['namasm_verif'] = $request->namasm_verif;
+                $validatedDataTLNc['tgl_verifsm'] = $request->tgl_verifsm;
             }
 
             Nc::where('id_nc', '=', $nc->id_nc)->update($validatedDataNc);
@@ -275,19 +280,44 @@ class NcController extends Controller
         }
 
         if (auth()->user()->role == 'Auditor') {
-            Nc::where('id_nc', '=', $nc->id_nc)->update([
-                'status' => $request->status,
-                'tgl_planaction' => $request->tgl_planaction,
+            $validatedDataTLNc = $request->validate([
+                'ttd_verifikator_tlnc' => 'mimes:jpeg,jpg,png',
             ]);
 
-            TLNc::updateOrCreate(['id_nc' => $nc->id_nc], [
-                'uraian_verifikasi' => $request->uraian_verifikasi,
-                'hasil_verif' => $request->hasil_verif,
-                'verifikator' => $request->verifikator,
-                'tgl_verif' => $request->tgl_verif,
-                'rekomendasi' => $request->rekomendasi,
-                'namasm_verif' => $request->namasm_verif,
+            if ($request->file('ttd_verifikator_tlnc')) {
+                $validatedDataTLNc['ttd_verifikator_tlnc'] = $request->file('ttd_verifikator_tlnc')->store('ttd_verifikator_tlnc');
+            }
+
+            $validatedDataTLNc['uraian_verifikasi'] = $request->uraian_verifikasi;
+            $validatedDataTLNc['hasil_verif'] = $request->hasil_verif;
+            $validatedDataTLNc['verifikator'] = $request->verifikator;
+            $validatedDataTLNc['tgl_verif'] = $request->tgl_verif;
+
+            Nc::where('id_nc', '=', $nc->id_nc)->update([
+                'status' => $request->status,
             ]);
+
+            TLNc::updateOrCreate(['id_nc' => $nc->id_nc], $validatedDataTLNc);
+        }
+
+        if (auth()->user()->role == 'Admin2') {
+            $validatedDataTLNc = $request->validate([
+                'ttd_verifsm_tlnc' => 'mimes:jpeg,jpg,png',
+            ]);
+
+            if ($request->file('ttd_verifsm_tlnc')) {
+                $validatedDataTLNc['ttd_verifsm_tlnc'] = $request->file('ttd_verifsm_tlnc')->store('ttd_verifsm_tlnc');
+            }
+
+            $validatedDataTLNc['rekomendasi'] = $request->rekomendasi;
+            $validatedDataTLNc['namasm_verif'] = $request->namasm_verif;
+            $validatedDataTLNc['tgl_verifsm'] = $request->tgl_verifsm;
+
+            Nc::where('id_nc', '=', $nc->id_nc)->update([
+                'status' => $request->status,
+            ]);
+
+            TLNc::updateOrCreate(['id_nc' => $nc->id_nc], $validatedDataTLNc);
         }
 
         return redirect((!empty($ref_page) ? $ref_page : 'data-nc'));

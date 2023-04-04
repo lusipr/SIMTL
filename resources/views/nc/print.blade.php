@@ -399,7 +399,7 @@
         </td>
         <td style="width: 23%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             <img width="50" height="60"
-                src="{{ !empty($tlnc->ttd_disetujui_oleh_tlnc) ? asset('storage/' . $tlncr->ttd_disetujui_oleh_tlnc) : '' }}"
+                src="{{ !empty($tlnc->ttd_disetujui_oleh_tlnc) ? asset('storage/' . $tlnc->ttd_disetujui_oleh_tlnc) : '' }}"
                 alt="Ttd disetujui oleh">
             <br>
             <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->disetujui_oleh_tl) ? $tlnc->disetujui_oleh_tl : '' }}</div>
@@ -581,7 +581,7 @@
         </td>
         <td style="width: 20%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             <img width="50" height="60"
-                src="{{ !empty($tlncr->ttd_verifikator_tlnc) ? asset('storage/' . $tlncr->ttd_verifikator_tlnc) : '' }}"
+                src="{{ !empty($tlnc->ttd_verifikator_tlnc) ? asset('storage/' . $tlnc->ttd_verifikator_tlnc) : '' }}"
                 alt="Ttd verif oleh">
             <br>
             <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->verifikator) ? $tlnc->verifikator : '' }}
@@ -651,7 +651,7 @@
             Diverifikasi oleh Senior Manager Tata Kelola Perusahaan:
             <br>
             <img width="50" height="60"
-                src="{{ !empty($tlncr->ttd_verifsm_tlnc) ? asset('storage/' . $tlncr->ttd_verifsm_tlnc) : '' }}"
+                src="{{ !empty($tlnc->ttd_verifsm_tlnc) ? asset('storage/' . $tlnc->ttd_verifsm_tlnc) : '' }}"
                 alt="Ttd verif oleh">
             <br>
             {{ !empty($tlnc->namasm_verif) ? $tlnc->namasm_verif : '' }}
@@ -680,7 +680,7 @@
             Tanggal:
         </td>
         <td style="width: 18%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->tgl_verif) ? $tlnc->tgl_verif : '' }}</div>
+            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->tgl_verifsm) ? $tlnc->tgl_verifsm : '' }}</div>
         </td>
         <td style="width: 2%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;
