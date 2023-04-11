@@ -48,10 +48,8 @@ class NcrController extends Controller
     {
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
         $usersTema = User::where('role', '=', 'Tema')->get();
-        $ncr = new Ncr;
-        $ncr->no_ncr = Ncr::generateCode();
 
-        return view('ncr.add', ['usersAuditee' => $usersAuditee, 'usersTema' => $usersTema], compact('ncr'));
+        return view('ncr.add', ['usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);
     }
 
     public function store_add(Request $request)
@@ -59,13 +57,16 @@ class NcrController extends Controller
         $dataSent = $request->except('_token', 'bukti',  'ttd_auditee', 'ttd_auditee_gm_sm');
 
         $request->validate([
-            'no_ncr' => 'required',
+            // 'no_ncr' => 'required',
             'objek_audit' => 'required',
+            'tema_audit' => 'required',
             'bukti' => 'mimes:pdf',
             'ttd_auditor' => 'mimes:jpeg,jpg,png',
             'ttd_auditee' => 'mimes:jpeg,jpg,png',
             'ttd_auditee_gm_sm' => 'mimes:jpeg,jpg,png',
         ]);
+
+        $dataSent['tema_audit'] = $request->input('tema_audit');
 
         if ($request->file('bukti')) {
             $dataSent['bukti'] = $request->file('bukti')->store('bukti-ncr');
@@ -93,7 +94,20 @@ class NcrController extends Controller
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
         $usersTema = User::where('role', '=', 'Tema')->get();
 
-        return view('ncr.formncr.edit', ['ncr' => $ncr, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema], compact('ncr'));
+        $year = date('y');
+        $theme = $ncr->tema_audit;
+        $lastNcr = Ncr::where('tema_audit', $theme)->orderBy('no_ncr', 'desc')->first();
+
+        if ($lastNcr && substr($lastNcr->no_ncr, 0, 2) == $year) {
+            $noUrut = str_pad((int)substr($lastNcr->no_ncr, -3) + 1, 3, '0', STR_PAD_LEFT);
+        } else {
+            $noUrut = '001';
+        }
+
+        $noNcr = $year . '/' . $theme . '/' . $noUrut;
+        $ncr->no_ncr = $noNcr;
+
+        return view('ncr.formncr.edit', ['ncr' => $ncr, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);
     }
 
     public function store_form_ncr(Request $request, Ncr $ncr)
@@ -122,7 +136,7 @@ class NcrController extends Controller
         if ($request->file('ttd_auditee_gm_sm')) {
             $dataSent['ttd_auditee_gm_sm'] = $request->file('ttd_auditee_gm_sm')->store('ttd_auditee_gm_sm');
         }
-        
+
 
         Ncr::where('id_ncr', '=', $ncr->id_ncr)->update($dataSent);
 

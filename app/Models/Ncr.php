@@ -55,7 +55,7 @@ class Ncr extends Model
     public static function generateCode()
     {
         $tahun = date('y');
-        $period = sprintf("%02d",ceil(date('n') / 6));
+        $period = sprintf("%02d", ceil(date('n') / 6));
         $lastCode = self::where('no_ncr', 'like', "{$tahun}/{$period}/%")->orderBy('no_ncr', 'desc')->first();
         if (!$lastCode) {
             $noUrut = 1;
@@ -68,4 +68,23 @@ class Ncr extends Model
         $noUrut = str_pad($noUrut, 3, '0', STR_PAD_LEFT);
         return "{$tahun}/{$period}/{$noUrut}";
     }
+
+    // public function getNomorNCR()
+    // {
+    //     $lastNCR = self::orderBy('created_at', 'desc')->first();
+    //     if ($lastNCR) {
+    //         $lastTemaAudit = $lastNCR->tema_audit;
+    //         $lastYear = substr($lastNCR->created_at, 2, 2);
+    //         $currentYear = date('y');
+    //         if ($lastYear == $currentYear && $lastTemaAudit == $this->tema_audit) {
+    //             $lastNoNCR = substr($lastNCR->no_ncr, -3);
+    //             $newNoNCR = str_pad($lastNoNCR + 1, 3, '0', STR_PAD_LEFT);
+    //         } else {
+    //             $newNoNCR = '001';
+    //         }
+    //     } else {
+    //         $newNoNCR = '001';
+    //     }
+    //     return $currentYear . '/' . $this->tema_audit . '/' . $newNoNCR;
+    // }
 }

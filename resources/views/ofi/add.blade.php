@@ -14,13 +14,13 @@
                         </div><br>
                         <form action="{{ url('data-ofi/add') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">No. OFI</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="no_ofi" class="form-control" id="no_ofi"
                                         value="{{ $ofi->no_ofi }}" readonly>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
                                 <div class="col-sm-6">

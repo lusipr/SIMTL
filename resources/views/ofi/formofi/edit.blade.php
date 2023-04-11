@@ -16,7 +16,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">No. OFI</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="no_ofi" class="form-control" id="no_ofi"
-                                        value="{{ $ofi->no_ofi }}" disabled>
+                                        value="{{ $ofi->no_ofi }}" readonly>
                                 </div>
                             </div>
 

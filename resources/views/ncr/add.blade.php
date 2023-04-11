@@ -14,13 +14,16 @@
                         </div><br>
                         <form action="{{ url('data-ncr/add') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">No. NCR</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="no_ncr" class="form-control" id="no_ncr"
-                                         value="{{ $ncr->no_ncr }}">
+                                    <input type="text" name="no_ncr" class="form-control" id="no_ncr" readonly
+                                        value="{{ $ncr->no_ncr }}">  
+                                        value="{{ old('no_ncr') }}"
+                                        value ="{{ $ncr_number }}"
+                                        >
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
                                 <div class="col-sm-6">
@@ -35,7 +38,7 @@
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
                                 <div class="col-sm-6">
-                                    <select name="tema_audit" id="tema_audit" class="form-control" required>
+                                    <select name="tema_audit" id="tema_audit" class="form-control" >
                                         <option value="">- Pilih -</option>
                                         @foreach ($usersTema as $data_usersTema)
                                             <option value="{{ $data_usersTema->id }}">{{ $data_usersTema->name }}
@@ -96,7 +99,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             var tgl_terbitncr = document.getElementById('tgl_terbitncr');
             var tgl_deadline = document.getElementById('tgl_deadline');
-    
+
             tgl_terbitncr.addEventListener('change', function() {
                 if (tgl_terbitncr.value !== '') {
                     var deadline = new Date(tgl_terbitncr.value);
@@ -107,5 +110,7 @@
                 }
             });
         });
+
+      
     </script>
 @endsection

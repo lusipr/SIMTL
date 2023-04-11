@@ -16,9 +16,25 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">No. NCR</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="no_ncr" class="form-control" id="no_ncr"
-                                        value="{{ $ncr->no_ncr }}" disabled>
+                                        value="{{ $ncr->no_ncr }}" readonly>
                                 </div>
                             </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
+                                <div class="col-sm-6">
+                                    <select name="tema_audit" {{ empty($tlncr) ? '' : 'disabled' }} id="tema_audit"
+                                        class="form-control" readonly>
+                                        <option value="">- Pilih -</option>
+                                        @foreach ($usersTema as $data_usersTema)
+                                            <option value="{{ $data_usersTema->id }}"
+                                                {{ $ncr->tema_audit == $data_usersTema->id ? 'selected' : '' }}>
+                                                {{ $data_usersTema->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit</label>

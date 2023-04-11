@@ -60,7 +60,7 @@ class NcController extends Controller
 
         $request->validate([
             'opsi_temuan' => 'required',
-            'no_nc' => 'required',
+            // 'no_nc' => 'required',
             'objek_audit' => 'required',
             'bukti' => 'mimes:pdf',
             'ttd_auditor_nc' => 'mimes:jpeg,jpg,png',
@@ -93,6 +93,19 @@ class NcController extends Controller
     {
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
         $usersTema = User::where('role', '=', 'Tema')->get();
+
+        $year = date('y');
+        $theme = $nc->tema_audit;
+        $lastNc = Nc::where('tema_audit', $theme)->orderBy('no_nc', 'desc')->first();
+
+        if ($lastNc && substr($lastNc->no_nc, 0, 2) == $year) {
+            $noUrut = str_pad((int)substr($lastNc->no_nc, -3) + 1, 3, '0', STR_PAD_LEFT);
+        } else {
+            $noUrut = '001';
+        }
+
+        $noNc = $year . '/' . $theme . '/' . $noUrut;
+        $nc->no_nc = $noNc;
 
         return view('nc.formnc.edit', ['nc' => $nc, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);
     }

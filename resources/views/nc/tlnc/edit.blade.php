@@ -17,7 +17,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Opsi Temuan</label>
                                 <div class="col-sm-6">
                                     <select name="opsi_temuan" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}
-                                        id="opsi_temuan" class="form-control">
+                                        id="opsi_temuan" class="form-control" readonly>
                                         <option value="NCR" {{ $nc->opsi_temuan == 'NCR' ? 'selected' : '' }}>NCR
                                         </option>
                                         <option value="OFI" {{ $nc->opsi_temuan == 'OFI' ? 'selected' : '' }}>OFI
@@ -34,14 +34,14 @@
                                 <div class="col-sm-6">
                                     <input type="text" name="no_nc" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} id="no_nc"
-                                        value="{{ $nc->no_nc }}">
+                                        value="{{ $nc->no_nc }}" readonly>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
                                 <div class="col-sm-6">
                                     <select name="proses_audit" id="proses_audit" class="form-control"
-                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} readonly>
                                         <option value="Internal" {{ $nc->proses_audit == 'Internal' ? 'selected' : '' }}>
                                             Internal</option>
                                         <option value="Eksternal" {{ $nc->proses_audit == 'Eksternal' ? 'selected' : '' }}>

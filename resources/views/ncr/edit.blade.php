@@ -17,14 +17,24 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">No. NCR</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="no_ncr" {{ empty($tlncr) ? '' : 'disabled' }}
-                                        class="form-control" id="no_ncr" value="{{ $ncr->no_ncr }}">
+                                        class="form-control" id="no_ncr" value="{{ $ncr->no_ncr }}" readonly>
                                 </div>
                             </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" value="NCR" id="jenis_temuan"
+                                        name="jenis_temuan" {{ empty($tlncr) ? '' : 'disabled' }} readonly>
+                                </div>
+                            </div>
+                            <br>
+                            
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
                                 <div class="col-sm-6">
                                     <select name="proses_audit" {{ empty($tlncr) ? '' : 'disabled' }} id="proses_audit"
-                                        class="form-control">
+                                        class="form-control" readonly>
                                         <option value="Internal" {{ $ncr->proses_audit == 'Internal' ? 'selected' : '' }}>
                                             Internal</option>
                                         <option value="Eksternal" {{ $ncr->proses_audit == 'Eksternal' ? 'selected' : '' }}>
@@ -37,7 +47,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
                                 <div class="col-sm-6">
                                     <select name="tema_audit" {{ empty($tlncr) ? '' : 'disabled' }} id="tema_audit"
-                                        class="form-control">
+                                        class="form-control" readonly>
                                         <option value="">- Pilih -</option>
                                         @foreach ($usersTema as $data_usersTema)
                                             <option value="{{ $data_usersTema->id }}"
@@ -47,7 +57,6 @@
                                     </select>
                                 </div>
                             </div>
-
                             <br>
 
                             <div class="row-mb-3">
@@ -65,14 +74,7 @@
                                 </div>
                             </div>
                             <br>
-                            <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
-                                <div class="col-sm-6">
-                                    <input class="form-control" type="text" value="NCR" id="jenis_temuan"
-                                        name="jenis_temuan" {{ empty($tlncr) ? '' : 'disabled' }} readonly>
-                                </div>
-                            </div>
-                            <br>
+                          
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit NCR</label>
                                 <div class="col-sm-6">

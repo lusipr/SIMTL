@@ -20,7 +20,7 @@ class OfiController extends Controller
         // if (auth()->user()->role == 'Tema') {
         //     $ofi = Ofi::where('tema_audit', '=', auth()->user()->id)->get();
         // } 
-        
+
         else {
             $ofi = Ofi::all();
         }
@@ -59,7 +59,7 @@ class OfiController extends Controller
         $dataSent = $request->except('_token', 'bukti', 'ttd_dept_pengusul', 'ttd_disetujui_oleh_ofi', 'ttd_disposisi');
 
         $request->validate([
-            'no_ofi' => 'required',
+            // 'no_ofi' => 'required',
             'objek_audit' => 'required',
             'bukti' => 'mimes:pdf',
             'ttd_dept_pengusul' => 'mimes:jpeg,jpg,png',
@@ -92,6 +92,19 @@ class OfiController extends Controller
     {
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
         $usersTema = User::where('role', '=', 'Tema')->get();
+
+        $year = date('y');
+        $theme = $ofi->tema_audit;
+        $lastOfi = Ofi::where('tema_audit', $theme)->orderBy('no_ofi', 'desc')->first();
+
+        if ($lastOfi && substr($lastOfi->no_ofi, 0, 2) == $year) {
+            $noUrut = str_pad((int)substr($lastOfi->no_ofi, -3) + 1, 3, '0', STR_PAD_LEFT);
+        } else {
+            $noUrut = '001';
+        }
+
+        $noOfi = $year . '/' . $theme . '/' . $noUrut;
+        $ofi->no_ofi = $noOfi;
 
         return view('ofi.formofi.edit', ['ofi' => $ofi, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);
     }
