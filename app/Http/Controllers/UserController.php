@@ -10,8 +10,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-
+        // $users = User::all();
+        $users = User::where('role', '<>', 'tema')->get();
         return view('users.index', ['users' => $users, 'title' => 'Pengguna']);
     }
 
