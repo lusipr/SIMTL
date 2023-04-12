@@ -37,6 +37,22 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
+                                <div class="col-sm-6">
+                                    <select name="tema_audit" {{ empty($tlnc) ? '' : 'disabled' }} id="tema_audit"
+                                        class="form-control" readonly>
+                                        <option value="">- Pilih -</option>
+                                        @foreach ($usersTema as $data_usersTema)
+                                            <option value="{{ $data_usersTema->id }}"
+                                                {{ $nc->tema_audit == $data_usersTema->id ? 'selected' : '' }}>
+                                                {{ $data_usersTema->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Departemen yang diaudit</label>
                                 <div class="col-sm-6">
                                     <select name="objek_audit" id="objek_audit" class="form-control" disabled>

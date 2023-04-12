@@ -95,7 +95,8 @@ class NcController extends Controller
         $usersTema = User::where('role', '=', 'Tema')->get();
 
         $year = date('y');
-        $theme = $nc->tema_audit;
+        // $theme = $nc->users_tema->name;
+        $theme= $nc->tema_audit;
         $lastNc = Nc::where('tema_audit', $theme)->orderBy('no_nc', 'desc')->first();
 
         if ($lastNc && substr($lastNc->no_nc, 0, 2) == $year) {
@@ -129,17 +130,18 @@ class NcController extends Controller
         if ($request->file('bukti')) {
             $dataSent['bukti'] = $request->file('bukti')->store('bukti-nc');
         }
+        
 
         if ($request->file('ttd_auditor_nc')) {
             $dataSent['ttd_auditor_nc'] = $request->file('ttd_auditor_nc')->store('ttd_auditor_nc');
         }
 
-        if ($request->file('ttd_diakui oleh_nc')) {
-            $dataSent['ttd_diakui oleh_nc'] = $request->file('ttd_diakui oleh_nc')->store('ttd_diakui oleh_nc');
+        if ($request->file('ttd_diakui_oleh_nc')) {
+            $dataSent['ttd_diakui_oleh_nc'] = $request->file('ttd_diakui_oleh_nc')->store('ttd_diakui_oleh_nc');
         }
 
-        if ($request->file('ttd_disetujui oleh_nc')) {
-            $dataSent['ttd_disetujui oleh_nc'] = $request->file('ttd_disetujui oleh_nc')->store('ttd_disetujui oleh_nc');
+        if ($request->file('ttd_disetujui_oleh_nc')) {
+            $dataSent['ttd_disetujui_oleh_nc'] = $request->file('ttd_disetujui_oleh_nc')->store('ttd_disetujui_oleh_nc');
         }
 
         Nc::where('id_nc', '=', $nc->id_nc)->update($dataSent);
@@ -175,12 +177,12 @@ class NcController extends Controller
             $dataSent['ttd_auditor_nc'] = $request->file('ttd_auditor_nc')->store('ttd_auditor_nc');
         }
 
-        if ($request->file('ttd_diakui oleh_nc')) {
-            $dataSent['ttd_diakui oleh_nc'] = $request->file('ttd_diakui oleh_nc')->store('ttd_diakui oleh_nc');
+        if ($request->file('ttd_diakui_oleh_nc')) {
+            $dataSent['ttd_diakui_oleh_nc'] = $request->file('ttd_diakui_oleh_nc')->store('ttd_diakui_oleh_nc');
         }
 
-        if ($request->file('ttd_disetujui oleh_nc')) {
-            $dataSent['ttd_disetujui oleh_nc'] = $request->file('ttd_disetujui oleh_nc')->store('ttd_disetujui oleh_nc');
+        if ($request->file('ttd_disetujui_oleh_nc')) {
+            $dataSent['ttd_disetujui_oleh_nc'] = $request->file('ttd_disetujui_oleh_nc')->store('ttd_disetujui_oleh_nc');
         }
 
         Nc::where('id_nc', '=', $nc->id_nc)->update($dataSent);

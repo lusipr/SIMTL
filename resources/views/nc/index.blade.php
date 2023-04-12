@@ -40,6 +40,7 @@
                                         <th class="text-center">No</th>
                                         <th class="text-center">No. NC</th>
                                         <th class="text-center">Proses</th>
+                                        {{-- <th class="text-center">Kode Tema</th> --}}
                                         <th class="text-center">Tema</th>
                                         <th class="text-center">Objek</th>
                                         <!--<th class="text-center">Dokumen</th>-->
@@ -58,6 +59,7 @@
 
                                             </td>
                                             <td class="text-center">{{ $data_nc->proses_audit }}</td>
+                                            {{-- <td class="text-center">{{ $data_nc->tema_audit }}</td> --}}
                                             <td class="text-center">{{ $data_nc->users_tema->name }}</td>
                                             <td class="text-center">{{ $data_nc->users->name }}</td>
                                             <!--<td class="text-center">{{ $data_nc->dokumen }}</td>-->

@@ -66,7 +66,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
                                 <div class="col-sm-6">
                                     <select name="tema_audit" id="tema_audit" class="form-control"
-                                        {{ auth()->user()->role == 'Admin' ? 'disabled' : 'disabled' }}>
+                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} readonly>
                                         <option value="">- Pilih -</option>
                                         @foreach ($usersTema as $data_usersTema)
                                             <option value="{{ $data_usersTema->id }}"
