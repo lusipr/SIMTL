@@ -19,7 +19,7 @@
                                     <tr>
                                         <th style="width: 4%;" class="text-center">No</th>
                                         <th class="text-center">Nama Tema</th>
-                                        <th class="text-center">Username</th>
+                                        {{-- <th class="text-center">Username</th> --}}
                                         {{-- <th class="text-center">Password</th> --}}
                                         <th class="text-center">Aksi</th>
                                     </tr>
@@ -31,7 +31,7 @@
                                             {{-- <td class="text-center">{{ $user->nip }}</td> --}}
                                             <td class="text-center">{{ $user->name }}</td>
                                             {{-- <td class="text-center">{{ $user->role }}</td> --}}
-                                            <td class="text-center">{{ $user->username }}</td>
+                                            {{-- <td class="text-center">{{ $user->username }}</td> --}}
                                             {{-- <td class="text-center">{{ $user->password }}</td> --}}
                                             <td class="text-center">
                                                 <a href="{{ url('data-tema/edit/' . $user->id) }}"
@@ -42,6 +42,24 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                {{-- <tbody>
+                                    @foreach ($tema as $tema)
+                                        <tr>
+                                            <td class="text-center">{{ $loop->index + 1 }}</td> --}}
+                                            {{-- <td class="text-center">{{ $user->nip }}</td> --}}
+                                            {{-- <td class="text-center">{{ $tema->nama_tema }}</td> --}}
+                                            {{-- <td class="text-center">{{ $user->role }}</td> --}}
+                                            {{-- <td class="text-center">{{ $tema->username }}</td> --}}
+                                            {{-- <td class="text-center">{{ $user->password }}</td> --}}
+                                            {{-- <td class="text-center">
+                                                <a href="{{ url('data-tema/edit/' . $tema->id_tema) }}"
+                                                    class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
+                                                <a href="{{ url('data-tema/delete/' . $tema->id_tema) }}"
+                                                    class="btn btn-danger"><i class="ti-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody> --}}
                             </table>
                         </div>
                     </div>

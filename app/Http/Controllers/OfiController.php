@@ -95,7 +95,10 @@ class OfiController extends Controller
 
         $year = date('y');
         $theme = $ofi->tema_audit;
-        $lastOfi = Ofi::where('tema_audit', $theme)->orderBy('no_ofi', 'desc')->first();
+        $process = $ofi->proses_audit;
+        $lastOfi = Ofi::where('tema_audit', $theme)
+            ->where('proses_audit', $process)
+            ->orderBy('no_ofi', 'desc')->first();
 
         if ($lastOfi && substr($lastOfi->no_ofi, 0, 2) == $year) {
             $noUrut = str_pad((int)substr($lastOfi->no_ofi, -3) + 1, 3, '0', STR_PAD_LEFT);
@@ -103,7 +106,7 @@ class OfiController extends Controller
             $noUrut = '001';
         }
 
-        $noOfi = $year . '/' . $theme . '/' . $noUrut;
+        $noOfi = $year . '/' .$process. '/' . $theme . '/' . $noUrut;
         $ofi->no_ofi = $noOfi;
 
         return view('ofi.formofi.edit', ['ofi' => $ofi, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);

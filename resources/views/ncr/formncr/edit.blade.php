@@ -37,6 +37,21 @@
                             <br>
 
                             <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Departemen yang diaudit</label>
+                                <div class="col-sm-6">
+                                    <select name="objek_audit" id="objek_audit" class="form-control" disabled
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
+                                        <option value="">- Pilih -</option>
+                                        @foreach ($usersAuditee as $data_usersAuditee)
+                                            <option value="{{ $data_usersAuditee->id }}"
+                                                {{ $ncr->objek_audit == $data_usersAuditee->id ? 'selected' : '' }}>
+                                                {{ $data_usersAuditee->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_terbitncr" class="form-control" id="tgl_terbitncr"
@@ -49,21 +64,6 @@
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_deadline" id="tgl_deadline" class="form-control"
                                         value="{{ $ncr->tgl_deadline }}">
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">Departemen yang diaudit</label>
-                                <div class="col-sm-6">
-                                    <select name="objek_audit" id="objek_audit" class="form-control" disabled
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
-                                        <option value="">- Pilih -</option>
-                                        @foreach ($usersAuditee as $data_usersAuditee)
-                                            <option value="{{ $data_usersAuditee->id }}"
-                                                {{ $ncr->objek_audit == $data_usersAuditee->id ? 'selected' : '' }}>
-                                                {{ $data_usersAuditee->name }}</option>
-                                        @endforeach
-                                    </select>
                                 </div>
                             </div>
 

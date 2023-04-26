@@ -40,18 +40,7 @@
                                 </select>
                             </div>
                         </div>
-                        {{-- <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
-                            <div class="col-sm-6">
-                                <select name="tema_audit" disabled id="tema_audit" class="form-control">
-                                    <option value="">- Pilih -</option>
-                                    <option {{ $nc->tema_audit == 'ISO 9001' ? 'selected' : '' }}>ISO 9001</option>
-                                    <option {{ $nc->tema_audit == 'ISO 45001' ? 'selected' : '' }}>ISO 45001</option>
-                                    <option {{ $nc->tema_audit == 'ISO 14001' ? 'selected' : '' }}>ISO 14001</option>
-                                    <option {{ $nc->tema_audit == 'ISO 37001' ? 'selected' : '' }}>ISO 37001</option>
-                                </select>
-                            </div>
-                        </div> --}}
+                       
 
                         <div class="row-mb-3">
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>

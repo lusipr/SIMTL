@@ -96,7 +96,10 @@ class NcrController extends Controller
 
         $year = date('y');
         $theme = $ncr->tema_audit;
-        $lastNcr = Ncr::where('tema_audit', $theme)->orderBy('no_ncr', 'desc')->first();
+        $process = $ncr->proses_audit;
+        $lastNcr = Ncr::where('tema_audit', $theme)
+            ->where('proses_audit', $process)
+            ->orderBy('no_ncr', 'desc')->first();
 
         if ($lastNcr && substr($lastNcr->no_ncr, 0, 2) == $year) {
             $noUrut = str_pad((int)substr($lastNcr->no_ncr, -3) + 1, 3, '0', STR_PAD_LEFT);
@@ -104,7 +107,7 @@ class NcrController extends Controller
             $noUrut = '001';
         }
 
-        $noNcr = $year . '/' . $theme . '/' . $noUrut;
+        $noNcr = $year . '/' . $process . '/' . $theme . '/' . $noUrut;
         $ncr->no_ncr = $noNcr;
 
         return view('ncr.formncr.edit', ['ncr' => $ncr, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);

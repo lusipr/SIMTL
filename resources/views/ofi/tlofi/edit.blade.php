@@ -169,22 +169,40 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Uraian Permasalahan</label>
+                                <div class="col-sm-6">
+                                    <textarea type="text" name="uraian_permasalahan" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}
+                                        class="form-control" id="uraian_permasalahan" rows="5" placeholder="Masukkan uraian permasalahan"
+                                        style="font-style:italic">{{ $ofi->uraian_permasalahan }}</textarea>
+                                </div>
+                            </div>
+
+                            {{-- <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian Permasalahan</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="uraian_permasalahan"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} class="form-control"
                                         id="uraian_permasalahan" value="{{ $ofi->uraian_permasalahan }}">
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Uraian Peningkatan</label>
+                                <div class="col-sm-6">
+                                    <textarea type="text" name="usulan_peningkatan" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}
+                                        class="form-control" id="usulan_peningkatan" rows="5" placeholder="Masukkan uraian permasalahan"
+                                        style="font-style:italic">{{ $ofi->usulan_peningkatan }}</textarea>
+                                </div>
+                            </div>
+
+                            {{-- <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian Peningkatan</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="usulan_peningkatan"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} class="form-control"
                                         id="usulan_peningkatan" value="{{ $ofi->usulan_peningkatan }}">
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diusulkan

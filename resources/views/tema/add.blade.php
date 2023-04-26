@@ -15,32 +15,29 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">KODE</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="nip" class="form-control" required id="nip"
-                                        placeholder="Masukkan NIP">
+                                        placeholder="Masukkan Kode">
+                                    <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Tema</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="name" class="form-control" required id="name"
+                                            placeholder="Masukkan Nama Tema">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Tema</label>
-                                <div class="col-sm-6">
-                                    <input type="text" name="name" class="form-control" required id="name"
-                                        placeholder="Masukkan Nama Tema">
+                                <div class="row-mb-3">
+                                    <label for="colFormLabel" class="col-sm-2 col-form-label">Username</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="username" class="form-control" required id="username"
+                                            placeholder="Masukkan Username">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Username</label>
-                                <div class="col-sm-6">
-                                    <input type="text" name="username" class="form-control" required id="username"
-                                        placeholder="Masukkan Username">
-                                </div>
-                            </div>
-                            <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Password</label>
-                                <div class="col-sm-6">
-                                    <input type="password" name="password" class="form-control" required id="password"
-                                        placeholder="Masukkan Password">
-                                </div>
-                            </div><br><br>
-                            <input type="submit" value="Simpan" class="btn btn-info"></input>
-                            <a href="{{ url('data-tema') }}" title="Batal" class="btn btn-secondary">Batal</a>
+                                <div class="row-mb-3">
+                                    <label for="colFormLabel" class="col-sm-2 col-form-label">Password</label>
+                                    <div class="col-sm-6">
+                                        <input type="password" name="password" class="form-control" required id="password"
+                                            placeholder="Masukkan Password">
+                                    </div>
+                                </div><br><br>
+                                <input type="submit" value="Simpan" class="btn btn-info"></input>
+                                <a href="{{ url('data-tema') }}" title="Batal" class="btn btn-secondary">Batal</a>
                         </form>
                     </div>
                 </div>

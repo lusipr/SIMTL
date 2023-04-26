@@ -21,6 +21,16 @@
                                         value="{{ $ofi->no_ofi }}" readonly>
                                 </div>
                             </div> --}}
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" value="OFI" id="jenis_temuan"
+                                        name="jenis_temuan" readonly>
+                                </div>
+                            </div>
+                            <br>
+
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
                                 <div class="col-sm-6">
@@ -57,14 +67,7 @@
                                 </div>
                             </div>
                             <br>
-                            <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
-                                <div class="col-sm-6">
-                                    <input class="form-control" type="text" value="OFI" id="jenis_temuan"
-                                        name="jenis_temuan" readonly>
-                                </div>
-                            </div>
-                            <br>
+
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit OFI</label>
                                 <div class="col-sm-6">
@@ -73,6 +76,7 @@
                                 </div>
                             </div>
                             <br>
+
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline OFI</label>
                                 <div class="col-sm-6">
@@ -80,8 +84,8 @@
                                         placeholder="Pilih Tanggal">
                                 </div>
                             </div>
-
-                            <br><br>
+                            <br>
+                            <br>
                             <input type="submit" value="Next" class="btn btn-info"></input>
                             <a href="{{ url('data-ofi') }}" title="Kembali" class="btn btn-secondary">Batal</a>
                         </form>

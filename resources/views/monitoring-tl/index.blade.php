@@ -9,7 +9,8 @@
                     <div class="card-body">
                         <div class="d-sm-flex justify-content-between align-items-center">
                             <h2>Data Tindak Lanjut</h2>
-                            <a href="{{ url('monitoring-tl/excel') }}" target="_blank" style="background-color: #107c41; margin-bottom: 20px;" class="btn btn-success">Excel</a>
+                            <a href="{{ url('monitoring-tl/excel') }}" target="_blank"
+                                style="background-color: #107c41; margin-bottom: 20px;" class="btn btn-success">Excel</a>
                         </div><br>
                         <div class="row mb-0 mb-lg-3">
                             <div class="col-12">
@@ -49,7 +50,7 @@
                                             <td class="text-center">{{ $data_monitoringtl->jenis_temuan }}</td>
                                             <td class="text-center">{{ $data_monitoringtl->no_dokumen }}<br>
                                                 <a
-                                                    href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/tlncr/view/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/tlofi/view/' . $data_monitoringtl->id . '/monitoring-tl') }}">see
+                                                    href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/tlncr/view/' . $data_monitoringtl->id . '/monitoring-tl') : ($data_monitoringtl->type == 'nc' ? url('data-nc/tlnc/view/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/tlofi/view/' . $data_monitoringtl->id . '/monitoring-tl')) }}">see
                                                     detail</a>
                                             </td>
                                             </td>
@@ -64,11 +65,14 @@
                                                     $daysDiff = $interval->format('%r%a');
                                                 @endphp
                                                 @if ($daysDiff < 0)
-                                                    <span class="p-2 badge badge-danger">{{ $data_monitoringtl->tgl_deadline }}</span>
+                                                    <span
+                                                        class="p-2 badge badge-danger">{{ $data_monitoringtl->tgl_deadline }}</span>
                                                 @elseif ($daysDiff < 7)
-                                                    <span class="p-2 badge badge-warning">{{ $data_monitoringtl->tgl_deadline }}</span>
+                                                    <span
+                                                        class="p-2 badge badge-warning">{{ $data_monitoringtl->tgl_deadline }}</span>
                                                 @else
-                                                    <span class="p-2 badge badge-primary">{{ $data_monitoringtl->tgl_deadline }}</span>
+                                                    <span
+                                                        class="p-2 badge badge-primary">{{ $data_monitoringtl->tgl_deadline }}</span>
                                                 @endif
                                             </td>
                                             <td class="text-center">{{ $data_monitoringtl->tgl_mulai }}</td>
@@ -80,14 +84,14 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/print/' . $data_monitoringtl->id) : url('data-ofi/print/' . $data_monitoringtl->id) }}" target="_blank"
-                                                    class="btn btn-secondary"><i class="ti-printer"></i></a>
+                                                <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/print/' . $data_monitoringtl->id) : url('data-ofi/print/' . $data_monitoringtl->id) }}"
+                                                    target="_blank" class="btn btn-secondary"><i class="ti-printer"></i></a>
                                                 <!--<a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/tlncr/view/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/tlofi/view/' . $data_monitoringtl->id . '/monitoring-tl') }}"
-                                                    class="btn btn-warning"><i class="ti-eye"></i></a>
-                                                @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
-                                                    <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/tlncr/input/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/tlofi/input/' . $data_monitoringtl->id . '/monitoring-tl') }}"
-                                                        class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
-                                                @endif-->
+                                                        class="btn btn-warning"><i class="ti-eye"></i></a>
+                                                    @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
+    <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/tlncr/input/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/tlofi/input/' . $data_monitoringtl->id . '/monitoring-tl') }}"
+                                                            class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
+    @endif-->
                                                 @if (auth()->user()->role == 'Admin')
                                                     <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/delete/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/delete/' . $data_monitoringtl->id . '/monitoring-tl') }}"
                                                         class="btn btn-danger"><i class="ti-trash"></i></a>

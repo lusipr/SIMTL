@@ -24,6 +24,15 @@
                                         >
                                 </div>
                             </div> --}}
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" value="NCR" id="jenis_temuan"
+                                        name="jenis_temuan" readonly>
+                                </div>
+                            </div>
+                            <br>
+                            
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
                                 <div class="col-sm-6">
@@ -61,16 +70,8 @@
                                     </select>
                                 </div>
                             </div>
-
                             <br>
-                            <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
-                                <div class="col-sm-6">
-                                    <input class="form-control" type="text" value="NCR" id="jenis_temuan"
-                                        name="jenis_temuan" readonly>
-                                </div>
-                            </div>
-                            <br>
+                            
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit NCR</label>
                                 <div class="col-sm-6">
