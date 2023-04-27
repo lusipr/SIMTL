@@ -214,14 +214,24 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui SM/GM</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_accgm" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
                                         id="tgl_accgm" value="{{ $ncr->tgl_accgm }}">
                                 </div>
+                            </div> --}}
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Tanggal disetujui SM/GM</label>
+                                <div class="col-sm-6">
+                                    <input type="date" name="tgl_accgm" class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
+                                        id="tgl_accgm" value="{{ $ncr->tgl_accgm }}">
+                                </div>
                             </div>
+
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Rencana Tanggal
                                     Penyelesaian</label>

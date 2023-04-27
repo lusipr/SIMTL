@@ -28,7 +28,7 @@
 <table style="width: 100%;">
     <tr>
         <td style="width: 45%; vertical-align: middle; text-align: center;">
-            <img src="{{ asset('assets/images/logo-inka-grayscale.png') }}" style="width: 50%;">
+            <img src="{{ asset('assets/images/logo-inka.png') }}" style="width: 50%;">
         </td>
         <td style="width: 55%; vertical-align: middle; text-align: center; border-left-width: 1px;">
             <span style="font-size: 20px; font-weight: bold; text-transform: uppercase;">Laporan Ketidak Sesuaian
@@ -48,7 +48,8 @@
             : {{ $ncr->no_ncr }}
         </td>
         <td style="width: 20%; vertical-align: middle; border-left-width: 1px;">
-            Tanggal: {{ $ncr->tgl_terbitncr }}
+            {{-- Tanggal: {{ $ncr->tgl_terbitncr }} --}}
+            Tanggal: {{ date('d-m-Y', strtotime($ncr->tgl_terbitncr)) }}
         </td>
     </tr>
     <tr>
@@ -156,7 +157,7 @@
             &nbsp;
         </td>
         <td style="width: 40%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <img width="50" height="60" src="{{ asset('storage/' . $ncr->ttd_auditor) }}" alt="ttd_auditor">
+            <img width="50" height="60" src="{{ asset('storage/' . $ncr->ttd_auditor) }}" alt=" ">
             <br>
             <div style="border-bottom: 1px dotted #000;">{{ $ncr->nama_auditor }}</div>
         </td>
@@ -168,7 +169,7 @@
             (M/SM)
         </td>
         <td style="width: 15%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <img width="50" height="60" src="{{ asset('storage/' . $ncr->ttd_auditee) }}" alt="ttd_auditee">
+            <img width="50" height="60" src="{{ asset('storage/' . $ncr->ttd_auditee) }}" alt=" ">
             <br>
             <div style="border-bottom: 1px dotted #000;">{{ $ncr->diakui_oleh }}</div>
         </td>
@@ -187,7 +188,7 @@
             :
         </td>
         <td style="width: 23%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <img width="50" height="60" src="{{ asset('storage/' . $ncr->ttd_auditee_gm_sm) }}" alt="ttd_auditee_gm_sm">
+            <img width="50" height="60" src="{{ asset('storage/' . $ncr->ttd_auditee_gm_sm) }}" alt=" ">
             <br>
             <div style="border-bottom: 1px dotted #000;">{{ $ncr->disetujui_oleh }}</div>
         </td>
@@ -202,7 +203,10 @@
             :
         </td>
         <td style="width: 15%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px dotted #000;">{{ $ncr->tgl_accgm }}</div>
+            <div style="border-bottom: 1px dotted #000;">
+                {{ $ncr->tgl_accgm }}
+                {{-- {{ date('d-m-Y', strtotime($ncr->tgl_accgm)) }} --}}
+            </div>
         </td>
         <td style="width: 2%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;
@@ -216,7 +220,10 @@
             :
         </td>
         <td style="width: 34%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;" colspan="3">
-            <div style="border-bottom: 1px dotted #000;">{{ $ncr->tgl_planaction }}</div>
+            <div style="border-bottom: 1px dotted #000;">
+                {{-- {{ $ncr->tgl_planaction }} --}}
+                {{ date('d-m-Y', strtotime($ncr->tgl_planaction)) }}
+            </div>
         </td>
         <td style="width: 30%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;" colspan="3">
             &nbsp;

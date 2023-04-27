@@ -145,7 +145,7 @@
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui Oleh
-                                    (M/GM)</label>
+                                    (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_auditee_gm_sm" class="form-control"
                                         id="ttd_auditee_gm_sm"
