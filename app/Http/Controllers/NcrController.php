@@ -94,21 +94,79 @@ class NcrController extends Controller
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
         $usersTema = User::where('role', '=', 'Tema')->get();
 
+        // $year = date('y');
+        // $theme = $ncr->users_tema->name;
+        // $process = $ncr->proses_audit;
+        // $lastNcr = Ncr::where('tema_audit', $theme)
+        //     ->where('proses_audit', $process)
+        //     // ->where('year', $year)
+        //     ->orderBy('no_ncr', 'desc')
+        //     ->first();
+
+        // if ($lastNcr && substr($lastNcr->no_ncr, 0, 2) == $year) {
+        //     $noUrut = str_pad((int)substr($lastNcr->no_ncr, -3) + 1, 3, '0', STR_PAD_LEFT);
+        // } else {
+        //     $noUrut = '001';
+        // }
+
+
+        // $noNcr = $year . '/' . $process . '/' . $theme . '/' . $noUrut;
+        // // $noNcr = $noUrut . '/' . substr($process, 0, 3) . '/' . $theme . '/' .'NCR'.' / '. $year;
+        // $ncr->no_ncr = $noNcr;
+
+        // $year = date('y');
+        // $theme = $ncr->users_tema->name;
+        // $process = $ncr->proses_audit;
+        // $lastNcr = Ncr::where('tema_audit', $theme)
+        //     ->where('proses_audit', $process)
+        //     ->orderBy('no_ncr', 'desc')->first();
+
+        // if ($lastNcr && substr($lastNcr->no_ncr, -2) == $year && $lastNcr->tema_audit == $theme && $lastNcr->proses_audit == $process) {
+        //     $noUrut = str_pad((int)substr($lastNcr->no_ncr, 0, 3) + 1, 3, '0', STR_PAD_LEFT);
+        // } else {
+        //     $noUrut = '001';
+        // }
+
+        // $noNcr = $noUrut . '/' . substr($process, 0, 3) . '/' . $theme . '/' . 'NCR' . '/' . $year;
+        // $ncr->no_ncr = $noNcr;
+
+        // $year = date('y');
+        // $theme = $ncr->tema_audit;
+        // $process = $ncr->proses_audit;
+        // $lastNcr = Ncr::where('tema_audit', $theme)
+        //     ->where('proses_audit', $process)
+        //     ->whereRaw('YEAR(created_at) = ?', [date('Y')])
+        //     ->orderBy('no_ncr', 'desc')
+        //     ->first();
+
+        // if ($lastNcr && substr($lastNcr->no_ncr, -2) == $year && $lastNcr->proses_audit == $process && $lastNcr->tema_audit == $theme) {
+        //     $noUrut = str_pad((int)substr($lastNcr->no_ncr, 0, 3) + 1, 3, '0', STR_PAD_LEFT);
+        // } else {
+        //     $noUrut = '001';
+        // }
+
+        // $noNcr = $noUrut . '/' . substr($process, 0, 3) . '/' . $theme . '/' . 'NCR' . '/' . $year;
+        // $ncr->no_ncr = $noNcr;
+
         $year = date('y');
         $theme = $ncr->tema_audit;
-        $process = $ncr->proses_audit;
+        $themename = DB::table('users')->where('id', $theme)->value('name');
+        $process = strtoupper($ncr->proses_audit);
         $lastNcr = Ncr::where('tema_audit', $theme)
             ->where('proses_audit', $process)
-            ->orderBy('no_ncr', 'desc')->first();
+            ->whereRaw('YEAR(created_at) = ?', [date('Y')])
+            ->orderBy('no_ncr', 'desc')
+            ->first();
 
-        if ($lastNcr && substr($lastNcr->no_ncr, 0, 2) == $year) {
-            $noUrut = str_pad((int)substr($lastNcr->no_ncr, -3) + 1, 3, '0', STR_PAD_LEFT);
+        if ($lastNcr && substr($lastNcr->no_ncr, -2) == $year && $lastNcr->proses_audit == $process && $lastNcr->tema_audit == $theme) {
+            $noUrut = str_pad((int)substr($lastNcr->no_ncr, 0, 3) + 1, 3, '0', STR_PAD_LEFT);
         } else {
             $noUrut = '001';
         }
 
-        $noNcr = $year . '/' . $process . '/' . $theme . '/' . $noUrut;
+        $noNcr = $noUrut . '/' . substr($process, 0, 3) . '/' . $themename . '/' . 'NCR' . '/' . $year;
         $ncr->no_ncr = $noNcr;
+
 
         return view('ncr.formncr.edit', ['ncr' => $ncr, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);
     }
@@ -209,8 +267,8 @@ class NcrController extends Controller
         if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditee') {
             $validatedDataNcr = $request->validate([
                 'diakui_oleh' => '',
-                'disetujui_oleh' => '',
-                'tgl_accgm' => '',
+                'disetujui_oleh1' => '',
+                'tgl_accgm1' => '',
                 'tgl_planaction' => '',
                 'status' => '',
                 'bukti' => 'mimes:pdf',
@@ -256,8 +314,8 @@ class NcrController extends Controller
                 'uraian_perbaikan' => '',
                 'uraian_pencegahan' => '',
                 'tgl_action' => '',
-                'disetujui_oleh' => '',
-                'tgl_accgm' => '',
+                'disetujui_oleh2' => '',
+                'tgl_accgm2' => '',
                 'ttd_tl_gm' => 'mimes:jpeg,jpg,png',
                 'ttd_tl_verif_auditor' => 'mimes:jpeg,jpg,png',
                 'ttd_tl_verif_adm' => 'mimes:jpeg,jpg,png',

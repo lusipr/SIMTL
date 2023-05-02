@@ -208,9 +208,9 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui oleh (SM/GM)</label>
                                 <div class="col-sm-6">
-                                    <input type="name" name="disetujui_oleh" class="form-control"
+                                    <input type="name" name="disetujui_oleh1" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
-                                        id="disetujui_oleh" value="{{ $ncr->disetujui_oleh }}">
+                                        id="disetujui_oleh1" value="{{ $ncr->disetujui_oleh1 }}">
                                 </div>
                             </div>
 
@@ -226,9 +226,9 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Tanggal disetujui SM/GM</label>
                                 <div class="col-sm-6">
-                                    <input type="date" name="tgl_accgm" class="form-control"
+                                    <input type="date" name="tgl_accgm1" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
-                                        id="tgl_accgm" value="{{ $ncr->tgl_accgm }}">
+                                        id="tgl_accgm1" value="{{ $ncr->tgl_accgm1 }}">
                                 </div>
                             </div>
 
@@ -315,21 +315,21 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui oleh (SM/GM)</label>
                                 <div class="col-sm-6">
-                                    <input type="name" name="disetujui_oleh" class="form-control"
+                                    <input type="name" name="disetujui_oleh2" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
-                                        id="disetujui_oleh"
-                                        value="{{ isset($tlncr->disetujui_oleh) ? $tlncr->disetujui_oleh : '' }}">
+                                        id="disetujui_oleh2"
+                                        value="{{ isset($tlncr->disetujui_oleh2) ? $tlncr->disetujui_oleh2 : '' }}">
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Disetujui GM</label>
                                 <div class="col-sm-6">
-                                    <input type="date" name="tgl_accgm"
-                                        value="{{ isset($tlncr->tgl_accgm) ? $tlncr->tgl_accgm : '' }}"
+                                    <input type="date" name="tgl_accgm2"
+                                        value="{{ isset($tlncr->tgl_accgm2) ? $tlncr->tgl_accgm2 : '' }}"
                                         class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
-                                        id="tgl_accgm">
+                                        id="tgl_accgm2">
                                 </div>
                             </div>
 

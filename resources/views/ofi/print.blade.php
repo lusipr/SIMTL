@@ -28,7 +28,7 @@
 <table style="width: 100%;">
     <tr>
         <td style="width: 35%; vertical-align: middle; text-align: center;">
-            <img src="{{ asset('assets/images/logo-inka-grayscale.png') }}" style="width: 50%;">
+            <img src="{{ asset('assets/images/logo-inka.png') }}" style="width: 50%;">
         </td>
         <td style="width: 35%; vertical-align: middle; text-align: center; border-left-width: 1px;">
             <span style="font-size: 26px; line-height: 1; font-weight: bold; text-transform: uppercase;">Usulan Untuk

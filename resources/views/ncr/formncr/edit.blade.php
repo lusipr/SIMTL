@@ -159,7 +159,7 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui Oleh (SM/GM)</label>
                                 <div class="col-sm-6">
-                                    <input type="name" name="disetujui_oleh" class="form-control" id="disetujui_oleh"
+                                    <input type="name" name="disetujui_oleh1" class="form-control" id="disetujui_oleh1"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui GM</label>
                                 <div class="col-sm-6">
-                                    <input type="date" name="tgl_accgm" class="form-control" id="tgl_accgm"
+                                    <input type="date" name="tgl_accgm1" class="form-control" id="tgl_accgm1"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>

@@ -15,13 +15,7 @@ class NcController extends Controller
     {
         if (auth()->user()->role == 'Auditee') {
             $nc = Nc::where('objek_audit', '=', auth()->user()->id)->get();
-        }
-
-        // if (auth()->user()->role == 'Tema')
-        // {
-        //     $nc = Nc::where('tema_audit', '=', auth()->user()->id)->get();
-        // }
-        else {
+        } else {
             $nc = Nc::all();
         }
 
@@ -94,22 +88,41 @@ class NcController extends Controller
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
         $usersTema = User::where('role', '=', 'Tema')->get();
 
+        // $year = date('y');
+        // // $theme = $nc->users_tema->name;
+        // $theme = $nc->tema_audit;
+        // $process = $nc->proses_audit;
+        // $lastNc = Nc::where('tema_audit', $theme)
+        //     ->where('proses_audit', $process)
+        //     ->orderBy('no_nc', 'desc')
+        //     ->first();
+
+        // if ($lastNc && substr($lastNc->no_nc, 0, 2) == $year) {
+        //     $noUrut = str_pad((int)substr($lastNc->no_nc, -3) + 1, 3, '0', STR_PAD_LEFT);
+        // } else {
+        //     $noUrut = '001';
+        // }
+
+        // $noNc = $year . '/'. $process.'/' . $theme . '/' . $noUrut;
+        // $nc->no_nc = $noNc;
+
         $year = date('y');
-        // $theme = $nc->users_tema->name;
         $theme = $nc->tema_audit;
-        $process = $nc->proses_audit;
-        $lastNc = Nc::where('tema_audit', $theme)
+        $themename = DB::table('users')->where('id', $theme)->value('name');
+        $process = strtoupper($nc->proses_audit);
+        $lastNc = nc::where('tema_audit', $theme)
             ->where('proses_audit', $process)
+            ->whereRaw('YEAR(created_at) = ?', [date('Y')])
             ->orderBy('no_nc', 'desc')
             ->first();
 
-        if ($lastNc && substr($lastNc->no_nc, 0, 2) == $year) {
-            $noUrut = str_pad((int)substr($lastNc->no_nc, -3) + 1, 3, '0', STR_PAD_LEFT);
+        if ($lastNc && substr($lastNc->no_nc, -2) == $year && $lastNc->proses_audit == $process && $lastNc->tema_audit == $theme) {
+            $noUrut = str_pad((int)substr($lastNc->no_nc, 0, 3) + 1, 3, '0', STR_PAD_LEFT);
         } else {
             $noUrut = '001';
         }
 
-        $noNc = $year . '/'. $process.'/' . $theme . '/' . $noUrut;
+        $noNc = $noUrut . '/' . substr($process, 0, 3) . '/' . $themename . '/' . 'NC' . '/' . $year;
         $nc->no_nc = $noNc;
 
         return view('nc.formnc.edit', ['nc' => $nc, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);
