@@ -148,25 +148,43 @@ class NcrController extends Controller
         // $noNcr = $noUrut . '/' . substr($process, 0, 3) . '/' . $theme . '/' . 'NCR' . '/' . $year;
         // $ncr->no_ncr = $noNcr;
 
+        // $year = date('y');
+        // $theme = $ncr->tema_audit;
+        // $themename = DB::table('users')->where('id', $theme)->value('name');
+        // $process = strtoupper($ncr->proses_audit);
+        // $lastNcr = Ncr::where('tema_audit', $theme)
+        //     ->where('proses_audit', $process)
+        //     ->whereRaw('YEAR(created_at) = ?', [date('Y')])
+        //     ->orderBy('no_ncr', 'desc')
+        //     ->first();
+
+        // if ($lastNcr && substr($lastNcr->no_ncr, -2) == $year && $lastNcr->proses_audit == $process && $lastNcr->tema_audit == $theme) {
+        //     $noUrut = str_pad((int)substr($lastNcr->no_ncr, 0, 3) + 1, 3, '0', STR_PAD_LEFT);
+        // } else {
+        //     $noUrut = '001';
+        // }
+
+        // $noNcr = $noUrut . '/' . substr($process, 0, 3) . '/' . $themename . '/' . 'NCR' . '/' . $year;
+        // $ncr->no_ncr = $noNcr;
+
         $year = date('y');
-        $theme = $ncr->tema_audit;
-        $themename = DB::table('users')->where('id', $theme)->value('name');
-        $process = strtoupper($ncr->proses_audit);
-        $lastNcr = Ncr::where('tema_audit', $theme)
+        $themeId = $ncr->tema_audit;
+        $theme = DB::table('users')->where('id', $themeId)->value('username');
+        $process = $ncr->proses_audit;
+        $lastNcr = Ncr::where('tema_audit', $themeId)
             ->where('proses_audit', $process)
             ->whereRaw('YEAR(created_at) = ?', [date('Y')])
             ->orderBy('no_ncr', 'desc')
             ->first();
 
-        if ($lastNcr && substr($lastNcr->no_ncr, -2) == $year && $lastNcr->proses_audit == $process && $lastNcr->tema_audit == $theme) {
+        if ($lastNcr && substr($lastNcr->no_ncr, -2) == $year && $lastNcr->proses_audit == $process && $lastNcr->tema_audit == $themeId) {
             $noUrut = str_pad((int)substr($lastNcr->no_ncr, 0, 3) + 1, 3, '0', STR_PAD_LEFT);
         } else {
             $noUrut = '001';
         }
 
-        $noNcr = $noUrut . '/' . substr($process, 0, 3) . '/' . $themename . '/' . 'NCR' . '/' . $year;
+        $noNcr = $noUrut . '/' . substr($process, 0, 3) . '/' . $theme . '/' . 'NCR' . '/' . $year;
         $ncr->no_ncr = $noNcr;
-
 
         return view('ncr.formncr.edit', ['ncr' => $ncr, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);
     }
@@ -267,7 +285,9 @@ class NcrController extends Controller
         if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditee') {
             $validatedDataNcr = $request->validate([
                 'diakui_oleh' => '',
+                'diakui_oleh_jabatan' => '',
                 'disetujui_oleh1' => '',
+                'disetujui_oleh1_jabatan' => '',
                 'tgl_accgm1' => '',
                 'tgl_planaction' => '',
                 'status' => '',
@@ -315,6 +335,7 @@ class NcrController extends Controller
                 'uraian_pencegahan' => '',
                 'tgl_action' => '',
                 'disetujui_oleh2' => '',
+                'disetujui_oleh2_jabatan' => '',
                 'tgl_accgm2' => '',
                 'ttd_tl_gm' => 'mimes:jpeg,jpg,png',
                 'ttd_tl_verif_auditor' => 'mimes:jpeg,jpg,png',

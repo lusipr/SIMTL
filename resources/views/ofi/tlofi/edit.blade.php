@@ -17,14 +17,14 @@
                                 <div class="col-sm-6">
                                     <input type="text" name="no_ofi"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} class="form-control"
-                                        id="no_ofi" value="{{ $ofi->no_ofi }}">
+                                        id="no_ofi" value="{{ $ofi->no_ofi }}" readonly>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label" >Proses Audit</label>
                                 <div class="col-sm-6">
-                                    <select name="proses_audit" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}
-                                        id="proses_audit" class="form-control">
+                                    <select name="proses_audit" {{ auth()->user()->role == 'Admin' ? 'disabled' : 'disabled' }}
+                                        id="proses_audit" class="form-control"  readonly>
                                         <option value="Internal" {{ $ofi->proses_audit == 'Internal' ? 'selected' : '' }}>
                                             Internal</option>
                                         <option value="Eksternal" {{ $ofi->proses_audit == 'Eksternal' ? 'selected' : '' }}>
@@ -36,7 +36,7 @@
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
                                 <div class="col-sm-6">
-                                    <select name="tema_audit" id="tema_audit" class="form-control">
+                                    <select name="tema_audit" id="tema_audit" class="form-control" readonly>
                                         <option value="">- Pilih -</option>
                                         @foreach ($usersTema as $data_usersTema)
                                             <option value="{{ $data_usersTema->id }}"
@@ -46,6 +46,7 @@
                                     </select>
                                 </div>
                             </div>
+                            <br>
 
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Objek Audit</label>
@@ -253,11 +254,24 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui Oleh</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disetujui_oleh"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} class="form-control"
                                         id="disetujui_oleh" value="{{ $ofi->disetujui_oleh }}">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui Oleh</label>
+                                <div class="col-sm-6">
+                                    <select name="disetujui_oleh_jabatan" {{ auth()->user()->role == 'Admin' ? 'disabled' : 'disabled' }}
+                                        id="disetujui_oleh_jabatan" class="form-control"  readonly>
+                                        <option value="Manager" {{ $ofi->disetujui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>
+                                            Manager</option>
+                                        <option value="Senior Manager" {{ $ofi->disetujui_oleh_jabatan == 'Senior Manager' ? 'selected' : '' }}>
+                                            Senior Manager</option>
+                                    </select>    
                                 </div>
                             </div>
 

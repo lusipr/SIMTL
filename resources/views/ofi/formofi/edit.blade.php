@@ -167,6 +167,16 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui Oleh (M/SM)</label>
+                                <div class="col-sm-6">
+                                    <select name="disetujui_oleh_jabatan" id="disetujui_oleh_jabatan" class="form-control">
+                                        <option value="Manager">Manager</option>
+                                        <option value="Senior Manager">Senior Manager</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Disetujui</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_disetujui" class="form-control" id="tgl_disetujui">

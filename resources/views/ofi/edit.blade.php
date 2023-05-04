@@ -240,10 +240,24 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui Oleh</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disetujui_oleh" {{ empty($tlofi) ? '' : 'disabled' }}
                                         class="form-control" id="disetujui_oleh" value="{{ $ofi->disetujui_oleh }}">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui Oleh</label>
+                                <div class="col-sm-6">
+                                    <select name="disetujui_oleh_jabatan" {{ empty($tlofi) ? '' : 'disabled' }} id="disetujui_oleh_jabatan"
+                                        class="form-control">
+                                        <option value="Manager" {{ $ofi->disetujui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>
+                                            Manager</option>
+                                        <option value="Senior Manager"
+                                            {{ $ofi->disetujui_oleh_jabatan == 'Senior Manager' ? 'selected' : '' }}>
+                                            Senior Manager</option>
+                                    </select>
                                 </div>
                             </div>
 

@@ -93,20 +93,39 @@ class OfiController extends Controller
         $usersAuditee = User::where('role', '=', 'Auditee')->get();
         $usersTema = User::where('role', '=', 'Tema')->get();
 
-        $year = date('y');
-        $theme = $ofi->tema_audit;
-        $process = $ofi->proses_audit;
-        $lastOfi = Ofi::where('tema_audit', $theme)
-            ->where('proses_audit', $process)
-            ->orderBy('no_ofi', 'desc')->first();
+        // $year = date('y');
+        // $theme = $ofi->tema_audit;
+        // $process = $ofi->proses_audit;
+        // $lastOfi = Ofi::where('tema_audit', $theme)
+        //     ->where('proses_audit', $process)
+        //     ->orderBy('no_ofi', 'desc')->first();
 
-        if ($lastOfi && substr($lastOfi->no_ofi, 0, 2) == $year) {
-            $noUrut = str_pad((int)substr($lastOfi->no_ofi, -3) + 1, 3, '0', STR_PAD_LEFT);
+        // if ($lastOfi && substr($lastOfi->no_ofi, 0, 2) == $year) {
+        //     $noUrut = str_pad((int)substr($lastOfi->no_ofi, -3) + 1, 3, '0', STR_PAD_LEFT);
+        // } else {
+        //     $noUrut = '001';
+        // }
+
+        // $noOfi = $year . '/' .$process. '/' . $theme . '/' . $noUrut;
+        // $ofi->no_ofi = $noOfi;
+
+        $year = date('y');
+        $themeId = $ofi->tema_audit;
+        $theme = DB::table('users')->where('id', $themeId)->value('username');
+        $process = $ofi->proses_audit;
+        $lastOfi = ofi::where('tema_audit', $themeId)
+            ->where('proses_audit', $process)
+            ->whereRaw('YEAR(created_at) = ?', [date('Y')])
+            ->orderBy('no_ofi', 'desc')
+            ->first();
+
+        if ($lastOfi && substr($lastOfi->no_ofi, -2) == $year && $lastOfi->proses_audit == $process && $lastOfi->tema_audit == $themeId) {
+            $noUrut = str_pad((int)substr($lastOfi->no_ofi, 0, 3) + 1, 3, '0', STR_PAD_LEFT);
         } else {
             $noUrut = '001';
         }
 
-        $noOfi = $year . '/' .$process. '/' . $theme . '/' . $noUrut;
+        $noOfi = $noUrut . '/' . substr($process, 0, 3) . '/' . $theme . '/' . 'OFI' . '/' . $year;
         $ofi->no_ofi = $noOfi;
 
         return view('ofi.formofi.edit', ['ofi' => $ofi, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);
@@ -254,6 +273,7 @@ class OfiController extends Controller
                 $validatedDataOfi['dept_pengusul'] = $request->dept_pengusul;
                 $validatedDataOfi['tgl_diusulkan'] = $request->tgl_diusulkan;
                 $validatedDataOfi['disetujui_oleh'] = $request->disetujui_oleh;
+                $validatedDataOfi['disetujui_oleh_jabatan'] = $request->disetujui_oleh_jabatan;
                 $validatedDataOfi['tgl_disetujui'] = $request->tgl_disetujui;
                 $validatedDataOfi['disposisi'] = $request->disposisi;
                 $validatedDataOfi['disposisi_diselesaikan_oleh'] = $request->disposisi_diselesaikan_oleh;

@@ -31,8 +31,10 @@ class Ncr extends Model
         'tgl_deadline',
         'ttd_auditee',
         'diakui_oleh',
+        'diakui_oleh_jabatan',
         'ttd_auditee_gm_sm',
         'disetujui_oleh1',
+        'disetujui_oleh1_jabatan',
         'tgl_accgm1',
         'tgl_planaction',
     ];

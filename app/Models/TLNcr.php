@@ -20,6 +20,7 @@ class TLNcr extends Model
         'uraian_pencegahan',
         'tgl_action',
         'disetujui_oleh2',
+        'disetujui_oleh2_jabatan',
         'ttd_tl_gm',
         'tgl_accgm2',
         'uraian_verifikasi',

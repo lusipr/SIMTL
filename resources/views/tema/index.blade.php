@@ -19,7 +19,7 @@
                                     <tr>
                                         <th style="width: 4%;" class="text-center">No</th>
                                         <th class="text-center">Nama Tema</th>
-                                        {{-- <th class="text-center">Username</th> --}}
+                                        <th class="text-center">Username</th>
                                         {{-- <th class="text-center">Password</th> --}}
                                         <th class="text-center">Aksi</th>
                                     </tr>
@@ -31,7 +31,7 @@
                                             {{-- <td class="text-center">{{ $user->nip }}</td> --}}
                                             <td class="text-center">{{ $user->name }}</td>
                                             {{-- <td class="text-center">{{ $user->role }}</td> --}}
-                                            {{-- <td class="text-center">{{ $user->username }}</td> --}}
+                                            <td class="text-center">{{ $user->username }}</td>
                                             {{-- <td class="text-center">{{ $user->password }}</td> --}}
                                             <td class="text-center">
                                                 <a href="{{ url('data-tema/edit/' . $user->id) }}"

@@ -149,7 +149,7 @@
         </td>
         <td style="width: 45%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 1px;"
             colspan="3">
-            Diakui oleh *:
+            Diakui oleh *: {{ $ncr->diakui_oleh_jabatan }}
         </td>
     </tr>
     <tr>
@@ -169,6 +169,7 @@
             (M/SM)
         </td>
         <td style="width: 15%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
+            <br>
             <img width="50" height="60" src="{{ asset('storage/' . $ncr->ttd_auditee) }}" alt=" ">
             <br>
             <div style="border-bottom: 1px dotted #000;">{{ $ncr->diakui_oleh }}</div>
@@ -188,6 +189,8 @@
             :
         </td>
         <td style="width: 23%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
+            {{ $ncr->disetujui_oleh1_jabatan }}
+            <br>
             <img width="50" height="60" src="{{ asset('storage/' . $ncr->ttd_auditee_gm_sm) }}" alt=" ">
             <br>
             <div style="border-bottom: 1px dotted #000;">{{ $ncr->disetujui_oleh1 }}</div>
@@ -276,7 +279,8 @@
                         </div>
                         @if (strlen(!empty($tlncr->uraian_perbaikan) ? $tlncr->uraian_perbaikan : '') <= 100)
                             <div style="text-align: justify; border-bottom: 1px solid #000;">
-                                <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
+                                <span
+                                    style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
                                     &nbsp;
                                 </span>
                             </div>
@@ -303,7 +307,8 @@
                         </div>
                         @if (strlen(!empty($tlncr->uraian_pencegahan) ? $tlncr->uraian_pencegahan : '') <= 100)
                             <div style="text-align: justify; border-bottom: 1px solid #000;">
-                                <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
+                                <span
+                                    style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
                                     &nbsp;
                                 </span>
                             </div>
@@ -342,7 +347,9 @@
             :
         </td>
         <td style="width: 23%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <img width="50" height="60" src="{{ !empty($tlncr->ttd_tl_gm) ? asset('storage/' . $tlncr->ttd_tl_gm) : '' }}" alt="Ttd disetujui oleh">
+            <img width="50" height="60"
+                src="{{ !empty($tlncr->ttd_tl_gm) ? asset('storage/' . $tlncr->ttd_tl_gm) : '' }}"
+                alt="Ttd disetujui oleh">
             <br>
             <div style="border-bottom: 1px dotted #000;">{{ $ncr->disetujui_oleh2 }}</div>
         </td>
@@ -379,8 +386,7 @@
                             <span style="padding-bottom: 1.55px; border-bottom: 3px solid #fff; line-height: 27px;">
                                 Verifikasi
                             </span>
-                            <span
-                                style="padding-bottom: 1.55px; border-bottom: 3px solid #fff; line-height: 27px;">
+                            <span style="padding-bottom: 1.55px; border-bottom: 3px solid #fff; line-height: 27px;">
                                 :
                             </span>
                             <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
@@ -491,9 +497,12 @@
             &nbsp;
         </td>
         <td style="width: 20%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <img width="50" height="60" src="{{ !empty($tlncr->ttd_tl_verif_auditor) ? asset('storage/' . $tlncr->ttd_tl_verif_auditor) : '' }}" alt="Ttd verif auditor">
+            <img width="50" height="60"
+                src="{{ !empty($tlncr->ttd_tl_verif_auditor) ? asset('storage/' . $tlncr->ttd_tl_verif_auditor) : '' }}"
+                alt="Ttd verif auditor">
             <br>
-            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlncr->verifikator) ? $tlncr->verifikator : '' }}</div>
+            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlncr->verifikator) ? $tlncr->verifikator : '' }}
+            </div>
         </td>
         <td
             style="width: 46%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px; text-align: right;">
@@ -513,8 +522,7 @@
 
 <table style="width: 100%; padding-top: 1px;">
     <tr>
-        <td style="width: 100%; vertical-align: top; border-top-width: 0px; border-bottom-width: 0px;"
-            colspan="2">
+        <td style="width: 100%; vertical-align: top; border-top-width: 0px; border-bottom-width: 0px;" colspan="2">
             <div style="text-align: justify; border-bottom: 1px solid #000;">
                 <span
                     style="padding-bottom: 1.55px; border-bottom: 3px solid #fff; line-height: 27px; padding-right: 20px;">
@@ -538,9 +546,11 @@
 <table style="width: 100%; padding-top: 1px;">
     <tr>
         <td style="width: 44%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            Diverifikasi oleh Senior Manager Tata Kelola Perusahaan: 
+            Diverifikasi oleh Senior Manager Tata Kelola Perusahaan:
             <br>
-            <img width="50" height="60" src="{{ !empty($tlncr->ttd_tl_verif_adm) ? asset('storage/' . $tlncr->ttd_tl_verif_adm) : '' }}" alt="Ttd verif admin2">
+            <img width="50" height="60"
+                src="{{ !empty($tlncr->ttd_tl_verif_adm) ? asset('storage/' . $tlncr->ttd_tl_verif_adm) : '' }}"
+                alt="Ttd verif admin2">
             <br>
             {{ !empty($tlncr->namasm_verif) ? $tlncr->namasm_verif : '' }}
         </td>

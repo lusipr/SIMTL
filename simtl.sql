@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Des 2022 pada 03.00
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 8.1.2
+-- Waktu pembuatan: 04 Bulan Mei 2023 pada 03.49
+-- Versi server: 10.4.27-MariaDB
+-- Versi PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -45,7 +45,7 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -54,17 +54,17 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(9, '2014_10_12_000000_create_users_table', 1),
-(10, '2014_10_12_100000_create_password_resets_table', 1),
-(11, '2019_08_19_000000_create_failed_jobs_table', 1),
-(12, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(13, '2022_12_06_142752_create_ncr_table', 1),
-(14, '2022_12_11_014942_create_tlncr_table', 1),
-(15, '2022_12_11_043013_create_ofi_table', 1),
-(16, '2022_12_11_043535_create_tlofi_table', 1),
-(17, '2022_12_28_064129_add_disetujui_oleh_to_tlncr_table', 2),
-(18, '2022_12_29_012622_create_nc_table', 2),
-(19, '2022_12_29_012859_create_tlnc_table', 2);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(5, '2022_12_06_142752_create_ncr_table', 1),
+(6, '2022_12_11_014942_create_tlncr_table', 1),
+(7, '2022_12_11_043013_create_ofi_table', 1),
+(8, '2022_12_11_043535_create_tlofi_table', 1),
+(9, '2022_12_28_064129_add_disetujui_oleh_to_tlncr_table', 1),
+(10, '2022_12_29_012622_create_nc_table', 1),
+(11, '2022_12_29_012859_create_tlnc_table', 1);
 
 -- --------------------------------------------------------
 
@@ -74,29 +74,40 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `nc` (
   `id_nc` bigint(20) UNSIGNED NOT NULL,
-  `opsi_temuan` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `no_nc` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `proses_audit` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tema_audit` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `objek_audit` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `jenis_temuan` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dokumen` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opsi_temuan` varchar(50) DEFAULT NULL,
+  `no_nc` varchar(200) DEFAULT NULL,
+  `proses_audit` varchar(10) DEFAULT NULL,
+  `tema_audit` varchar(10) DEFAULT NULL,
+  `objek_audit` varchar(50) DEFAULT NULL,
+  `jenis_temuan` varchar(25) DEFAULT NULL,
+  `dokumen` varchar(5) DEFAULT NULL,
   `tgl_terbitnc` date DEFAULT NULL,
-  `status` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bukti` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bab_audit` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dok_acuan` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `uraian_nc` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `kategori` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nama_auditor` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `bukti` varchar(200) DEFAULT NULL,
+  `bab_audit` varchar(100) DEFAULT NULL,
+  `dok_acuan` varchar(100) DEFAULT NULL,
+  `uraian_nc` text DEFAULT NULL,
+  `kategori` varchar(5) DEFAULT NULL,
+  `ttd_auditor_nc` text DEFAULT NULL,
+  `nama_auditor` varchar(100) DEFAULT NULL,
   `tgl_deadline` date DEFAULT NULL,
-  `diakui_oleh` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `disetujui_oleh` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ttd_diakui_oleh_nc` text DEFAULT NULL,
+  `diakui_oleh` varchar(100) DEFAULT NULL,
+  `ttd_disetujui_oleh_nc` text DEFAULT NULL,
+  `disetujui_oleh` varchar(50) DEFAULT NULL,
   `tgl_accgm` date DEFAULT NULL,
   `tgl_planaction` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `nc`
+--
+
+INSERT INTO `nc` (`id_nc`, `opsi_temuan`, `no_nc`, `proses_audit`, `tema_audit`, `objek_audit`, `jenis_temuan`, `dokumen`, `tgl_terbitnc`, `status`, `bukti`, `bab_audit`, `dok_acuan`, `uraian_nc`, `kategori`, `ttd_auditor_nc`, `nama_auditor`, `tgl_deadline`, `ttd_diakui_oleh_nc`, `diakui_oleh`, `ttd_disetujui_oleh_nc`, `disetujui_oleh`, `tgl_accgm`, `tgl_planaction`, `created_at`, `updated_at`) VALUES
+(50, 'NCR', '001/INT/SMM/NC/23', 'Internal', '34', '21', 'NC', NULL, '2023-05-03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-06-17', NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-02 18:49:21', '2023-05-02 18:49:26'),
+(51, 'NCR', NULL, 'Internal', '34', '20', 'NC', NULL, '2023-05-03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-06-17', NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-02 18:49:46', '2023-05-02 18:49:46');
 
 -- --------------------------------------------------------
 
@@ -106,24 +117,28 @@ CREATE TABLE `nc` (
 
 CREATE TABLE `ncr` (
   `id_ncr` bigint(20) UNSIGNED NOT NULL,
-  `no_ncr` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `proses_audit` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tema_audit` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `objek_audit` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `jenis_temuan` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dokumen` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_ncr` varchar(200) DEFAULT NULL,
+  `proses_audit` varchar(10) DEFAULT NULL,
+  `tema_audit` varchar(10) DEFAULT NULL,
+  `objek_audit` varchar(50) DEFAULT NULL,
+  `jenis_temuan` varchar(25) DEFAULT NULL,
+  `dokumen` varchar(5) DEFAULT NULL,
   `tgl_terbitncr` date DEFAULT NULL,
-  `status` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bukti` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bab_audit` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dok_acuan` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `uraian_ncr` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `kategori` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nama_auditor` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `bukti` varchar(200) DEFAULT NULL,
+  `bab_audit` varchar(100) DEFAULT NULL,
+  `dok_acuan` varchar(100) DEFAULT NULL,
+  `uraian_ncr` text DEFAULT NULL,
+  `kategori` varchar(5) DEFAULT NULL,
+  `nama_auditor` varchar(100) DEFAULT NULL,
+  `ttd_auditor` text DEFAULT NULL,
+  `ttd_auditee` text DEFAULT NULL,
+  `ttd_auditee_gm_sm` text DEFAULT NULL,
   `tgl_deadline` date DEFAULT NULL,
-  `diakui_oleh` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `disetujui_oleh` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tgl_accgm` date DEFAULT NULL,
+  `diakui_oleh` varchar(100) DEFAULT NULL,
+  `diakui_oleh_option` varchar(50) DEFAULT NULL,
+  `disetujui_oleh1` varchar(50) DEFAULT NULL,
+  `tgl_accgm1` date DEFAULT NULL,
   `tgl_planaction` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -133,13 +148,12 @@ CREATE TABLE `ncr` (
 -- Dumping data untuk tabel `ncr`
 --
 
-INSERT INTO `ncr` (`id_ncr`, `no_ncr`, `proses_audit`, `tema_audit`, `objek_audit`, `jenis_temuan`, `dokumen`, `tgl_terbitncr`, `status`, `bukti`, `bab_audit`, `dok_acuan`, `uraian_ncr`, `kategori`, `nama_auditor`, `tgl_deadline`, `diakui_oleh`, `disetujui_oleh`, `tgl_accgm`, `tgl_planaction`, `created_at`, `updated_at`) VALUES
-(12, 'NCR01', 'Internal', 'ISO 9001', '24', 'NCR', NULL, '2022-12-22', 'Sudah Ditindaklanjuti', 'bukti-ncr/ZN800wwSmqy1SfOken74WgEi6fiXZx2VpwQ3YQSO.pdf', 'Penggunaan alat keselamatan kerja', 'Kebijakan Keselamatan Kerja', 'uraian', 'Mayor', 'Ronaldo', '2022-12-26', 'SM', 'Adi', '2022-12-26', '2022-12-24', '2022-12-21 22:37:50', '2022-12-21 22:58:05'),
-(13, 'NCR02', 'Eksternal', 'ISO 45001', '18', 'NCR', NULL, '2022-12-23', 'Belum Ditindaklanjuti', 'bukti-ncr/6bt7uQgSoQvOrB3B8r43hJujDGMV3ykhSTs60mOF.pdf', 'Bab', 'Doc', 'uraian', 'Mayor', 'Auditor', '2022-12-23', 'SM', 'SM', '2022-12-27', '2022-12-26', '2022-12-21 22:58:51', '2022-12-21 23:01:01'),
-(14, '10', 'Internal', 'ISO 9001', '8', 'NCR', NULL, '2022-12-23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-21 23:10:53', '2022-12-21 23:10:53'),
-(15, '10', 'Internal', 'ISO 45001', '8', 'NCR', NULL, '2022-12-22', 'Sudah Ditindaklanjuti', 'bukti-ncr/T6bNOJogfi608quiVbQUrfaZBZWAVx7bIhrBTlTL.pdf', 'Konteks organisasi', 'PM04', 'Belum melakukan penyusunan kebutuhan dan harapan', 'Minor', 'Hendy', '2022-12-27', 'Graha', 'Mufid', '2022-12-31', '2022-12-27', '2022-12-21 23:12:40', '2022-12-21 23:38:40'),
-(16, 'NCR-1', 'Eksternal', 'ISO 9001', '18', 'NCR', NULL, '2022-12-27', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-26 17:07:39', '2022-12-26 17:07:39'),
-(17, 'NCR01', 'Internal', 'ISO 45001', '9', 'NCR', NULL, '2022-12-28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-27 23:36:47', '2022-12-27 23:36:47');
+INSERT INTO `ncr` (`id_ncr`, `no_ncr`, `proses_audit`, `tema_audit`, `objek_audit`, `jenis_temuan`, `dokumen`, `tgl_terbitncr`, `status`, `bukti`, `bab_audit`, `dok_acuan`, `uraian_ncr`, `kategori`, `nama_auditor`, `ttd_auditor`, `ttd_auditee`, `ttd_auditee_gm_sm`, `tgl_deadline`, `diakui_oleh`, `diakui_oleh_option`, `disetujui_oleh1`, `tgl_accgm1`, `tgl_planaction`, `created_at`, `updated_at`) VALUES
+(191, '001/Int/SMM/NCR/23', 'Internal', '34', '20', 'NCR', NULL, '2023-05-02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-06-16', NULL, NULL, NULL, NULL, NULL, '2023-05-01 23:50:19', '2023-05-02 00:46:42'),
+(192, '002/Int/SMM/NCR/23', 'Internal', '34', '16', 'NCR', NULL, '2023-05-02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-06-16', NULL, NULL, NULL, NULL, NULL, '2023-05-02 00:47:03', '2023-05-02 00:47:10'),
+(193, '001/Int/SMAP/NCR/23', 'Internal', '35', '19', 'NCR', NULL, '2023-05-02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-06-16', NULL, NULL, NULL, NULL, NULL, '2023-05-02 00:52:41', '2023-05-02 00:52:48'),
+(194, '002/Int/SMAP/NCR/23', 'Internal', '35', '22', 'NCR', NULL, '2023-05-02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-06-16', NULL, NULL, NULL, NULL, NULL, '2023-05-02 00:53:10', '2023-05-02 00:53:19'),
+(211, '003/Int/SMM/NCR/23', 'Internal', '34', '23', 'NCR', NULL, '2023-05-03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-06-17', NULL, NULL, NULL, NULL, NULL, '2023-05-02 19:20:41', '2023-05-02 19:56:42');
 
 -- --------------------------------------------------------
 
@@ -149,27 +163,36 @@ INSERT INTO `ncr` (`id_ncr`, `no_ncr`, `proses_audit`, `tema_audit`, `objek_audi
 
 CREATE TABLE `ofi` (
   `id_ofi` bigint(20) UNSIGNED NOT NULL,
-  `no_ofi` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `proses_audit` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tema_audit` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `objek_audit` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `jenis_temuan` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dokumen` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_ofi` varchar(20) DEFAULT NULL,
+  `proses_audit` varchar(10) DEFAULT NULL,
+  `tema_audit` varchar(10) DEFAULT NULL,
+  `objek_audit` varchar(50) DEFAULT NULL,
+  `jenis_temuan` varchar(25) DEFAULT NULL,
+  `dokumen` varchar(5) DEFAULT NULL,
   `tgl_terbitofi` date DEFAULT NULL,
-  `status` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bukti` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `asal_dept` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `proyek` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dept_ygmngrjkn` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `usulan_ofi` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `uraian_permasalahan` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `usulan_peningkatan` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dept_pengusul` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `bukti` varchar(200) DEFAULT NULL,
+  `lampiran1` varchar(200) DEFAULT NULL,
+  `lampiran2` varchar(200) DEFAULT NULL,
+  `lampiran3` varchar(200) DEFAULT NULL,
+  `lampiran4` varchar(200) DEFAULT NULL,
+  `lampiran5` varchar(200) DEFAULT NULL,
+  `lampiran6` varchar(200) DEFAULT NULL,
+  `asal_dept` varchar(100) DEFAULT NULL,
+  `proyek` varchar(50) DEFAULT NULL,
+  `dept_ygmngrjkn` varchar(100) DEFAULT NULL,
+  `usulan_ofi` varchar(200) DEFAULT NULL,
+  `uraian_permasalahan` text DEFAULT NULL,
+  `usulan_peningkatan` text DEFAULT NULL,
+  `ttd_dept_pengusul` text DEFAULT NULL,
+  `dept_pengusul` varchar(100) DEFAULT NULL,
   `tgl_diusulkan` date DEFAULT NULL,
-  `disetujui_oleh` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ttd_disetujui_oleh_ofi` text DEFAULT NULL,
+  `disetujui_oleh` varchar(100) DEFAULT NULL,
   `tgl_disetujui` date DEFAULT NULL,
-  `disposisi` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `disposisi_diselesaikan_oleh` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `disposisi` varchar(100) DEFAULT NULL,
+  `ttd_disposisi` text DEFAULT NULL,
+  `disposisi_diselesaikan_oleh` varchar(100) DEFAULT NULL,
   `tgl_deadline` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -179,8 +202,11 @@ CREATE TABLE `ofi` (
 -- Dumping data untuk tabel `ofi`
 --
 
-INSERT INTO `ofi` (`id_ofi`, `no_ofi`, `proses_audit`, `tema_audit`, `objek_audit`, `jenis_temuan`, `dokumen`, `tgl_terbitofi`, `status`, `bukti`, `asal_dept`, `proyek`, `dept_ygmngrjkn`, `usulan_ofi`, `uraian_permasalahan`, `usulan_peningkatan`, `dept_pengusul`, `tgl_diusulkan`, `disetujui_oleh`, `tgl_disetujui`, `disposisi`, `disposisi_diselesaikan_oleh`, `tgl_deadline`, `created_at`, `updated_at`) VALUES
-(8, 'OFI 1', 'Internal', 'ISO 9001', '10', 'OFI', NULL, '2022-12-22', 'Sudah Ditindaklanjuti', 'bukti-ofi/CT2o7S2Boycip15jaXcRVBzF0ABg8Y4a5NrFsVjF.pdf', '6', 'Audit internal', '10', 'PM701', 'transfer knowledge sudah dilakukan tapi belum ada format standar', 'dibuat format standar transfer knowledge', 'Hendy', '2022-12-22', 'Mufid', '2022-12-23', 'OFI diterima', 'Departemen SDM', '2023-01-06', '2022-12-21 23:45:36', '2022-12-22 00:23:56');
+INSERT INTO `ofi` (`id_ofi`, `no_ofi`, `proses_audit`, `tema_audit`, `objek_audit`, `jenis_temuan`, `dokumen`, `tgl_terbitofi`, `status`, `bukti`, `lampiran1`, `lampiran2`, `lampiran3`, `lampiran4`, `lampiran5`, `lampiran6`, `asal_dept`, `proyek`, `dept_ygmngrjkn`, `usulan_ofi`, `uraian_permasalahan`, `usulan_peningkatan`, `ttd_dept_pengusul`, `dept_pengusul`, `tgl_diusulkan`, `ttd_disetujui_oleh_ofi`, `disetujui_oleh`, `tgl_disetujui`, `disposisi`, `ttd_disposisi`, `disposisi_diselesaikan_oleh`, `tgl_deadline`, `created_at`, `updated_at`) VALUES
+(31, '001/Int/SMM/OFI/23', 'Internal', '34', '24', 'OFI', NULL, '2023-05-03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-03', NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-01', '2023-05-02 19:57:30', '2023-05-02 19:57:56'),
+(32, '002/Int/SMM/OFI/23', 'Internal', '34', '24', 'OFI', NULL, '2023-05-03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-03', NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-01', '2023-05-02 19:58:11', '2023-05-02 19:58:16'),
+(33, '001/Eks/SMM/OFI/23', 'Eksternal', '34', '21', 'OFI', NULL, '2023-05-03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-03', NULL, NULL, NULL, NULL, NULL, NULL, '2023-08-01', '2023-05-02 19:58:31', '2023-05-02 19:58:35'),
+(34, '003/Int/SMM/OFI/23', NULL, '34', '22', 'OFI', NULL, '2023-05-03', 'Belum Ditindaklanjuti', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-03', NULL, NULL, NULL, 'OFI diterima', NULL, NULL, '2023-08-01', '2023-05-02 20:01:49', '2023-05-03 00:42:20');
 
 -- --------------------------------------------------------
 
@@ -189,8 +215,8 @@ INSERT INTO `ofi` (`id_ofi`, `no_ofi`, `proses_audit`, `tema_audit`, `objek_audi
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -202,16 +228,36 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tema`
+--
+
+CREATE TABLE `tema` (
+  `id_tema` bigint(20) UNSIGNED NOT NULL,
+  `nama_tema` varchar(200) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tema`
+--
+
+INSERT INTO `tema` (`id_tema`, `nama_tema`, `created_at`, `updated_at`) VALUES
+(1, 'ISO 9001 : 2015 (SMM)', '2023-04-16 20:32:49', '2023-04-16 20:32:49');
 
 -- --------------------------------------------------------
 
@@ -222,20 +268,33 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `tlnc` (
   `id_formnctl` bigint(20) UNSIGNED NOT NULL,
   `id_nc` int(11) NOT NULL,
-  `akar_masalah` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `uraian_perbaikan` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `uraian_pencegahan` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `akar_masalah` text DEFAULT NULL,
+  `uraian_perbaikan` text DEFAULT NULL,
+  `uraian_pencegahan` text DEFAULT NULL,
   `tgl_action` date DEFAULT NULL,
+  `ttd_disetujui_oleh_tlnc` text DEFAULT NULL,
+  `disetujui_oleh_tl` varchar(100) DEFAULT NULL,
   `tgl_accgm` date DEFAULT NULL,
-  `uraian_verifikasi` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `hasil_verif` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `verifikator` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `uraian_verifikasi` text DEFAULT NULL,
+  `hasil_verif` varchar(15) DEFAULT NULL,
+  `ttd_verifikator_tlnc` text DEFAULT NULL,
+  `verifikator` varchar(100) DEFAULT NULL,
   `tgl_verif` date DEFAULT NULL,
-  `rekomendasi` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `namasm_verif` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rekomendasi` text DEFAULT NULL,
+  `ttd_verifsm_tlnc` text DEFAULT NULL,
+  `namasm_verif` varchar(200) DEFAULT NULL,
+  `tgl_verifsm` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tlnc`
+--
+
+INSERT INTO `tlnc` (`id_formnctl`, `id_nc`, `akar_masalah`, `uraian_perbaikan`, `uraian_pencegahan`, `tgl_action`, `ttd_disetujui_oleh_tlnc`, `disetujui_oleh_tl`, `tgl_accgm`, `uraian_verifikasi`, `hasil_verif`, `ttd_verifikator_tlnc`, `verifikator`, `tgl_verif`, `rekomendasi`, `ttd_verifsm_tlnc`, `namasm_verif`, `tgl_verifsm`, `created_at`, `updated_at`) VALUES
+(13, 30, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-04-11 02:26:37', '2023-04-11 02:26:37'),
+(14, 29, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-04-11 17:44:00', '2023-04-11 17:44:00');
 
 -- --------------------------------------------------------
 
@@ -246,30 +305,25 @@ CREATE TABLE `tlnc` (
 CREATE TABLE `tlncr` (
   `id_formncrtl` bigint(20) UNSIGNED NOT NULL,
   `id_ncr` int(11) NOT NULL,
-  `akar_masalah` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `uraian_perbaikan` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `uraian_pencegahan` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `akar_masalah` text DEFAULT NULL,
+  `uraian_perbaikan` text DEFAULT NULL,
+  `uraian_pencegahan` text DEFAULT NULL,
   `tgl_action` date DEFAULT NULL,
-  `disetujui_oleh` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tgl_accgm` date DEFAULT NULL,
-  `uraian_verifikasi` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `hasil_verif` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `verifikator` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ttd_tl_gm` text DEFAULT NULL,
+  `ttd_tl_verif_auditor` text DEFAULT NULL,
+  `ttd_tl_verif_adm` text DEFAULT NULL,
+  `disetujui_oleh2` varchar(50) DEFAULT NULL,
+  `tgl_accgm2` date DEFAULT NULL,
+  `uraian_verifikasi` text DEFAULT NULL,
+  `hasil_verif` varchar(15) DEFAULT NULL,
+  `verifikator` varchar(100) DEFAULT NULL,
   `tgl_verif` date DEFAULT NULL,
-  `rekomendasi` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `namasm_verif` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rekomendasi` text DEFAULT NULL,
+  `namasm_verif` varchar(200) DEFAULT NULL,
+  `tgl_verif_adm2` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `tlncr`
---
-
-INSERT INTO `tlncr` (`id_formncrtl`, `id_ncr`, `akar_masalah`, `uraian_perbaikan`, `uraian_pencegahan`, `tgl_action`, `disetujui_oleh`, `tgl_accgm`, `uraian_verifikasi`, `hasil_verif`, `verifikator`, `tgl_verif`, `rekomendasi`, `namasm_verif`, `created_at`, `updated_at`) VALUES
-(7, 12, 'Kelalaian Pegawai', 'perbaikan', 'pencegahan', '2022-12-26', NULL, '2022-12-26', 'verifikasi', 'efektif', 'Ronaldo', '2022-12-23', 'tinjauan', 'Supariyanto', '2022-12-21 22:42:22', '2022-12-21 22:58:05'),
-(8, 13, 'Cause', 'uraian', 'pencegahan', '2022-12-26', NULL, '2022-12-27', 'verif', 'efektif', 'Oleh', '2022-12-27', 'tinjauan', 'Supariyanto', '2022-12-21 23:00:23', '2022-12-21 23:01:01'),
-(9, 15, 'Belum sempat', 'Agar segera disusun', 'Setiap awal tahun akan dilakukan penyusunan sesuai prosedur', '2022-12-30', NULL, '2022-12-31', 'Tindak lanjut telah sesuai', 'efektif', 'Hendy', '2023-01-01', 'Tidak ada rekomendasi', 'Supariyanto', '2022-12-21 23:28:43', '2022-12-21 23:38:40');
 
 -- --------------------------------------------------------
 
@@ -279,19 +333,21 @@ INSERT INTO `tlncr` (`id_formncrtl`, `id_ncr`, `akar_masalah`, `uraian_perbaikan
 
 CREATE TABLE `tlofi` (
   `id_formofitl` bigint(20) UNSIGNED NOT NULL,
-  `id_ofi` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tl_usulanofi` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nama_pekerjatl` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_ofi` varchar(15) DEFAULT NULL,
+  `tl_usulanofi` text DEFAULT NULL,
+  `ttd_tlofi_oleh` text DEFAULT NULL,
+  `nama_pekerjatl` varchar(100) DEFAULT NULL,
   `tgl_tl` date DEFAULT NULL,
-  `uraian_verif` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `hasil_verif` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nama_verifikator` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `uraian_verif` text DEFAULT NULL,
+  `hasil_verif` varchar(500) DEFAULT NULL,
+  `ttd_tlofi_verif` text DEFAULT NULL,
+  `nama_verifikator` varchar(100) DEFAULT NULL,
   `tgl_verif` date DEFAULT NULL,
-  `eval_saran` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nama_evaluator` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `skor` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `rekom_tinjauan` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `namasm_verifikator` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `eval_saran` varchar(500) DEFAULT NULL,
+  `nama_evaluator` varchar(100) DEFAULT NULL,
+  `skor` varchar(5) DEFAULT NULL,
+  `rekom_tinjauan` varchar(500) DEFAULT NULL,
+  `namasm_verifikator` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -300,8 +356,8 @@ CREATE TABLE `tlofi` (
 -- Dumping data untuk tabel `tlofi`
 --
 
-INSERT INTO `tlofi` (`id_formofitl`, `id_ofi`, `tl_usulanofi`, `nama_pekerjatl`, `tgl_tl`, `uraian_verif`, `hasil_verif`, `nama_verifikator`, `tgl_verif`, `eval_saran`, `nama_evaluator`, `skor`, `rekom_tinjauan`, `namasm_verifikator`, `created_at`, `updated_at`) VALUES
-(6, '8', 'Format standar sudah dibuat', 'Graha', '2023-01-07', 'Tindak lanjut sudah sesuai', 'efektif', 'Supariyanto', '2023-01-09', 'Bisa meningkatkan proses bisnis (dihapus)', 'Supariyanto (dihapus)', '90', 'Tidak dimunculkan dihapus', 'Dihapus', '2022-12-22 00:23:56', '2022-12-22 00:23:56');
+INSERT INTO `tlofi` (`id_formofitl`, `id_ofi`, `tl_usulanofi`, `ttd_tlofi_oleh`, `nama_pekerjatl`, `tgl_tl`, `uraian_verif`, `hasil_verif`, `ttd_tlofi_verif`, `nama_verifikator`, `tgl_verif`, `eval_saran`, `nama_evaluator`, `skor`, `rekom_tinjauan`, `namasm_verifikator`, `created_at`, `updated_at`) VALUES
+(22, '34', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-05-03 00:42:20', '2023-05-03 00:42:20');
 
 -- --------------------------------------------------------
 
@@ -311,12 +367,12 @@ INSERT INTO `tlofi` (`id_formofitl`, `id_ofi`, `tl_usulanofi`, `nama_pekerjatl`,
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nip` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -326,8 +382,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nip`, `role`, `name`, `username`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '001', 'Admin', 'Administrator', 'admin', '$2y$10$Oya39HQ25JtzCKqtnSIVguHOdZylSFwidfvQWCO1a42OltzxRHUSu', 'xdRp6JRnpgSEU1IA1IQDkAYdPtS5e3HRD33PigP35tGvwBh7LCI1P20iXsE2', '2022-12-18 19:21:58', '2022-12-18 19:21:58'),
-(2, '002', 'Auditor', 'Auditor', 'auditor', '$2y$10$lFDar/te5pnvsz01n47W1.EB8YhDsjijFWiQKBS0qNSSkG.plGc1q', 'R7ijXBuck5TpoDpnQRQcPhH2bZ98gFZlSAxDU8jhWEZNs8pYhcDxL0eg2ZNn', '2022-12-18 19:21:58', '2022-12-18 19:21:58'),
+(1, '001', 'Admin', 'Administrator', 'admin', '$2y$10$Oya39HQ25JtzCKqtnSIVguHOdZylSFwidfvQWCO1a42OltzxRHUSu', 'VyrClMNWCanphFpd7bU6IyUqnGmGGrQg617gzv30oGWNNqPGrOeRizQZqMrz', '2022-12-18 19:21:58', '2022-12-18 19:21:58'),
+(2, '002', 'Auditor', 'Auditor', 'auditor', '$2y$10$lFDar/te5pnvsz01n47W1.EB8YhDsjijFWiQKBS0qNSSkG.plGc1q', 'OghonroehPhYDAEllaebOdUD583NUydCN3tyosgxbGae3xYLMPjbBVasCV0e', '2022-12-18 19:21:58', '2022-12-18 19:21:58'),
 (6, '1', 'Auditee', 'Departemen TJSL dan Stakeholder Relationship', 'TJSL', '$2y$10$JuAmKGIoB2CPJJ/j0E6QLuVmwz6H9Kz/nYrplZrY9ezIROiXQQoxu', NULL, '2022-12-20 19:46:44', '2022-12-20 19:46:44'),
 (7, '2', 'Auditee', 'Departemen Kantor Perwakilan dan Kesekretariatan', 'kanwil', '$2y$10$fg91ioREbj.VJkmPqUdyXuPvqj4Eahczt.wYElppT98izLwBT9/xa', NULL, '2022-12-20 19:47:26', '2022-12-20 19:47:26'),
 (8, '3', 'Auditee', 'Departemen Audit Operasional', 'auditops', '$2y$10$7oJvz37.Fss4qf6oy7ZOhunBYmH3Oh.DKW3eX25Chq3E2TON97e.O', NULL, '2022-12-20 19:48:18', '2022-12-20 19:48:18'),
@@ -355,7 +411,13 @@ INSERT INTO `users` (`id`, `nip`, `role`, `name`, `username`, `password`, `remem
 (30, '25', 'Auditee', 'Departemen Perencanaan dan Pengendalian Produksi', 'rendalprod', '$2y$10$lgmwEIHvrk2LBtNnGxBT9e/uoKOXea5jHuEeg./TZLk0U85MdSjbC', NULL, '2022-12-21 21:31:43', '2022-12-21 21:31:43'),
 (31, '26', 'Auditee', 'Departemen Penyediaan Jasa', 'penyediaanjasa', '$2y$10$1l/txM4chdVWrP.elt6e0.kwR6SDbygfT5BCw7tB4cnIzWHVu2pWe', NULL, '2022-12-21 21:32:18', '2022-12-21 21:32:18'),
 (32, '27', 'Auditee', 'Departemen Pengelolaan Proyek', 'pengelolaanproyek', '$2y$10$DwgPHW9lrVBhi675qRJOCetYLdW2RA/m79i4NOreA6C3VHntqn7AK', NULL, '2022-12-21 21:32:40', '2022-12-21 21:32:40'),
-(33, '01', 'Auditee', 'Auditor', 'auditor1', '$2y$10$yMrF8ehvCpjZTHuzlAOpbOnmd94L8sxpRgcqgPFmbdIgnz/RPjjqe', NULL, '2022-12-26 00:15:20', '2022-12-26 00:15:20');
+(33, '01', 'Auditee', 'Auditor', 'auditor1', '$2y$10$yMrF8ehvCpjZTHuzlAOpbOnmd94L8sxpRgcqgPFmbdIgnz/RPjjqe', NULL, '2022-12-26 00:15:20', '2022-12-26 00:15:20'),
+(34, '001', 'Tema', 'ISO 9001 : 2015  SMM', 'SMM', '$2y$10$JXI84SMYXngkZvTxZuns/OjOTjH46LeQSGt6Nq8Ovi3/49MMF6rMa', NULL, '2023-03-19 19:54:16', '2023-05-02 19:59:44'),
+(35, '002', 'Tema', 'SMAP', 'ISO 37001 : 2016 SMAP', '$2y$10$.2myy34E8WRpMU46Ok0Cd.OU7mxs0EkNN.5DKHxVAaRfqYj0FGE9W', NULL, '2023-03-19 19:55:37', '2023-05-02 17:54:51'),
+(36, '003', 'Tema', 'IRIS', 'ISO/TS 22163 : 2017 IRIS', '$2y$10$yyn3GyJucy8WwTgQ4G9awOU9zwby19RjeCLWts3lzpI3IaBj8i7fK', NULL, '2023-03-19 19:56:04', '2023-05-02 17:57:22'),
+(37, '004', 'Tema', 'ISO 14001  : 2015', 'ISO 14001', '$2y$10$Z/atdsrfd/TcALD01MiZg.8mozR7WBlC7CandczKD6zTe6c2NkTjS', NULL, '2023-03-19 19:56:32', '2023-05-02 17:57:46'),
+(38, '005', 'Tema', 'SMK3LH', 'ISO 45001 : 2018 SMK3LH', '$2y$10$w7m6s0R8djdT5fHGWRCnMerEA9lDke3hGol.wKeMBfi3w3tLsYiG2', NULL, '2023-03-19 19:57:04', '2023-05-02 17:58:24'),
+(39, '1', 'Admin2', 'Admin2', 'Admin2', '$2y$10$lDvSxDDs3lwc9QsjS4Wd9uKHYnPjOHJ2Kp64iCdq5Vu.lo0oHMhnm', NULL, '2023-03-23 18:02:40', '2023-03-23 18:02:40');
 
 --
 -- Indexes for dumped tables
@@ -407,6 +469,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indeks untuk tabel `tema`
+--
+ALTER TABLE `tema`
+  ADD PRIMARY KEY (`id_tema`);
+
+--
 -- Indeks untuk tabel `tlnc`
 --
 ALTER TABLE `tlnc`
@@ -451,19 +519,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `nc`
 --
 ALTER TABLE `nc`
-  MODIFY `id_nc` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_nc` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT untuk tabel `ncr`
 --
 ALTER TABLE `ncr`
-  MODIFY `id_ncr` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_ncr` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
 
 --
 -- AUTO_INCREMENT untuk tabel `ofi`
 --
 ALTER TABLE `ofi`
-  MODIFY `id_ofi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_ofi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -472,28 +540,34 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `tema`
+--
+ALTER TABLE `tema`
+  MODIFY `id_tema` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT untuk tabel `tlnc`
 --
 ALTER TABLE `tlnc`
-  MODIFY `id_formnctl` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_formnctl` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `tlncr`
 --
 ALTER TABLE `tlncr`
-  MODIFY `id_formncrtl` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_formncrtl` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT untuk tabel `tlofi`
 --
 ALTER TABLE `tlofi`
-  MODIFY `id_formofitl` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_formofitl` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
