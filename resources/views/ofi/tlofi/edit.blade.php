@@ -21,10 +21,12 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label" >Proses Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
                                 <div class="col-sm-6">
-                                    <select name="proses_audit" {{ auth()->user()->role == 'Admin' ? 'disabled' : 'disabled' }}
-                                        id="proses_audit" class="form-control"  readonly>
+                                    <select name="proses_audit"
+                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} id="proses_audit"
+                                        class="form-control" readonly>
+                                        <option value="">- Pilih -</option>
                                         <option value="Internal" {{ $ofi->proses_audit == 'Internal' ? 'selected' : '' }}>
                                             Internal</option>
                                         <option value="Eksternal" {{ $ofi->proses_audit == 'Eksternal' ? 'selected' : '' }}>
@@ -265,13 +267,17 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui Oleh</label>
                                 <div class="col-sm-6">
-                                    <select name="disetujui_oleh_jabatan" {{ auth()->user()->role == 'Admin' ? 'disabled' : 'disabled' }}
-                                        id="disetujui_oleh_jabatan" class="form-control"  readonly>
-                                        <option value="Manager" {{ $ofi->disetujui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>
+                                    <select name="disetujui_oleh_jabatan"
+                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}
+                                        id="disetujui_oleh_jabatan" class="form-control">
+                                        <option value="">- Pilih -</option>
+                                        <option value="Manager"
+                                            {{ $ofi->disetujui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>
                                             Manager</option>
-                                        <option value="Senior Manager" {{ $ofi->disetujui_oleh_jabatan == 'Senior Manager' ? 'selected' : '' }}>
+                                        <option value="Senior Manager"
+                                            {{ $ofi->disetujui_oleh_jabatan == 'Senior Manager' ? 'selected' : '' }}>
                                             Senior Manager</option>
-                                    </select>    
+                                    </select>
                                 </div>
                             </div>
 
@@ -527,7 +533,8 @@
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
                                 <div class="col-sm-6">
-                                    <select name="status" id="status" class="form-control">
+                                    <select name="status" id="status" class="form-control"
+                                    {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
                                         <option value="">- Pilih -</option>
                                         <option {{ $ofi->status == 'Tindak Lanjut Belum Sesuai' ? 'selected' : '' }}>Tindak
                                             Lanjut Belum Sesuai</option>
@@ -653,7 +660,7 @@
             tgl_terbitofi.addEventListener('change', function() {
                 if (tgl_terbitofi.value !== '') {
                     var deadline = new Date(tgl_terbitofi.value);
-                    deadline.setDate(deadline.getDate() + 90);
+                    deadline.setDate(deadline.getDate() + 60);
                     tgl_deadline.valueAsDate = deadline;
                 } else {
                     tgl_deadline.value = '';

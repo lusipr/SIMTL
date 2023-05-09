@@ -188,11 +188,14 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan diakui oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
-                                    <select name="diakui_oleh_jabatan" {{ empty($tlncr) ? '' : 'disabled' }} id="diakui_oleh_jabatan"
-                                        class="form-control">
+                                    <select name="diakui_oleh_jabatan"
+                                        {{ empty($tlncr) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
+                                        id="diakui_oleh_jabatan" class="form-control">
                                         <option value="">- Pilih -</option>
-                                        <option {{ $ncr->diakui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>Manager</option>
-                                        <option {{ $ncr->diakui_oleh_jabatan== 'Senior manager' ? 'selected' : '' }}>Senior manager</option>
+                                        <option {{ $ncr->diakui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>Manager
+                                        </option>
+                                        <option {{ $ncr->diakui_oleh_jabatan == 'Senior manager' ? 'selected' : '' }}>Senior
+                                            manager</option>
                                     </select>
                                 </div>
                             </div>
@@ -214,7 +217,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui oleh (SM/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui oleh
+                                    (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="disetujui_oleh1"
                                         {{ empty($tlncr) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
@@ -223,13 +227,17 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui oleh (SM/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui oleh
+                                    (SM/GM)</label>
                                 <div class="col-sm-6">
-                                    <select name="disetujui_oleh1_jabatan" {{ empty($tlncr) ? '' : 'disabled' }} id="disetujui_oleh1_jabatan"
-                                        class="form-control">
+                                    <select name="disetujui_oleh1_jabatan"
+                                        {{ empty($tlncr) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
+                                        id="disetujui_oleh1_jabatan" class="form-control">
                                         <option value="">- Pilih -</option>
-                                        <option {{ $ncr->disetujui_oleh1_jabatan == 'Senior Manager' ? 'selected' : '' }}>Senior Manager</option>
-                                        <option {{ $ncr->disetujui_oleh1_jabatan== 'General Manager' ? 'selected' : '' }}>General Manager</option>
+                                        <option {{ $ncr->disetujui_oleh1_jabatan == 'Senior Manager' ? 'selected' : '' }}>
+                                            Senior Manager</option>
+                                        <option {{ $ncr->disetujui_oleh1_jabatan == 'General Manager' ? 'selected' : '' }}>
+                                            General Manager</option>
                                     </select>
                                 </div>
                             </div>
@@ -270,7 +278,7 @@
             tgl_terbitncr.addEventListener('change', function() {
                 if (tgl_terbitncr.value !== '') {
                     var deadline = new Date(tgl_terbitncr.value);
-                    deadline.setDate(deadline.getDate() + 45);
+                    deadline.setDate(deadline.getDate() + 30);
                     tgl_deadline.valueAsDate = deadline;
                 } else {
                     tgl_deadline.value = '';

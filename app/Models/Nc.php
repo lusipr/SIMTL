@@ -15,6 +15,7 @@ class Nc extends Model
         'id_nc',
         'opsi_temuan',
         'no_nc',
+        'periode_audit',
         'proses_audit',
         'tema_audit',
         'objek_audit',
@@ -32,8 +33,10 @@ class Nc extends Model
         'tgl_deadline',
         'ttd_diakui_oleh_nc',
         'diakui_oleh',
+        'diakui_oleh_jabatan',
         'ttd_disetujui_oleh',
         'disetujui_oleh',
+        'disetujui_oleh1_jabatan',
         'tgl_accgm',
         'tgl_planaction',
     ];

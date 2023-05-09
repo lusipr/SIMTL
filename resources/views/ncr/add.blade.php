@@ -32,7 +32,18 @@
                                 </div>
                             </div>
                             <br>
-                            
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Periode Audit</label>
+                                <div class="col-sm-6">
+                                    <select name="periode_audit" id="periode_audit" class="form-control">
+                                        <option value="">- Pilih -</option>
+                                        <option value="I">I</option>
+                                        <option value="II">II</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
                                 <div class="col-sm-6">
@@ -47,7 +58,7 @@
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
                                 <div class="col-sm-6">
-                                    <select name="tema_audit" id="tema_audit" class="form-control" >
+                                    <select name="tema_audit" id="tema_audit" class="form-control">
                                         <option value="">- Pilih -</option>
                                         @foreach ($usersTema as $data_usersTema)
                                             <option value="{{ $data_usersTema->id }}">{{ $data_usersTema->name }}
@@ -71,7 +82,7 @@
                                 </div>
                             </div>
                             <br>
-                            
+
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit NCR</label>
                                 <div class="col-sm-6">
@@ -104,14 +115,12 @@
             tgl_terbitncr.addEventListener('change', function() {
                 if (tgl_terbitncr.value !== '') {
                     var deadline = new Date(tgl_terbitncr.value);
-                    deadline.setDate(deadline.getDate() + 45);
+                    deadline.setDate(deadline.getDate() + 30);
                     tgl_deadline.valueAsDate = deadline;
                 } else {
                     tgl_deadline.value = '';
                 }
             });
         });
-
-      
     </script>
 @endsection

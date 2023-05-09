@@ -31,6 +31,7 @@ class TLNcr extends Model
         'rekomendasi',
         'ttd_tl_verif_adm',
         'namasm_verif',
+        'uraian_catatan_tkp',
         'tgl_verif_adm2',
     ];
 

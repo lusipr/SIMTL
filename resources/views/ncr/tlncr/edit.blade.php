@@ -186,7 +186,8 @@
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <select name="diakui_oleh_jabatan" id="diakui_oleh_jabatan" class="form-control"
-                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                    {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
+                                        >
                                         <option value="">- Pilih -</option>
                                         <option {{ $ncr->diakui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>Manager
                                         </option>
@@ -235,7 +236,9 @@
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh1_jabatan" id="disetujui_oleh1_jabatan"
-                                        class="form-control" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                        class="form-control" 
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
+                                        >
                                         <option value="">- Pilih -</option>
                                         <option {{ $ncr->disetujui_oleh1_jabatan == 'Senior Manager' ? 'selected' : '' }}>
                                             Senior Manager</option>
@@ -359,7 +362,8 @@
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh2_jabatan" id="disetujui_oleh2_jabatan"
-                                        class="form-control" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                        class="form-control" 
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option {{ $ncr->disetujui_oleh2_jabatan == 'Senior Manager' ? 'selected' : '' }}>
                                             Senior Manager</option>
@@ -474,6 +478,15 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Uraian catatan TKP</label>
+                                <div class="col-sm-6">
+                                    <textarea type="name" name="uraian_catatan_tkp" class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }} id="uraian_catatan_tkp"
+                                        rows="5" placeholder="Masukkan uraian_catatan_tkp tinjauan" style="font-style:italic">{{ isset($tlncr->uraian_catatan_tkp) ? $tlncr->uraian_catatan_tkp : '' }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Diverifikasi oleh
                                     SM Departemen Tata Kelola Perusahaan</label>
                                 <div class="col-sm-6">
@@ -519,7 +532,8 @@
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
                                 <div class="col-sm-6">
-                                    <select name="status" id="status" class="form-control">
+                                    <select name="status" id="status" class="form-control"
+                                    {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
                                         <option value="">- Pilih -</option>
                                         <option {{ $ncr->status == 'Tindak Lanjut Belum Sesuai' ? 'selected' : '' }}>Tindak
                                             Lanjut Belum Sesuai</option>
@@ -548,7 +562,7 @@
             tgl_terbitncr.addEventListener('change', function() {
                 if (tgl_terbitncr.value !== '') {
                     var deadline = new Date(tgl_terbitncr.value);
-                    deadline.setDate(deadline.getDate() + 45);
+                    deadline.setDate(deadline.getDate() + 30);
                     tgl_deadline.valueAsDate = deadline;
                 } else {
                     tgl_deadline.value = '';

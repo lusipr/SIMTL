@@ -155,7 +155,8 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diakui oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
-                                    <input type="file" name="ttd_diakui_oleh_nc" class="form-control" id="ttd_diakui_oleh_nc"
+                                    <input type="file" name="ttd_diakui_oleh_nc" class="form-control"
+                                        id="ttd_diakui_oleh_nc"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
@@ -164,10 +165,23 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui oleh (M/SM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama diakui oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="diakui_oleh" class="form-control" id="diakui_oleh"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan diakui oleh
+                                    (M/SM)</label>
+                                <div class="col-sm-6">
+                                    <select name="diakui_oleh_jabatan" id="diakui_oleh_jabatan" class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        <option value="">- Pilih -</option>
+                                        <option>Manager</option>
+                                        <option>Senior Manager</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -185,10 +199,25 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui oleh (SM/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui oleh
+                                    (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="disetujui_oleh" class="form-control" id="disetujui_oleh"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui oleh
+                                    (SM/GM)</label>
+                                <div class="col-sm-6">
+                                    <select name="disetujui_oleh1_jabatan" id="disetujui_oleh1_jabatan"
+                                        class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        <option value="">- Pilih -</option>
+                                        <option>Senior Manager</option>
+                                        <option>General Manager</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -224,7 +253,7 @@
             tgl_terbitnc.addEventListener('change', function() {
                 if (tgl_terbitnc.value !== '') {
                     var deadline = new Date(tgl_terbitnc.value);
-                    deadline.setDate(deadline.getDate() + 45);
+                    deadline.setDate(deadline.getDate() + 30);
                     tgl_deadline.valueAsDate = deadline;
                 } else {
                     tgl_deadline.value = '';

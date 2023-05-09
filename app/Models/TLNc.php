@@ -22,6 +22,7 @@ class TLNc extends Model
         'tgl_accgm',
         'ttd_disetujui_oleh_tlnc',
         'disetujui_oleh_tl',
+        'disetujui_oleh_tl_jabatan',
         'uraian_verifikasi',
         'hasil_verif',
         'ttd_verifikator_tlnc',

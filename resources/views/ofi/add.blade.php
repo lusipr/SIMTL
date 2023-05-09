@@ -32,9 +32,21 @@
                             <br>
 
                             <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Periode Audit</label>
+                                <div class="col-sm-6">
+                                    <select name="periode_audit" id="periode_audit" class="form-control">
+                                        <option value="">- Pilih -</option>
+                                        <option value="I">I</option>
+                                        <option value="II">II</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
                                 <div class="col-sm-6">
                                     <select name="proses_audit" id="proses_audit" class="form-control">
+                                        <option value="">- Pilih -</option>
                                         <option value="Internal">Internal</option>
                                         <option value="Eksternal">Eksternal</option>
                                     </select>
@@ -102,7 +114,7 @@
             tgl_terbitofi.addEventListener('change', function() {
                 if (tgl_terbitofi.value !== '') {
                     var deadline = new Date(tgl_terbitofi.value);
-                    deadline.setDate(deadline.getDate() + 90);
+                    deadline.setDate(deadline.getDate() + 60);
                     tgl_deadline.valueAsDate = deadline;
                 } else {
                     tgl_deadline.value = '';

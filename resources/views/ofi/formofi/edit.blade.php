@@ -169,7 +169,9 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui Oleh (M/SM)</label>
                                 <div class="col-sm-6">
-                                    <select name="disetujui_oleh_jabatan" id="disetujui_oleh_jabatan" class="form-control">
+                                    <select name="disetujui_oleh_jabatan" id="disetujui_oleh_jabatan"
+                                        class="form-control">
+                                        <option value="">- Pilih -</option>
                                         <option value="Manager">Manager</option>
                                         <option value="Senior Manager">Senior Manager</option>
                                     </select>
@@ -256,7 +258,7 @@
             tgl_terbitofi.addEventListener('change', function() {
                 if (tgl_terbitofi.value !== '') {
                     var deadline = new Date(tgl_terbitofi.value);
-                    deadline.setDate(deadline.getDate() + 90);
+                    deadline.setDate(deadline.getDate() + 60);
                     tgl_deadline.valueAsDate = deadline;
                 } else {
                     tgl_deadline.value = '';

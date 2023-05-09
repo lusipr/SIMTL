@@ -14,6 +14,7 @@ class Ncr extends Model
     protected $fillable = [
         'id_ncr',
         'no_ncr',
+        'periode_audit',
         'proses_audit',
         'tema_audit',
         'objek_audit',

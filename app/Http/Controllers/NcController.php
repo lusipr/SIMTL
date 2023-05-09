@@ -109,14 +109,16 @@ class NcController extends Controller
         $year = date('y');
         $theme = $nc->tema_audit;
         $themename = DB::table('users')->where('id', $theme)->value('name');
-        $process = strtoupper($nc->proses_audit);
+        $process = $nc->proses_audit;
+        $period = $nc->periode_audit;
         $lastNc = nc::where('tema_audit', $theme)
             ->where('proses_audit', $process)
+            ->where('periode_audit', $period)
             ->whereRaw('YEAR(created_at) = ?', [date('Y')])
             ->orderBy('no_nc', 'desc')
             ->first();
 
-        if ($lastNc && substr($lastNc->no_nc, -2) == $year && $lastNc->proses_audit == $process && $lastNc->tema_audit == $theme) {
+        if ($lastNc && substr($lastNc->no_nc, -2) == $year && $lastNc->periode_audit == $period && $lastNc->proses_audit == $process && $lastNc->tema_audit == $theme) {
             $noUrut = str_pad((int)substr($lastNc->no_nc, 0, 3) + 1, 3, '0', STR_PAD_LEFT);
         } else {
             $noUrut = '001';
@@ -229,7 +231,9 @@ class NcController extends Controller
         if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditee') {
             $validatedDataNc = $request->validate([
                 'diakui_oleh' => '',
+                'diakui_oleh_jabatan' => '',
                 'disetujui_oleh' => '',
+                'disetujui_oleh1_jabatan' => '',
                 'tgl_accgm' => '',
                 'tgl_planaction' => '',
                 'bukti' => 'mimes:pdf',
@@ -277,6 +281,7 @@ class NcController extends Controller
                 'uraian_pencegahan' => '',
                 'tgl_action' => '',
                 'disetujui_oleh_tl' => '',
+                'disetujui_oleh_tl_jabatan' => '',
                 'tgl_accgm' => '',
                 'ttd_disetujui_oleh_tlnc' => 'mimes:jpeg,jpg,png',
                 'ttd_verifikator_tlnc' => 'mimes:jpeg,jpg,png',

@@ -408,7 +408,7 @@
             tgl_terbitofi.addEventListener('change', function() {
                 if (tgl_terbitofi.value !== '') {
                     var deadline = new Date(tgl_terbitofi.value);
-                    deadline.setDate(deadline.getDate() + 45);
+                    deadline.setDate(deadline.getDate() + 60);
                     tgl_deadline.valueAsDate = deadline;
                 } else {
                     tgl_deadline.value = '';

@@ -71,7 +71,7 @@
             Dari (Bagian / Departemen)*: {{ !empty($ofi->user_asal_dept->name) ? $ofi->user_asal_dept->name : '' }}
         </th>
         <td style="width: 45%; vertical-align: middle; border-left-width: 1px;">
-            Kepada: Wakil Manajemen 
+            Kepada: Wakil Manajemen
         </td>
     </tr>
     <tr>
@@ -242,7 +242,7 @@
                     </td>
                     <td style="width: 60%; border: 0px;">
                         <img width="50" height="60" src="{{ asset('storage/' . $ofi->ttd_dept_pengusul) }}"
-                            alt="ttd_dept_pengusul">
+                            alt=" ">
                         <br>
                         {{ $ofi->dept_pengusul }}
                     </td>
@@ -271,15 +271,19 @@
                         :
                     </td>
                     <td style="width: 60%; border: 0px;">
-                        <img width="50" height="60" src="{{ asset('storage/' . $ofi->ttd_disetujui_oleh_ofi) }}"
-                            alt="ttd_disetujui_oleh">
-                        <br>
-                        {{ $ofi->disetujui_oleh }}
-                    </td>
-                </tr>
-            </table>
+                    <div>
+                        {{ $ofi->disetujui_oleh_jabatan }}
+                    </div>
+                    <br>
+                    <img width="50" height="60" src="{{ asset('storage/' . $ofi->ttd_disetujui_oleh_ofi) }}"
+                        alt=" ">
+                    <br>
+                    {{ $ofi->disetujui_oleh }}
         </td>
     </tr>
+</table>
+</td>
+</tr>
 </table>
 
 <table style="width: 100%; padding-top: 1px;">
@@ -321,7 +325,7 @@
                                 OFI Diterima, diselesaikan oleh:
                                 <br>
                                 <img width="50" height="60"
-                                    src="{{ asset('storage/' . $ofi->ttd_disposisi) }}" alt="ttd_disposisi">
+                                    src="{{ asset('storage/' . $ofi->ttd_disposisi) }}" alt=" ">
                                 <br>
                             </span>
                             <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
@@ -423,7 +427,7 @@
                     <td style="width: 50%; border: 0px;">
                         <img width="50" height="60"
                             src="{{ !empty($tlofi->ttd_tlofi_oleh) ? asset('storage/' . $tlofi->ttd_tlofi_oleh) : '' }}"
-                            alt="Ttd tl oleh">
+                            alt=" ">
                         <br>
                         {{ !empty($tlofi->nama_pekerjatl) ? $tlofi->nama_pekerjatl : '' }}
                     </td>
@@ -500,7 +504,7 @@
                     <td style="width: 60%; border: 0px;">
                         <img width="50" height="60"
                             src="{{ !empty($tlofi->ttd_tlofi_verif) ? asset('storage/' . $tlofi->ttd_tlofi_verif) : '' }}"
-                            alt="Ttd diverif oleh">
+                            alt=" ">
                         <br>
                         {{ !empty($tlofi->nama_verifikator) ? $tlofi->nama_verifikator : '' }}
                     </td>

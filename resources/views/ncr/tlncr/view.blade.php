@@ -96,7 +96,8 @@
                         <div class="row-mb-3">
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
                             <div class="col-sm-6">
-                                <select name="status" disabled id="status" class="form-control">
+                                <select name="status" disabled id="status" class="form-control"
+                                {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
                                     <option value="">- Pilih -</option>
                                     <option {{ $ncr->status == 'Data Belum Lengkap' ? 'selected' : '' }}>Data Belum Lengkap
                                     </option>

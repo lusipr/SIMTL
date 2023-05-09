@@ -19,6 +19,7 @@ class TemaController extends Controller
     // public function index()
     // {
     //     $tema = Tema::all();
+    
 
     //     return view('tema.index', ['tema' => $tema, 'title' => 'Tema']);
     // }

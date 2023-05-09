@@ -548,6 +548,8 @@
         <td style="width: 44%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             Diverifikasi oleh Senior Manager Tata Kelola Perusahaan:
             <br>
+            {{ !empty($tlncr->uraian_catatan_tkp) ? $tlncr->uraian_catatan_tkp : '' }}
+            <br>
             <img width="50" height="60"
                 src="{{ !empty($tlncr->ttd_tl_verif_adm) ? asset('storage/' . $tlncr->ttd_tl_verif_adm) : '' }}"
                 alt="Ttd verif admin2">

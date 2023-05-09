@@ -39,6 +39,7 @@
                                     <tr>
                                         <th class="text-center">No</th>
                                         <th class="text-center">No. NCR</th>
+                                        <th class="text-center">Periode</th>
                                         <th class="text-center">Proses</th>
                                         <th class="text-center">Tema</th>
                                         <th class="text-center">Objek</th>
@@ -57,6 +58,7 @@
                                             <td class="text-center">{{ $data_ncr->no_ncr }}<br>
 
                                             </td>
+                                            <td class="text-center">{{ $data_ncr->periode_audit }}</td>
                                             <td class="text-center">{{ $data_ncr->proses_audit }}</td>
                                             <td class="text-center">{{ $data_ncr->users_tema->name }}</td>
                                             <td class="text-center">{{ $data_ncr->users->name }}</td>

@@ -252,6 +252,7 @@
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh_jabatan" {{ empty($tlofi) ? '' : 'disabled' }} id="disetujui_oleh_jabatan"
                                         class="form-control">
+                                        <option value="">- Pilih -</option>
                                         <option value="Manager" {{ $ofi->disetujui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>
                                             Manager</option>
                                         <option value="Senior Manager"
@@ -349,7 +350,7 @@
             tgl_terbitofi.addEventListener('change', function() {
                 if (tgl_terbitofi.value !== '') {
                     var deadline = new Date(tgl_terbitofi.value);
-                    deadline.setDate(deadline.getDate() + 90);
+                    deadline.setDate(deadline.getDate() + 60);
                     tgl_deadline.valueAsDate = deadline;
                 } else {
                     tgl_deadline.value = '';

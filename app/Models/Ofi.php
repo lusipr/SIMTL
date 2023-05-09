@@ -13,6 +13,7 @@ class Ofi extends Model
 
     protected $fillable = [
         'no_ofi',
+        'periode_audit',
         'proses_audit',
         'tema_audit',
         'objek_audit',
@@ -71,20 +72,20 @@ class Ofi extends Model
         return $this->hasOne(TLNcr::class, 'id_ofi', 'id_ofi');
     }
 
-    // public static function generateCode()
-    // {
-    //     $tahun = date('y');
-    //     $period = sprintf("%02d", ceil(date('n') / 6));
-    //     $lastCode = self::where('no_ofi', 'like', "{$tahun}/{$period}/%")->orderBy('no_ofi', 'desc')->first();
-    //     if (!$lastCode) {
-    //         $noUrut = 1;
-    //     } else {
-    //         $noUrut = (int) substr($lastCode->no_ofi, -3) + 1;
-    //         if (substr($lastCode->no_ofi, 0, 2) != $tahun) {
-    //             $noUrut = 1;
-    //         }
-    //     }
-    //     $noUrut = str_pad($noUrut, 3, '0', STR_PAD_LEFT);
-    //     return "{$tahun}/{$period}/{$noUrut}";
-    // }
+    public static function generateCode()
+    {
+        $tahun = date('y');
+        $period = sprintf("%02d", ceil(date('n') / 6));
+        $lastCode = self::where('no_ofi', 'like', "{$tahun}/{$period}/%")->orderBy('no_ofi', 'desc')->first();
+        if (!$lastCode) {
+            $noUrut = 1;
+        } else {
+            $noUrut = (int) substr($lastCode->no_ofi, -3) + 1;
+            if (substr($lastCode->no_ofi, 0, 2) != $tahun) {
+                $noUrut = 1;
+            }
+        }
+        $noUrut = str_pad($noUrut, 3, '0', STR_PAD_LEFT);
+        return "{$tahun}/{$period}/{$noUrut}";
+    }
 }

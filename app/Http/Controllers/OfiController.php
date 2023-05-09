@@ -113,19 +113,21 @@ class OfiController extends Controller
         $themeId = $ofi->tema_audit;
         $theme = DB::table('users')->where('id', $themeId)->value('username');
         $process = $ofi->proses_audit;
+        $period = $ofi->periode_audit;
         $lastOfi = ofi::where('tema_audit', $themeId)
             ->where('proses_audit', $process)
+            ->where('periode_audit', $period)
             ->whereRaw('YEAR(created_at) = ?', [date('Y')])
             ->orderBy('no_ofi', 'desc')
             ->first();
 
-        if ($lastOfi && substr($lastOfi->no_ofi, -2) == $year && $lastOfi->proses_audit == $process && $lastOfi->tema_audit == $themeId) {
+        if ($lastOfi && substr($lastOfi->no_ofi, -2) == $year && $lastOfi->periode_audit == $period && $lastOfi->proses_audit == $process && $lastOfi->tema_audit == $themeId) {
             $noUrut = str_pad((int)substr($lastOfi->no_ofi, 0, 3) + 1, 3, '0', STR_PAD_LEFT);
         } else {
             $noUrut = '001';
         }
 
-        $noOfi = $noUrut . '/' . substr($process, 0, 3) . '/' . $theme . '/' . 'OFI' . '/' . $year;
+        $noOfi = $noUrut . '/' . substr($process, 0, 3) . '/' . $theme . '/' . 'OFI' . '/' . $period. '/' . $year;
         $ofi->no_ofi = $noOfi;
 
         return view('ofi.formofi.edit', ['ofi' => $ofi, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);
@@ -258,6 +260,7 @@ class OfiController extends Controller
 
             if (auth()->user()->role == 'Admin') {
                 $validatedDataOfi['no_ofi'] = $request->no_ofi;
+                $validatedDataOfi['periode_audit'] = $request->periode_audit;
                 $validatedDataOfi['proses_audit'] = $request->proses_audit;
                 $validatedDataOfi['tema_audit'] = $request->tema_audit;
                 $validatedDataOfi['jenis_temuan'] = $request->jenis_temuan;

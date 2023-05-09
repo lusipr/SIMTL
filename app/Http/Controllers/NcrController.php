@@ -171,19 +171,21 @@ class NcrController extends Controller
         $themeId = $ncr->tema_audit;
         $theme = DB::table('users')->where('id', $themeId)->value('username');
         $process = $ncr->proses_audit;
+        $period = $ncr->periode_audit;
         $lastNcr = Ncr::where('tema_audit', $themeId)
             ->where('proses_audit', $process)
+            ->where('periode_audit', $period)
             ->whereRaw('YEAR(created_at) = ?', [date('Y')])
             ->orderBy('no_ncr', 'desc')
             ->first();
 
-        if ($lastNcr && substr($lastNcr->no_ncr, -2) == $year && $lastNcr->proses_audit == $process && $lastNcr->tema_audit == $themeId) {
+        if ($lastNcr && substr($lastNcr->no_ncr, -2) == $year && $lastNcr->periode_audit == $period && $lastNcr->proses_audit == $process && $lastNcr->tema_audit == $themeId) {
             $noUrut = str_pad((int)substr($lastNcr->no_ncr, 0, 3) + 1, 3, '0', STR_PAD_LEFT);
         } else {
             $noUrut = '001';
         }
 
-        $noNcr = $noUrut . '/' . substr($process, 0, 3) . '/' . $theme . '/' . 'NCR' . '/' . $year;
+        $noNcr = $noUrut . '/' . substr($process, 0, 3) . '/' . $theme . '/' . 'NCR' . '/' . $period . '/' . $year;
         $ncr->no_ncr = $noNcr;
 
         return view('ncr.formncr.edit', ['ncr' => $ncr, 'usersAuditee' => $usersAuditee, 'usersTema' => $usersTema]);
@@ -315,6 +317,7 @@ class NcrController extends Controller
 
             if (auth()->user()->role == 'Admin') {
                 $validatedDataNcr['no_ncr'] = $request->no_ncr;
+                $validatedDataNcr['periode_audit'] = $request->periode_audit;
                 $validatedDataNcr['proses_audit'] = $request->proses_audit;
                 $validatedDataNcr['tema_audit'] = $request->tema_audit;
                 $validatedDataNcr['jenis_temuan'] = $request->jenis_temuan;
@@ -363,6 +366,7 @@ class NcrController extends Controller
                 $validatedDataTLNcr['tgl_verif'] = $request->tgl_verif;
                 $validatedDataTLNcr['rekomendasi'] = $request->rekomendasi;
                 $validatedDataTLNcr['namasm_verif'] = $request->namasm_verif;
+                $validatedDataTLNcr['uraian_catatan_tkp'] = $request->uraian_catatan_tkp;
             }
 
             Ncr::where('id_ncr', '=', $ncr->id_ncr)->update($validatedDataNcr);
@@ -402,6 +406,7 @@ class NcrController extends Controller
 
             $validatedDataTLNcr['rekomendasi'] = $request->rekomendasi;
             $validatedDataTLNcr['namasm_verif'] = $request->namasm_verif;
+            $validatedDataTLNcr['uraian_catatan_tkp'] = $request->uraian_catatan_tkp;
             $validatedDataTLNcr['tgl_verif_adm2'] = $request->tgl_verif_adm2;
 
             $validatedDataTLNcr['id_ncr'] = $ncr->id_ncr;
@@ -448,6 +453,6 @@ class NcrController extends Controller
             $ncr = Ncr::all();
         }
 
-        return view('ncr.excel', ['ncr' => $ncr]);
+        return view('ncr.excel', ['ncr' => $ncr, ]);
     }
 }
