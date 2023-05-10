@@ -159,7 +159,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui Oleh (M/SM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui Oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disetujui_oleh" class="form-control"
                                         id="disetujui_oleh">
@@ -167,7 +167,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui Oleh (M/SM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">jabatan disetujui Oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh_jabatan" id="disetujui_oleh_jabatan"
                                         class="form-control">

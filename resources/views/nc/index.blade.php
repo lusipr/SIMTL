@@ -63,8 +63,12 @@
                                             <td class="text-center">{{ $data_nc->users_tema->name }}</td>
                                             <td class="text-center">{{ $data_nc->users->name }}</td>
                                             <!--<td class="text-center">{{ $data_nc->dokumen }}</td>-->
-                                            <td class="text-center">{{ $data_nc->tgl_terbitnc }}</td>
-                                            <td class="text-center">{{ $data_nc->tgl_deadline }}</td>
+                                            {{-- <td class="text-center">{{ $data_nc->tgl_terbitnc }}</td>
+                                            <td class="text-center">{{ $data_nc->tgl_deadline }}</td> --}}
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_nc->tgl_terbitnc)) }}
+                                            </td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_nc->tgl_deadline)) }}
+                                            </td>
                                             <td class="text-center">{{ $data_nc->status }}</td>
                                             <td class="text-center">
                                                 @if (!empty($data_nc->bukti))

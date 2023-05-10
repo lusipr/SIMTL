@@ -256,7 +256,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui Oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disetujui_oleh"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} class="form-control"
@@ -265,7 +265,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui Oleh(M/SM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh_jabatan"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}

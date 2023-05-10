@@ -63,8 +63,8 @@
                                             <td class="text-center">{{ $data_ncr->users_tema->name }}</td>
                                             <td class="text-center">{{ $data_ncr->users->name }}</td>
                                             <!--<td class="text-center">{{ $data_ncr->dokumen }}</td>-->
-                                            <td class="text-center">{{ $data_ncr->tgl_terbitncr }}</td>
-                                            <td class="text-center">{{ $data_ncr->tgl_deadline }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_ncr->tgl_terbitncr)) }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_ncr->tgl_deadline)) }}</td>
                                             <td class="text-center">{{ $data_ncr->status }}</td>
                                             <td class="text-center">
                                                 @if (!empty($data_ncr->bukti))

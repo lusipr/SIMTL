@@ -57,7 +57,7 @@
                         :
                     </td>
                     <td style="width: 60%; border: 0px;">
-                        {{ $ofi->tgl_terbitofi }}
+                        {{ $ofi->tgl_terbitofi ? date('d-m-Y', strtotime($ofi->tgl_terbitofi)) : '' }}
                     </td>
                 </tr>
             </table>
@@ -230,7 +230,7 @@
                         :
                     </td>
                     <td style="width: 60%; border: 0px;">
-                        {{ $ofi->tgl_diusulkan }}
+                        {{ $ofi->tgl_diusulkan ? date('d-m-Y', strtotime($ofi->tgl_diusulkan)) : '' }}
                     </td>
                 </tr>
                 <tr>
@@ -260,7 +260,7 @@
                         :
                     </td>
                     <td style="width: 60%; border: 0px;">
-                        {{ $ofi->tgl_disetujui }}
+                        {{ $ofi->tgl_disetujui ? date('d-m-Y', strtotime($ofi->tgl_disetujui)) : '' }}
                     </td>
                 </tr>
                 <tr>
@@ -414,7 +414,7 @@
                         :
                     </td>
                     <td style="width: 50%; border: 0px;">
-                        {{ !empty($tlofi->tgl_tl) ? $tlofi->tgl_tl : '' }}
+                        {{ !empty($tlofi->tgl_tl) ? date('d-m-Y', strtotime($tlofi->tgl_tl)) : '' }}
                     </td>
                 </tr>
                 <tr>
@@ -491,7 +491,7 @@
                         :
                     </td>
                     <td style="width: 60%; border: 0px;">
-                        {{ !empty($tlofi->tgl_verif) ? $tlofi->tgl_verif : '' }}
+                        {{ !empty($tlofi->tgl_verif) ? date('d-m-Y', strtotime($tlofi->tgl_verif)) : '' }}
                     </td>
                 </tr>
                 <tr>

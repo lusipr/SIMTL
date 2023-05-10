@@ -36,8 +36,8 @@
                                         <th class="text-center">Proses</th>
                                         <th class="text-center">Tema</th>
                                         <th class="text-center">Objek</th>
+                                        <th class="text-center">Tgl. Mulai</th>
                                         <th class="text-center">Tgl. Deadline</th>
-                                        <th class="text-center">Tgl. Penyelesaian</th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Bukti</th>
                                         <th class="text-center">Aksi</th>
@@ -58,6 +58,8 @@
                                             <td class="text-center">{{ $data_monitoringtl->users_tema->name }}</td>
                                             <td class="text-center">{{ $data_monitoringtl->users->name }}</td>
                                             <td class="text-center">
+                                                {{ date('d-m-Y', strtotime($data_monitoringtl->tgl_mulai)) }}</td>
+                                            <td class="text-center">
                                                 @php
                                                     $tgl_deadline = new DateTime($data_monitoringtl->tgl_deadline);
                                                     $tgl_mulai = new DateTime($data_monitoringtl->tgl_mulai);
@@ -66,16 +68,15 @@
                                                 @endphp
                                                 @if ($daysDiff < 0)
                                                     <span
-                                                        class="p-2 badge badge-danger">{{ $data_monitoringtl->tgl_deadline }}</span>
+                                                        class="p-2 badge badge-danger">{{ date('d-m-Y', strtotime($data_monitoringtl->tgl_deadline)) }}</span>
                                                 @elseif ($daysDiff < 7)
                                                     <span
-                                                        class="p-2 badge badge-warning">{{ $data_monitoringtl->tgl_deadline }}</span>
+                                                        class="p-2 badge badge-warning">{{ date('d-m-Y', strtotime($data_monitoringtl->tgl_deadline)) }}</span>
                                                 @else
                                                     <span
-                                                        class="p-2 badge badge-primary">{{ $data_monitoringtl->tgl_deadline }}</span>
+                                                        class="p-2 badge badge-primary">{{ date('d-m-Y', strtotime($data_monitoringtl->tgl_deadline)) }}</span>
                                                 @endif
                                             </td>
-                                            <td class="text-center">{{ $data_monitoringtl->tgl_mulai }}</td>
                                             <td class="text-center">{{ $data_monitoringtl->status }}</td>
                                             <td class="text-center">
                                                 @if (!empty($data_monitoringtl->bukti))
@@ -87,10 +88,10 @@
                                                 <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/print/' . $data_monitoringtl->id) : url('data-ofi/print/' . $data_monitoringtl->id) }}"
                                                     target="_blank" class="btn btn-secondary"><i class="ti-printer"></i></a>
                                                 <!--<a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/tlncr/view/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/tlofi/view/' . $data_monitoringtl->id . '/monitoring-tl') }}"
-                                                        class="btn btn-warning"><i class="ti-eye"></i></a>
-                                                    @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
+                                                            class="btn btn-warning"><i class="ti-eye"></i></a>
+                                                        @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
     <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/tlncr/input/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/tlofi/input/' . $data_monitoringtl->id . '/monitoring-tl') }}"
-                                                            class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
+                                                                class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
     @endif-->
                                                 @if (auth()->user()->role == 'Admin')
                                                     <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/delete/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/delete/' . $data_monitoringtl->id . '/monitoring-tl') }}"

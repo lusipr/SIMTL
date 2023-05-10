@@ -63,8 +63,8 @@
                                             <td class="text-center">{{ $data_ofi->users->name }}</td>
                                             <td class="text-center">{{ $data_ofi->disposisi_diselesaikan_oleh }}</td>
                                             <!--<td class="text-center">{{ $data_ofi->dokumen }}</td>-->
-                                            <td class="text-center">{{ $data_ofi->tgl_terbitofi }}</td>
-                                            <td class="text-center">{{ $data_ofi->tgl_deadline }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_ofi->tgl_terbitofi)) }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_ofi->tgl_deadline)) }}</td>
                                             <td class="text-center">{{ $data_ofi->status }}</td>
                                             <td class="text-center">
                                                 @if (!empty($data_ofi->bukti))

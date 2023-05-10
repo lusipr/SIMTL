@@ -242,7 +242,7 @@
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <select name="diakui_oleh_jabatan" id="diakui_oleh_jabatan" class="form-control"
-                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                    {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option {{ $nc->diakui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>Manager
                                         </option>
@@ -282,7 +282,8 @@
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh1_jabatan" id="disetujui_oleh1_jabatan"
-                                        class="form-control" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                        class="form-control" 
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option {{ $nc->disetujui_oleh1_jabatan == 'Senior Manager' ? 'selected' : '' }}>
                                             Senior Manager</option>
@@ -401,7 +402,8 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui oleh (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh_tl_jabatan" id="disetujui_oleh_tl_jabatan"
-                                        class="form-control" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                        class="form-control" 
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option {{ $nc->disetujui_oleh_tl_jabatan == 'Senior Manager' ? 'selected' : '' }}>
                                             Senior Manager</option>

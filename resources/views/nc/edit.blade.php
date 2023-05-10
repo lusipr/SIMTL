@@ -226,7 +226,8 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">jabatan diakui oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
-                                    <select name="diakui_oleh_jabatan" {{ empty($tlncr) ? '' : 'disabled' }}
+                                    <select name="diakui_oleh_jabatan" 
+                                    {{ empty($tlnc) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
                                         id="diakui_oleh_jabatan" class="form-control">
                                         <option value="">- Pilih -</option>
                                         <option {{ $nc->diakui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>Manager
@@ -268,7 +269,8 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">jabatan disetujui oleh
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
-                                    <select name="disetujui_oleh1_jabatan" {{ empty($tlncr) ? '' : 'disabled' }}
+                                    <select name="disetujui_oleh1_jabatan" 
+                                    {{ empty($tlnc) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
                                         id="disetujui_oleh1_jabatan" class="form-control">
                                         <option value="">- Pilih -</option>
                                         <option {{ $nc->disetujui_oleh1_jabatan == 'Senior Manager' ? 'selected' : '' }}>

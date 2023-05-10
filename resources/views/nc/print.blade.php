@@ -47,12 +47,12 @@
             : {{ $nc->no_nc }}
         </td>
         <td style="width: 20%; vertical-align: middle; border-left-width: 1px;">
-            Tanggal: {{ $nc->tgl_terbitnc }}
+            Tanggal: {{ $nc->tgl_terbitnc ? date('d-m-Y', strtotime($nc->tgl_terbitnc)) : '' }}
         </td>
     </tr>
     <tr>
         <td style="width: 20%; vertical-align: middle;">
-           Temuan
+            Temuan
         </td>
         <td style="width: 80%; vertical-align: middle;" colspan="2">
             : {{ $nc->opsi_temuan }}
@@ -222,7 +222,10 @@
             :
         </td>
         <td style="width: 15%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px dotted #000;">{{ $nc->tgl_accgm }}</div>
+            <div style="border-bottom: 1px dotted #000;">
+                {{-- {{ $nc->tgl_accgm }} --}}
+                {{ $nc->tgl_accgm ? date('d-m-Y', strtotime($nc->tgl_accgm)) : '' }}
+            </div>
         </td>
         <td style="width: 2%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;
@@ -236,7 +239,10 @@
             :
         </td>
         <td style="width: 34%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;" colspan="3">
-            <div style="border-bottom: 1px dotted #000;">{{ $nc->tgl_planaction }}</div>
+            <div style="border-bottom: 1px dotted #000;">
+                {{-- {{ $nc->tgl_planaction }} --}}
+                {{ $nc->tgl_planaction ? date('d-m-Y', strtotime($nc->tgl_planaction)) : '' }}
+            </div>
         </td>
         <td style="width: 30%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;" colspan="3">
             &nbsp;
@@ -382,7 +388,9 @@
         </td>
         <td style="width: 34%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
             colspan="3">
-            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->tgl_action) ? $tlnc->tgl_action : '' }}
+            <div style="border-bottom: 1px dotted #000;">
+                {{-- {{ !empty($tlnc->tgl_action) ? $tlnc->tgl_action : '' }} --}}
+                {{ !empty($tlnc->tgl_action) ? date('d-m-Y', strtotime($tlnc->tgl_action)) : '' }}
             </div>
         </td>
         <td style="width: 30%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;"
@@ -402,7 +410,8 @@
                 src="{{ !empty($tlnc->ttd_disetujui_oleh_tlnc) ? asset('storage/' . $tlnc->ttd_disetujui_oleh_tlnc) : '' }}"
                 alt="Ttd disetujui oleh">
             <br>
-            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->disetujui_oleh_tl) ? $tlnc->disetujui_oleh_tl : '' }}</div>
+            <div style="border-bottom: 1px dotted #000;">
+                {{ !empty($tlnc->disetujui_oleh_tl) ? $tlnc->disetujui_oleh_tl : '' }}</div>
         </td>
         <td style="width: 4%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;
@@ -415,7 +424,10 @@
             :
         </td>
         <td style="width: 15%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->tgl_accgm) ? $tlnc->tgl_accgm : '' }}</div>
+            <div style="border-bottom: 1px dotted #000;">
+                {{-- {{ !empty($tlnc->tgl_accgm) ? $tlnc->tgl_accgm : '' }} --}}
+                {{ !empty($tlnc->tgl_accgm) ? date('d-m-Y', strtotime($tlnc->tgl_accgm)) : '' }}
+            </div>
         </td>
         <td style="width: 2%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;
@@ -592,7 +604,10 @@
             Tanggal:
         </td>
         <td style="width: 18%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->tgl_verif) ? $tlnc->tgl_verif : '' }}</div>
+            <div style="border-bottom: 1px dotted #000;">
+                {{-- {{ !empty($tlnc->tgl_verif) ? $tlnc->tgl_verif : '' }} --}}
+                {{ !empty($tlnc->tgl_verif) ? date('d-m-Y', strtotime($tlnc->tgl_verif)) : '' }}
+            </div>
         </td>
         <td style="width: 2%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;
@@ -680,7 +695,9 @@
             Tanggal:
         </td>
         <td style="width: 18%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <div style="border-bottom: 1px dotted #000;">{{ !empty($tlnc->tgl_verifsm) ? $tlnc->tgl_verifsm : '' }}</div>
+            <div style="border-bottom: 1px dotted #000;">
+                {{ !empty($tlnc->tgl_verifsm) ? date('d-m-Y', strtotime($tlnc->tgl_verifsm))  : '' }}
+            </div>
         </td>
         <td style="width: 2%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;
