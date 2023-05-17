@@ -20,12 +20,28 @@
                                         id="no_ofi" value="{{ $ofi->no_ofi }}" readonly>
                                 </div>
                             </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Kepada</label>
+                                <div class="col-sm-6">
+                                    <select name="kepada" {{ empty($tlofi) ? '' : 'disabled' }} id="kepada"
+                                        class="form-control" disabled>
+                                        <option value="">-- Pilih --</option>
+                                        <option value="Wakil Manajemen"
+                                            {{ $ofi->kepada == 'Wakil Manajemen' ? 'selected' : '' }}>
+                                            Wakil Manajemen</option>
+                                        <option value="Ketua Fungsi Kepatuhan Anti Penyuapan"
+                                            {{ $ofi->kepada == 'Ketua Fungsi Kepatuhan Anti Penyuapan' ? 'selected' : '' }}>
+                                            Ketua Fungsi Kepatuhan Anti Penyuapan</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
                                 <div class="col-sm-6">
-                                    <select name="proses_audit"
-                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} id="proses_audit"
-                                        class="form-control" readonly>
+                                    <select name="proses_audit" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}
+                                        id="proses_audit" class="form-control" readonly>
                                         <option value="">- Pilih -</option>
                                         <option value="Internal" {{ $ofi->proses_audit == 'Internal' ? 'selected' : '' }}>
                                             Internal</option>
@@ -134,13 +150,54 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Usulan Peningkatan
                                     Produk/Proses/Sistem Mutu</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="usulan_ofi"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} class="form-control"
                                         id="usulan_ofi" value="{{ $ofi->usulan_ofi }}">
+                                </div>
+                            </div> --}}
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Usulan Peningkatan
+                                    Produk/Proses/Sistem Mutu</label>
+                                <div class="col-sm-6">
+                                    <select name="usulan_ofi" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}
+                                        id="usulan_ofi" class="form-control">
+                                        <option value="">- Pilih -</option>
+                                        <option value="Produk" {{ $ofi->usulan_ofi == 'Produk' ? 'selected' : '' }}>
+                                            Produk</option>
+                                        <option value="Proses" {{ $ofi->usulan_ofi == 'Proses' ? 'selected' : '' }}>
+                                            Proses</option>
+                                        <option value="Sistem Mutu" {{ $ofi->usulan_ofi == 'Sistem Mutu' ? 'selected' : '' }}>
+                                            Sistem Mutu</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Identitas No. Part/No. Tack/No. Dokumen</label>
+                                <div class="col-sm-6">
+                                    <select name="identitas_ofi" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}
+                                        id="identitas_ofi" class="form-control">
+                                        <option value="">- Pilih -</option>
+                                        <option value="No. Part" {{ $ofi->identitas_ofi == 'No. Part' ? 'selected' : '' }}>
+                                            No. Part</option>
+                                        <option value="No. Tack" {{ $ofi->identitas_ofi == 'No. Tack' ? 'selected' : '' }}>
+                                            No. Tack</option>
+                                        <option value="No. Dokumen" {{ $ofi->identitas_ofi == 'No. Dokumen' ? 'selected' : '' }}>
+                                            No. Dokumen</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">No. Identitas</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="no_identitas_ofi"
+                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} class="form-control"
+                                        id="no_identitas_ofi" value="{{ $ofi->no_identitas_ofi }}">
                                 </div>
                             </div>
 
@@ -208,7 +265,7 @@
                             </div> --}}
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diusulkan
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Diusulkan
                                     oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_dept_pengusul"
@@ -241,7 +298,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Disetujui
                                     Oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disetujui_oleh_ofi"
@@ -256,7 +313,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui Oleh (M/SM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui Oleh
+                                    (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disetujui_oleh"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} class="form-control"
@@ -265,7 +323,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui Oleh(M/SM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui
+                                    Oleh(M/SM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh_jabatan"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}
@@ -278,6 +337,16 @@
                                             {{ $ofi->disetujui_oleh_jabatan == 'Senior Manager' ? 'selected' : '' }}>
                                             Senior Manager</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan disetujui Oleh
+                                    (M/SM)</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="disetujui_oleh_jabatan"
+                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} class="form-control"
+                                        id="disetujui_oleh_jabatan" value="{{ $ofi->disetujui_oleh_jabatan }}">
                                 </div>
                             </div>
 
@@ -307,7 +376,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diselesaikan
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Diselesaikan
                                     Oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disposisi" class="form-control" id="ttd_disposisi"
@@ -321,7 +390,24 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan Oleh</label>
+                                <div class="col-sm-6">
+                                    <select name="disposisi_diselesaikan_oleh" id="disposisi_diselesaikan_oleh"
+                                        class="form-control"
+                                        {{ auth()->user()->role == 'Admin2' ? 'disabled' : 'disabled' }}>
+                                        <option value="">- Pilih -</option>
+                                        @foreach ($usersAuditee as $data_usersAuditee)
+                                            <option value="{{ $data_usersAuditee->id }}"
+                                                {{ $ofi->disposisi_diselesaikan_oleh == $data_usersAuditee->id ? 'selected' : '' }}>
+                                                {{ $data_usersAuditee->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+
+                            {{-- <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan Oleh</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disposisi_diselesaikan_oleh" class="form-control"
@@ -329,7 +415,7 @@
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
                                         value="{{ $ofi->disposisi_diselesaikan_oleh }}">
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <br>
                         </div>
@@ -361,7 +447,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Ditindaklanjuti
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Ditindaklanjuti
                                     oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_tlofi_oleh"
@@ -493,7 +579,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diverifikasi
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Diverifikasi
                                     Oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_tlofi_verif"
@@ -534,9 +620,10 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
                                 <div class="col-sm-6">
                                     <select name="status" id="status" class="form-control"
-                                    {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
                                         <option value="">- Pilih -</option>
-                                        <option {{ $ofi->status == 'Tindak Lanjut Belum Sesuai' ? 'selected' : '' }}>Tindak
+                                        <option {{ $ofi->status == 'Tindak Lanjut Belum Sesuai' ? 'selected' : '' }}>
+                                            Tindak
                                             Lanjut Belum Sesuai</option>
                                         <option {{ $ofi->status == 'Belum Ditindaklanjuti' ? 'selected' : '' }}>Belum
                                             Ditindaklanjuti</option>
@@ -581,6 +668,18 @@
                     document.getElementById('tgl_tl').disabled = false;
 
                     document.getElementById('bukti').disabled = false;
+
+                    document.getElementById('lampiran1').disabled = false;
+
+                    document.getElementById('lampiran2').disabled = false;
+
+                    document.getElementById('lampiran3').disabled = false;
+                    
+                    document.getElementById('lampiran4').disabled = false;
+                    
+                    document.getElementById('lampiran5').disabled = false;
+                    
+                    document.getElementById('lampiran6').disabled = false;
                 @endif
 
                 @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
@@ -626,6 +725,25 @@
 
                     document.getElementById('bukti').value = '';
                     document.getElementById('bukti').disabled = true;
+
+                    
+                    document.getElementById('lampiran1').value = '';
+                    document.getElementById('lampiran1').disabled = true;
+                    
+                    document.getElementById('lampiran2').value = '';
+                    document.getElementById('lampiran2').disabled = true;
+                    
+                    document.getElementById('lampiran3').value = '';
+                    document.getElementById('lampiran3').disabled = true;
+                    
+                    document.getElementById('lampiran4').value = '';
+                    document.getElementById('lampiran4').disabled = true;
+                    
+                    document.getElementById('lampiran5').value = '';
+                    document.getElementById('lampiran5').disabled = true;
+                    
+                    document.getElementById('lampiran6').value = '';
+                    document.getElementById('lampiran6').disabled = true;
                 @endif
 
                 @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')

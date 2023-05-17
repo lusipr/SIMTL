@@ -12,6 +12,15 @@
                             <div class="d-sm-flex justify-content-between align-items-center">
                                 <h2>Edit OFI</h2>
                             </div><br>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" value="OFI" id="jenis_temuan"
+                                        name="jenis_temuan" {{ empty($tlofi) ? '' : 'disabled' }} readonly>
+                                </div>
+                            </div>
+
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">No. OFI</label>
                                 <div class="col-sm-6">
@@ -19,6 +28,36 @@
                                         class="form-control" id="no_ofi" value="{{ $ofi->no_ofi }}">
                                 </div>
                             </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Kepada</label>
+                                <div class="col-sm-6">
+                                    <select name="kepada" {{ empty($tlofi) ? '' : 'disabled' }} id="kepada"
+                                        class="form-control">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="Wakil Manajemen"
+                                            {{ $ofi->kepada == 'Wakil Manajemen' ? 'selected' : '' }}>
+                                            Wakil Manajemen</option>
+                                        <option value="Ketua Fungsi Kepatuhan Anti Penyuapan"
+                                            {{ $ofi->kepada == 'Ketua Fungsi Kepatuhan Anti Penyuapan' ? 'selected' : '' }}>
+                                            Ketua Fungsi Kepatuhan Anti Penyuapan</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Periode Audit</label>
+                                <div class="col-sm-6">
+                                    <select name="periode_audit" {{ empty($tlofi) ? '' : 'disabled' }} id="periode_audit"
+                                        class="form-control">
+                                        <option value="I" {{ $ofi->periode_audit == 'I' ? 'selected' : '' }}>
+                                            I</option>
+                                        <option value="II" {{ $ofi->periode_audit == 'II' ? 'selected' : '' }}>
+                                            II</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
                                 <div class="col-sm-6">
@@ -26,7 +65,8 @@
                                         class="form-control">
                                         <option value="Internal" {{ $ofi->proses_audit == 'Internal' ? 'selected' : '' }}>
                                             Internal</option>
-                                        <option value="Eksternal" {{ $ofi->proses_audit == 'Eksternal' ? 'selected' : '' }}>
+                                        <option value="Eksternal"
+                                            {{ $ofi->proses_audit == 'Eksternal' ? 'selected' : '' }}>
                                             Eksternal</option>
                                     </select>
                                 </div>
@@ -78,14 +118,7 @@
                             </div>
 
                             <br>
-                            <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
-                                <div class="col-sm-6">
-                                    <input class="form-control" type="text" value="OFI" id="jenis_temuan"
-                                        name="jenis_temuan" {{ empty($tlofi) ? '' : 'disabled' }} readonly>
-                                </div>
-                            </div>
-                            <br>
+
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit OFI</label>
                                 <div class="col-sm-6">
@@ -139,12 +172,53 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Usulan Peningkatan
                                     Produk/Proses/Sistem Mutu</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="usulan_ofi" {{ empty($tlofi) ? '' : 'disabled' }}
                                         class="form-control" id="usulan_ofi" value="{{ $ofi->usulan_ofi }}">
+                                </div>
+                            </div> --}}
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Usulan Peningkatan
+                                    Produk/Proses/Sistem Mutu</label>
+                                <div class="col-sm-6">
+                                    <select name="usulan_ofi" {{ empty($tlofi) ? '' : 'disabled' }} id="usulan_ofi"
+                                        class="form-control">
+                                        <option value="">- Pilih -</option>
+                                        <option value="Produk" {{ $ofi->usulan_ofi == 'Produk' ? 'selected' : '' }}>
+                                            Produk</option>
+                                        <option value="Proses" {{ $ofi->usulan_ofi == 'Proses' ? 'selected' : '' }}>
+                                            Proses</option>
+                                        <option value="Sistem Mutu" {{ $ofi->usulan_ofi == 'Sistem Mutu' ? 'selected' : '' }}>
+                                            Sistem Mutu</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Identitas No. Part/No. Tack/No. Dokumen</label>
+                                <div class="col-sm-6">
+                                    <select name="identitas_ofi" {{ empty($tlofi) ? '' : 'disabled' }} id="identitas_ofi"
+                                        class="form-control">
+                                        <option value="">- Pilih -</option>
+                                        <option value="No. Part" {{ $ofi->identitas_ofi == 'No. Part' ? 'selected' : '' }}>
+                                            No. Part</option>
+                                        <option value="No. Tack" {{ $ofi->identitas_ofi == 'No. Tack' ? 'selected' : '' }}>
+                                            No. Tack</option>
+                                        <option value="No. Dokumen" {{ $ofi->identitas_ofi == 'No. Dokumen' ? 'selected' : '' }}>
+                                            No. Dokumen</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">No identitas</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="no_identitas_ofi" {{ empty($tlofi) ? '' : 'disabled' }}
+                                        class="form-control" id="no_identitas_ofi" value="{{ $ofi->no_identitas_ofi }}">
                                 </div>
                             </div>
 
@@ -250,15 +324,26 @@
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui Oleh</label>
                                 <div class="col-sm-6">
-                                    <select name="disetujui_oleh_jabatan" {{ empty($tlofi) ? '' : 'disabled' }} id="disetujui_oleh_jabatan"
-                                        class="form-control">
+                                    <select name="disetujui_oleh_jabatan" {{ empty($tlofi) ? '' : 'disabled' }}
+                                        id="disetujui_oleh_jabatan" class="form-control">
                                         <option value="">- Pilih -</option>
-                                        <option value="Manager" {{ $ofi->disetujui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>
+                                        <option value="Manager"
+                                            {{ $ofi->disetujui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>
                                             Manager</option>
                                         <option value="Senior Manager"
                                             {{ $ofi->disetujui_oleh_jabatan == 'Senior Manager' ? 'selected' : '' }}>
                                             Senior Manager</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan disetujui
+                                    Oleh</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="disetujui_oleh_jabatan_nm"
+                                        {{ empty($tlofi) ? '' : 'disabled' }} class="form-control"
+                                        id="disetujui_oleh_jabatan_nm" value="{{ $ofi->disetujui_oleh_jabatan_nm }}">
                                 </div>
                             </div>
 
@@ -300,14 +385,30 @@
                                         readonly>
                                 </div>
                             </div>
-                            <div class="mb-3">
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan Oleh</label>
+                                <div class="col-sm-6">
+                                    <select name="disposisi_diselesaikan_oleh" {{ empty($tlofi) ? '' : 'disabled' }}
+                                        id="disposisi_diselesaikan_oleh" class="form-control">
+                                        <option value="">- Pilih -</option>
+                                        @foreach ($usersAuditee as $data_usersAuditee)
+                                            <option value="{{ $data_usersAuditee->id }}"
+                                                {{ $ofi->disposisi_diselesaikan_oleh == $data_usersAuditee->id ? 'selected' : '' }}>
+                                                {{ $data_usersAuditee->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            {{-- <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan Oleh</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disposisi_diselesaikan_oleh"
                                         {{ empty($tlofi) ? '' : 'disabled' }} class="form-control"
                                         id="disposisi_diselesaikan_oleh" value="{{ $ofi->disposisi_diselesaikan_oleh }}">
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <br>
                             @if (empty($tlofi))

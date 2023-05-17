@@ -32,7 +32,7 @@
                             </div>
 
                             <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Objek Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
                                 <div class="col-sm-6">
                                     <select name="tema_audit" id="tema_audit" class="form-control" disabled>
                                         <option value="">- Pilih -</option>
@@ -44,6 +44,7 @@
                                     </select>
                                 </div>
                             </div>
+                            <br>
 
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Objek Audit</label>

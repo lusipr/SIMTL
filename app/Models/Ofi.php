@@ -16,6 +16,7 @@ class Ofi extends Model
         'periode_audit',
         'proses_audit',
         'tema_audit',
+        'kepada',
         'objek_audit',
         'jenis_temuan',
         'dokumen',
@@ -32,6 +33,8 @@ class Ofi extends Model
         'proyek',
         'dept_ygmngrjkn',
         'usulan_ofi',
+        'identitas_ofi',
+        'no_identitas_ofi',
         'uraian_permasalahan',
         'usulan_peningkatan',
         'ttd_dept_pengusul',
@@ -40,6 +43,7 @@ class Ofi extends Model
         'ttd_disetujui_oleh',
         'disetujui_oleh',
         'disetujui_oleh_jabatan',
+        'disetujui_oleh_jabatan_nm',
         'tgl_disetujui',
         'disposisi',
         'ttd_disposisi',
@@ -60,6 +64,11 @@ class Ofi extends Model
     public function user_asal_dept()
     {
         return $this->belongsTo(User::class, 'asal_dept', 'id');
+    }
+
+    public function user_disposisi_diselesaikan_oleh()
+    {
+        return $this->belongsTo(User::class, 'disposisi_diselesaikan_oleh', 'id');
     }
 
     public function user_dept_ygmngrjkn()

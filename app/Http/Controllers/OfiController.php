@@ -260,8 +260,9 @@ class OfiController extends Controller
 
             if (auth()->user()->role == 'Admin') {
                 $validatedDataOfi['no_ofi'] = $request->no_ofi;
-                $validatedDataOfi['periode_audit'] = $request->periode_audit;
+                // $validatedDataOfi['periode_audit'] = $request->periode_audit;
                 $validatedDataOfi['proses_audit'] = $request->proses_audit;
+                // $validatedDataOfi['kepada'] = $request->kepada;
                 $validatedDataOfi['tema_audit'] = $request->tema_audit;
                 $validatedDataOfi['jenis_temuan'] = $request->jenis_temuan;
                 $validatedDataOfi['tgl_terbitofi'] = $request->tgl_terbitofi;
@@ -270,6 +271,8 @@ class OfiController extends Controller
                 $validatedDataOfi['asal_dept'] = $request->asal_dept;
                 $validatedDataOfi['proyek'] = $request->proyek;
                 $validatedDataOfi['usulan_ofi'] = $request->usulan_ofi;
+                $validatedDataOfi['identitas_ofi'] = $request->identitas_ofi;
+                $validatedDataOfi['no_identitas_ofi'] = $request->no_identitas_ofi;
                 $validatedDataOfi['dept_ygmngrjkn'] = $request->dept_ygmngrjkn;
                 $validatedDataOfi['uraian_permasalahan'] = $request->uraian_permasalahan;
                 $validatedDataOfi['usulan_peningkatan'] = $request->usulan_peningkatan;
@@ -277,6 +280,7 @@ class OfiController extends Controller
                 $validatedDataOfi['tgl_diusulkan'] = $request->tgl_diusulkan;
                 $validatedDataOfi['disetujui_oleh'] = $request->disetujui_oleh;
                 $validatedDataOfi['disetujui_oleh_jabatan'] = $request->disetujui_oleh_jabatan;
+                $validatedDataOfi['disetujui_oleh_jabatan_nm'] = $request->disetujui_oleh_jabatan_nm;
                 $validatedDataOfi['tgl_disetujui'] = $request->tgl_disetujui;
                 $validatedDataOfi['disposisi'] = $request->disposisi;
                 $validatedDataOfi['disposisi_diselesaikan_oleh'] = $request->disposisi_diselesaikan_oleh;
@@ -347,7 +351,7 @@ class OfiController extends Controller
             $validatedDataOfi['status'] = $request->status;
             $validatedDataOfi['disposisi'] = $request->disposisi;
             $validatedDataOfi['disposisi_diselesaikan_oleh'] = $request->disposisi_diselesaikan_oleh;
-            $validatedDataOfi['tgl_deadline'] = $request->tgl_deadline;
+            // $validatedDataOfi['tgl_deadline'] = $request->tgl_deadline;
 
             $validatedDataTLOfi = $request->validate([
                 'ttd_tlofi_verif' => 'mimes:jpeg,jpg,png',

@@ -7,36 +7,46 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-sm-flex justify-content-between align-items-center">
-                            <h2>Tambah {{ $title }}</h2>
+                            <h2>Edit {{ $title }}</h2>
                         </div><br>
-                        <form action="{{ url('data-departemen/edit/' . $user->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('data-departemen/edit/' . $user->id) }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">NIP</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="nip" value="{{ $user->nip }}" class="form-control" required id="nip"
-                                        placeholder="Masukkan NIP">
+                                    <input type="text" name="nip" value="{{ $user->nip }}" class="form-control"
+                                        required id="nip" placeholder="Masukkan NIP">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Departemen</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="name" value="{{ $user->name }}" class="form-control" required id="name"
-                                        placeholder="Masukkan Nama Departemen">
+                                    <input type="text" name="name" value="{{ $user->name }}" class="form-control"
+                                        required id="name" placeholder="Masukkan Nama Departemen">
                                 </div>
                             </div>
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Username</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="username" value="{{ $user->username }}" class="form-control" required id="username"
-                                        placeholder="Masukkan Username">
+                                    <input type="text" name="username" value="{{ $user->username }}" class="form-control"
+                                        required id="username" placeholder="Masukkan Username">
                                 </div>
                             </div>
+                            <br>
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Password</label>
                                 <div class="col-sm-6">
-                                    <input type="password" name="password" class="form-control" id="password"
-                                        placeholder="Masukkan Password">
+                                    {{-- <input type="password" name="password" class="form-control" id="password"
+                                        placeholder="Masukkan Password"> --}}
+                                    <div class="input-group">
+                                        <input type="password" name="password" class="form-control" required id="password"
+                                            placeholder="Masukkan Password">
+                                        <button type="button" class="btn btn-info" id="show_password_toggle">
+                                            <i class="bi bi-eye"></i>
+                                            show
+                                        </button>
+                                    </div>
                                 </div>
                             </div><br><br>
                             <input type="submit" value="Simpan" class="btn btn-info"></input>
@@ -47,4 +57,20 @@
             </div>
         </div>
     </div>
+    <script>
+        const password_input = document.getElementById('password');
+        const show_password_toggle = document.getElementById('show_password_toggle');
+
+        show_password_toggle.addEventListener('click', function() {
+            if (password_input.type === 'password') {
+                password_input.type = 'text';
+                // show_password_toggle.innerHTML = '<i class="bi bi-eye-slash"></i>';
+                show_password_toggle.innerHTML = 'Hide';
+            } else {
+                password_input.type = 'password';
+                // show_password_toggle.innerHTML = '<i class="bi bi-eye"></i>';
+                show_password_toggle.innerHTML = 'Show';
+            }
+        });
+    </script>
 @endsection

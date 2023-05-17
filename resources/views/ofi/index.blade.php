@@ -39,6 +39,7 @@
                                     <tr>
                                         <th class="text-center">No</th>
                                         <th class="text-center">No. Ofi</th>
+                                        <th class="text-center">Periode</th>
                                         <th class="text-center">Proses</th>
                                         <th class="text-center">Tema</th>
                                         <th class="text-center">Objek</th>
@@ -56,12 +57,12 @@
                                         <tr>
                                             <td class="text-center">{{ $loop->index + 1 }}</td>
                                             <td class="text-center">{{ $data_ofi->no_ofi }}<br>
-
                                             </td>
+                                            <td class="text-center">{{ $data_ofi->periode_audit }}</td>
                                             <td class="text-center">{{ $data_ofi->proses_audit }}</td>
                                             <td class="text-center">{{ $data_ofi->users_tema->name }}</td>
                                             <td class="text-center">{{ $data_ofi->users->name }}</td>
-                                            <td class="text-center">{{ $data_ofi->disposisi_diselesaikan_oleh }}</td>
+                                            <td class="text-center">{{ $data_ofi->user_disposisi_diselesaikan_oleh->name }}</td>
                                             <!--<td class="text-center">{{ $data_ofi->dokumen }}</td>-->
                                             <td class="text-center">{{ date('d-m-Y', strtotime($data_ofi->tgl_terbitofi)) }}</td>
                                             <td class="text-center">{{ date('d-m-Y', strtotime($data_ofi->tgl_deadline)) }}</td>

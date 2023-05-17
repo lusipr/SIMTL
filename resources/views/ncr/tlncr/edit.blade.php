@@ -180,14 +180,22 @@
                                     <input type="text" class="form-control" value="{{ $ncr->ttd_auditee }}" readonly>
                                 </div>
                             </div>
+                            
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama diakui oleh (M/SM)</label>
+                                <div class="col-sm-6">
+                                    <input type="name" name="diakui_oleh" class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
+                                        id="diakui_oleh" value="{{ $ncr->diakui_oleh }}">
+                                </div>
+                            </div>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan diakui oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <select name="diakui_oleh_jabatan" id="diakui_oleh_jabatan" class="form-control"
-                                    {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
-                                        >
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option {{ $ncr->diakui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>Manager
                                         </option>
@@ -198,11 +206,11 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama diakui oleh (M/SM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan diakui oleh (M/SM)</label>
                                 <div class="col-sm-6">
-                                    <input type="name" name="diakui_oleh" class="form-control"
+                                    <input type="name" name="diakui_oleh_jabatan_nm" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
-                                        id="diakui_oleh" value="{{ $ncr->diakui_oleh }}">
+                                        id="diakui_oleh_jabatan_nm" value="{{ $ncr->diakui_oleh_jabatan_nm }}">
                                 </div>
                             </div>
 
@@ -236,15 +244,24 @@
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh1_jabatan" id="disetujui_oleh1_jabatan"
-                                        class="form-control" 
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
-                                        >
+                                        class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option {{ $ncr->disetujui_oleh1_jabatan == 'Senior Manager' ? 'selected' : '' }}>
                                             Senior Manager</option>
                                         <option {{ $ncr->disetujui_oleh1_jabatan == 'General manager' ? 'selected' : '' }}>
                                             General Manager</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan disetujui oleh
+                                    (SM/GM)</label>
+                                <div class="col-sm-6">
+                                    <input type="name" name="disetujui_oleh1_jabatan_nm" class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
+                                        id="disetujui_oleh1_jabatan_nm" value="{{ $ncr->disetujui_oleh1_jabatan_nm }}">
                                 </div>
                             </div>
 
@@ -362,14 +379,25 @@
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh2_jabatan" id="disetujui_oleh2_jabatan"
-                                        class="form-control" 
+                                        class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
-                                        <option {{ $ncr->disetujui_oleh2_jabatan == 'Senior Manager' ? 'selected' : '' }}>
+                                        <option {{ isset($tlncr->disetujui_oleh2_jabatan) && $tlncr->disetujui_oleh2_jabatan == 'Senior Manager' ? 'selected' : '' }}>
                                             Senior Manager</option>
-                                        <option {{ $ncr->disetujui_oleh2_jabatan == 'General manager' ? 'selected' : '' }}>
+                                        <option {{ isset($tlncr->disetujui_oleh2_jabatan) && $tlncr->disetujui_oleh2_jabatan == 'General manager' ? 'selected' : '' }}>
                                             General Manager</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan disetujui oleh
+                                    (SM/GM)</label>
+                                <div class="col-sm-6">
+                                    <input type="name" name="disetujui_oleh2_jabatan_nm" class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
+                                        id="disetujui_oleh2_jabatan_nm"
+                                        value="{{ isset($tlncr->disetujui_oleh2_jabatan_nm) ? $tlncr->disetujui_oleh2_jabatan_nm : '' }}">
                                 </div>
                             </div>
 
@@ -395,7 +423,13 @@
                                     </p>
                                 </div>
                             </div>
+                            <br>
 
+                            <div class="mb-3">
+                                <div class="col-sm-6">
+                                    <h6>Verifikasi diisi setelah data tindak lanjut dari auditee sudah lengkap</h6>
+                                </div>
+                            </div>
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-6 col-form-label">Uraian Verifikasi</label>
                                 <div class="col-sm-6">
@@ -481,8 +515,9 @@
                                 <label for="colFormLabel" class="col-sm-6 col-form-label">Uraian catatan TKP</label>
                                 <div class="col-sm-6">
                                     <textarea type="name" name="uraian_catatan_tkp" class="form-control"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }} id="uraian_catatan_tkp"
-                                        rows="5" placeholder="Masukkan uraian_catatan_tkp tinjauan" style="font-style:italic">{{ isset($tlncr->uraian_catatan_tkp) ? $tlncr->uraian_catatan_tkp : '' }}</textarea>
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
+                                        id="uraian_catatan_tkp" rows="5" placeholder="Masukkan uraian_catatan_tkp tinjauan"
+                                        style="font-style:italic">{{ isset($tlncr->uraian_catatan_tkp) ? $tlncr->uraian_catatan_tkp : '' }}</textarea>
                                 </div>
                             </div>
 
@@ -533,7 +568,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
                                 <div class="col-sm-6">
                                     <select name="status" id="status" class="form-control"
-                                    {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
                                         <option value="">- Pilih -</option>
                                         <option {{ $ncr->status == 'Tindak Lanjut Belum Sesuai' ? 'selected' : '' }}>Tindak
                                             Lanjut Belum Sesuai</option>

@@ -17,6 +17,19 @@
                                     value="{{ $ncr->no_ncr }}">
                             </div>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Periode Audit</label>
+                            <div class="col-sm-6">
+                                <select name="periode_audit" disabled id="periode_audit" class="form-control">
+                                    <option value="I" {{ $ncr->periode_audit == 'I' ? 'selected' : '' }}>
+                                        I</option>
+                                    <option value="II" {{ $ncr->periode_audit == 'II' ? 'selected' : '' }}>
+                                        II</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="mb-3">
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
                             <div class="col-sm-6">
@@ -28,7 +41,7 @@
                                 </select>
                             </div>
                         </div>
-                       
+
                         {{-- <div class="mb-3">
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
                             <div class="col-sm-6">
@@ -55,6 +68,7 @@
                                 </select>
                             </div>
                         </div>
+                        <br>
 
                         <div class="row-mb-3">
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Objek Audit</label>
@@ -97,7 +111,7 @@
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
                             <div class="col-sm-6">
                                 <select name="status" disabled id="status" class="form-control"
-                                {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                    {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
                                     <option value="">- Pilih -</option>
                                     <option {{ $ncr->status == 'Data Belum Lengkap' ? 'selected' : '' }}>Data Belum Lengkap
                                     </option>
@@ -179,7 +193,7 @@
 
                         <div class="mb-3">
                             <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diakui Oleh
-                                (SM/GM)</label>
+                                (M/SM)</label>
                             <div class="col-sm-6">
                                 <input type="file" name="ttd_auditee" disabled class="form-control" id="ttd_auditee"
                                     value="{{ $ncr->ttd_auditee }}">
@@ -191,10 +205,34 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Diakui Oleh (M/SM)</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Nama diakui Oleh (M/SM)</label>
                             <div class="col-sm-6">
                                 <input type="name" name="diakui_oleh" disabled class="form-control" id="diakui_oleh"
                                     value="{{ $ncr->diakui_oleh }}">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan diakui oleh
+                                (M/SM)</label>
+                            <div class="col-sm-6">
+                                <select name="diakui_oleh_jabatan" id="diakui_oleh_jabatan" class="form-control"
+                                    disabled>
+                                    <option value="">- Pilih -</option>
+                                    <option {{ $ncr->diakui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>Manager
+                                    </option>
+                                    <option {{ $ncr->diakui_oleh_jabatan == 'Senior manager' ? 'selected' : '' }}>
+                                        Senior Manager</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan diakui oleh
+                                (M/SM)</label>
+                            <div class="col-sm-6">
+                                <input type="name" name="diakui_oleh_jabatan_nm" class="form-control" disabled
+                                    id="diakui_oleh_jabatan_nm" value="{{ $ncr->diakui_oleh_jabatan_nm }}">
                             </div>
                         </div>
 
@@ -213,18 +251,42 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui oleh (SM/GM)</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui oleh (SM/GM)</label>
                             <div class="col-sm-6">
-                                <input type="name" name="disetujui_oleh" disabled class="form-control"
-                                    id="disetujui_oleh" value="{{ $ncr->disetujui_oleh }}">
+                                <input type="name" name="disetujui_oleh1" disabled class="form-control"
+                                    id="disetujui_oleh1" value="{{ $ncr->disetujui_oleh1 }}">
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui GM</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui oleh
+                                (SM/GM)</label>
                             <div class="col-sm-6">
-                                <input type="date" name="tgl_accgm" disabled class="form-control" id="tgl_accgm"
-                                    value="{{ $ncr->tgl_accgm }}">
+                                <select name="disetujui_oleh1_jabatan" id="disetujui_oleh1_jabatan" class="form-control"
+                                    disabled>
+                                    <option value="">- Pilih -</option>
+                                    <option {{ $ncr->disetujui_oleh1_jabatan == 'Senior Manager' ? 'selected' : '' }}>
+                                        Senior Manager</option>
+                                    <option {{ $ncr->disetujui_oleh1_jabatan == 'General manager' ? 'selected' : '' }}>
+                                        General Manager</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan disetujui oleh
+                                (SM/GM)</label>
+                            <div class="col-sm-6">
+                                <input type="name" name="disetujui_oleh1_jabatan_nm" class="form-control" disabled
+                                    id="disetujui_oleh1_jabatan_nm" value="{{ $ncr->disetujui_oleh1_jabatan_nm }}">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui SM/GM</label>
+                            <div class="col-sm-6">
+                                <input type="date" name="tgl_accgm1" disabled class="form-control" id="tgl_accgm1"
+                                    value="{{ $ncr->tgl_accgm1 }}">
                             </div>
                         </div>
                         <div class="mb-3">
@@ -297,18 +359,58 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui oleh (SM/GM)</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui oleh (SM/GM)</label>
                             <div class="col-sm-6">
-                                <input type="name" name="disetujui_oleh" class="form-control" disabled
-                                    id="disetujui_oleh" value="{{ $tlncr->disetujui_oleh }}">
+                                <input type="name" name="disetujui_oleh2" class="form-control" disabled
+                                    id="disetujui_oleh2" value="{{ $tlncr->disetujui_oleh2 }}">
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Disetujui GM</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui oleh
+                                (SM/GM)</label>
                             <div class="col-sm-6">
-                                <input type="date" name="tgl_accgm" disabled value="{{ $tlncr->tgl_accgm }}"
-                                    class="form-control" id="tgl_accgm">
+                                <select name="disetujui_oleh2_jabatan" id="disetujui_oleh2_jabatan" class="form-control"
+                                    disabled>
+                                    <option value="">- Pilih -</option>
+                                    <option
+                                        {{ isset($tlncr->disetujui_oleh2_jabatan) && $tlncr->disetujui_oleh2_jabatan == 'Senior Manager' ? 'selected' : '' }}>
+                                        Senior Manager</option>
+                                    <option
+                                        {{ isset($tlncr->disetujui_oleh2_jabatan) && $tlncr->disetujui_oleh2_jabatan == 'General manager' ? 'selected' : '' }}>
+                                        General Manager</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan disetujui oleh
+                                (SM/GM)</label>
+                            <div class="col-sm-6">
+                                <input type="name" name="disetujui_oleh2_jabatan_nm" class="form-control" disabled
+                                    id="disetujui_oleh2_jabatan_nm"
+                                    value="{{ isset($tlncr->disetujui_oleh2_jabatan_nm) ? $tlncr->disetujui_oleh2_jabatan_nm : '' }}">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Disetujui</label>
+                            <div class="col-sm-6">
+                                <input type="date" name="tgl_accgm2" disabled value="{{ $tlncr->tgl_accgm2 }}"
+                                    class="form-control" id="tgl_accgm2">
+                            </div>
+                        </div>
+
+                        <div class="row-mb-3">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Bukti</label>
+                            <div class="col-sm-6">
+                                <input type="file" name="bukti" id="bukti" class="form-control"
+                                    accept="application/pdf" disabled>
+                                <p class="help-block">
+                                    <font color="red">"Format file .pdf"</font>
+                                </p>
+                                <input type="text" class="form-control"
+                                        value="{{ $ncr->bukti }}" readonly>
                             </div>
                         </div>
 
@@ -376,6 +478,15 @@
                             <div class="col-sm-6">
                                 <textarea type="name" name="rekomendasi" disabled class="form-control" id="rekomendasi" rows="5"
                                     placeholder="Masukkan rekomendasi tinjauan" style="font-style:italic">{{ $tlncr->rekomendasi }}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="colFormLabel" class="col-sm-6 col-form-label">Uraian catatan TKP</label>
+                            <div class="col-sm-6">
+                                <textarea type="name" name="uraian_catatan_tkp" class="form-control" disabled
+                                    id="uraian_catatan_tkp" rows="5" placeholder="Masukkan uraian_catatan_tkp tinjauan"
+                                    style="font-style:italic">{{ isset($tlncr->uraian_catatan_tkp) ? $tlncr->uraian_catatan_tkp : '' }}</textarea>
                             </div>
                         </div>
 

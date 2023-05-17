@@ -40,7 +40,7 @@ class TemaController extends Controller
             'nip' => 'required',
             'name' => 'required',
             'username' => 'required',
-            'password' => 'required',
+            // 'password' => 'required',
         ]);
 
         $validatedData['role'] = 'Tema';

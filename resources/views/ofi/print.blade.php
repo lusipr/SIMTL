@@ -71,7 +71,7 @@
             Dari (Bagian / Departemen)*: {{ !empty($ofi->user_asal_dept->name) ? $ofi->user_asal_dept->name : '' }}
         </th>
         <td style="width: 45%; vertical-align: middle; border-left-width: 1px;">
-            Kepada: Wakil Manajemen
+            Kepada: {{ $ofi->kepada }}
         </td>
     </tr>
     <tr>
@@ -87,7 +87,7 @@
         <td style="width: 45%; vertical-align: top; border-left-width: 1px;" rowspan="2">
             <div>Usulan peningkatan untuk Produk / Proses / Sistem Mutu Identitas (No. Part / No. Tack / No. Dokumen)*:
             </div>
-            {{ $ofi->usulan_ofi }}
+            {{ $ofi->usulan_ofi }} {{ $ofi->identitas_ofi }} {{ $ofi->no_identitas_ofi }} 
         </td>
     </tr>
     <tr>
@@ -271,19 +271,16 @@
                         :
                     </td>
                     <td style="width: 60%; border: 0px;">
-                    <div>
-                        {{ $ofi->disetujui_oleh_jabatan }}
-                    </div>
-                    <br>
-                    <img width="50" height="60" src="{{ asset('storage/' . $ofi->ttd_disetujui_oleh_ofi) }}"
-                        alt=" ">
-                    <br>
-                    {{ $ofi->disetujui_oleh }}
+                        <img width="50" height="60" src="{{ asset('storage/' . $ofi->ttd_disetujui_oleh_ofi) }}"
+                            alt=" ">
+                        <br>
+                        <div>{{ $ofi->disetujui_oleh }}</div>
+                        <div>{{ $ofi->disetujui_oleh_jabatan }} {{ $ofi->disetujui_oleh_jabatan_nm }} </div>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
-</table>
-</td>
-</tr>
 </table>
 
 <table style="width: 100%; padding-top: 1px;">
@@ -330,10 +327,12 @@
                             </span>
                             <span style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">
 
-                                {{ $ofi->disposisi_diselesaikan_oleh }}
+                                {{-- {{ $ofi->disposisi_diselesaikan_oleh }} --}}
+                                {{ !empty($ofi->user_disposisi_diselesaikan_oleh->name) ? $ofi->user_disposisi_diselesaikan_oleh->name : '' }}
                             </span>
                         </div>
-                        @if (strlen($ofi->disposisi_diselesaikan_oleh) <= 100)
+                        @if (strlen(!empty($ofi->user_disposisi_diselesaikan_oleh->name) ? $ofi->user_disposisi_diselesaikan_oleh->name : '') <=
+                                100)
                             <div style="text-align: justify; border-bottom: 1px solid #000;">
                                 <span
                                     style="padding-bottom: 2.55px; border-bottom: 1px solid #000; line-height: 27px;">

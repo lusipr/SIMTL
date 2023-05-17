@@ -214,7 +214,7 @@
 
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diakui oleh
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Diakui oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_diakui_oleh_nc" class="form-control"
@@ -242,7 +242,7 @@
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <select name="diakui_oleh_jabatan" id="diakui_oleh_jabatan" class="form-control"
-                                    {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option {{ $nc->diakui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>Manager
                                         </option>
@@ -282,7 +282,7 @@
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh1_jabatan" id="disetujui_oleh1_jabatan"
-                                        class="form-control" 
+                                        class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option {{ $nc->disetujui_oleh1_jabatan == 'Senior Manager' ? 'selected' : '' }}>
@@ -389,7 +389,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui oleh (SM/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui oleh
+                                    (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="disetujui_oleh_tl" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
@@ -399,17 +400,20 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui oleh (SM/GM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui oleh
+                                    (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh_tl_jabatan" id="disetujui_oleh_tl_jabatan"
-                                        class="form-control" 
+                                        class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option {{ $nc->disetujui_oleh_tl_jabatan == 'Senior Manager' ? 'selected' : '' }}>
                                             Senior Manager</option>
-                                        <option {{ $nc->disetujui_oleh_tl_jabatan == 'General manager' ? 'selected' : '' }}>
+                                        <option
+                                            {{ $nc->disetujui_oleh_tl_jabatan == 'General manager' ? 'selected' : '' }}>
                                             General Manager</option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="mb-3">
@@ -432,6 +436,13 @@
                                     <p class="help-block">
                                         <font color="red">"Format file .pdf"</font>
                                     </p>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="mb-3">
+                                <div class="col-sm-6">
+                                    <h6>Verifikasi diisi setelah data tindak lanjut dari auditee sudah lengkap</h6>
                                 </div>
                             </div>
 
@@ -520,8 +531,7 @@
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Diverifikasi oleh
-                                    SM Departemen
-                                    Tata Kelola Perusahaan</label>
+                                    SM Departemen Tata Kelola Perusahaan</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_verifsm_tlnc"
                                         value="{{ isset($tlnc->ttd_verifsm_tlnc) ? $tlnc->ttd_verifsm_tlnc : '' }}"
@@ -551,7 +561,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Verifikasi SM Departemen
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Tanggal Verifikasi SM Departemen
                                     Tata Kelola Perusahaan</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_verifsm"
@@ -566,7 +576,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
                                 <div class="col-sm-6">
                                     <select name="status" id="status" class="form-control"
-                                    {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
                                         <option value="">- Pilih -</option>
                                         <option {{ $nc->status == 'Tindak Lanjut Belum Sesuai' ? 'selected' : '' }}>Tindak
                                             Lanjut Belum Sesuai</option>

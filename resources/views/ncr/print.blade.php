@@ -149,7 +149,7 @@
         </td>
         <td style="width: 45%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 1px;"
             colspan="3">
-            Diakui oleh *: {{ $ncr->diakui_oleh_jabatan }}
+            Diakui oleh *:
         </td>
     </tr>
     <tr>
@@ -169,10 +169,13 @@
             (M/SM)
         </td>
         <td style="width: 15%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <br>
             <img width="50" height="60" src="{{ asset('storage/' . $ncr->ttd_auditee) }}" alt=" ">
             <br>
-            <div style="border-bottom: 1px dotted #000;">{{ $ncr->diakui_oleh }}</div>
+            <div>
+                {{ $ncr->diakui_oleh }}
+            </div>
+            <div style="border-bottom: 1px dotted #000;">{{ $ncr->diakui_oleh_jabatan }}
+                {{ $ncr->diakui_oleh_jabatan_nm }}</div>
         </td>
         <td style="width: 2%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;
@@ -189,11 +192,11 @@
             :
         </td>
         <td style="width: 23%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            {{ $ncr->disetujui_oleh1_jabatan }}
-            <br>
             <img width="50" height="60" src="{{ asset('storage/' . $ncr->ttd_auditee_gm_sm) }}" alt=" ">
             <br>
-            <div style="border-bottom: 1px dotted #000;">{{ $ncr->disetujui_oleh1 }}</div>
+            <div>{{ $ncr->disetujui_oleh1 }}</div>
+            <div style="border-bottom: 1px dotted #000;">{{ $ncr->disetujui_oleh1_jabatan }}
+                {{ $ncr->disetujui_oleh1_jabatan_nm }}</div>
         </td>
         <td style="width: 4%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;
@@ -351,7 +354,11 @@
                 src="{{ !empty($tlncr->ttd_tl_gm) ? asset('storage/' . $tlncr->ttd_tl_gm) : '' }}"
                 alt="Ttd disetujui oleh">
             <br>
-            <div style="border-bottom: 1px dotted #000;">{{ $ncr->disetujui_oleh2 }}</div>
+            {{-- <div style="border-bottom: 1px dotted #000;">{{ $ncr->disetujui_oleh2 }}</div> --}}
+            <div>{{ !empty($tlncr->disetujui_oleh2) ? $tlncr->disetujui_oleh2 : '' }}</div>
+            <div style="border-bottom: 1px dotted #000;">
+                {{ !empty($tlncr->disetujui_oleh2_jabatan) ? $tlncr->disetujui_oleh2_jabatan : '' }}
+                {{ !empty($tlncr->disetujui_oleh2_jabatan_nm) ? $tlncr->disetujui_oleh2_jabatan_nm : '' }}</div>
         </td>
         <td style="width: 4%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;

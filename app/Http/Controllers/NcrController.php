@@ -288,8 +288,10 @@ class NcrController extends Controller
             $validatedDataNcr = $request->validate([
                 'diakui_oleh' => '',
                 'diakui_oleh_jabatan' => '',
+                'diakui_oleh_jabatan_nm' => '',
                 'disetujui_oleh1' => '',
                 'disetujui_oleh1_jabatan' => '',
+                'disetujui_oleh1_jabatan_nm' => '',
                 'tgl_accgm1' => '',
                 'tgl_planaction' => '',
                 'status' => '',
@@ -317,7 +319,7 @@ class NcrController extends Controller
 
             if (auth()->user()->role == 'Admin') {
                 $validatedDataNcr['no_ncr'] = $request->no_ncr;
-                $validatedDataNcr['periode_audit'] = $request->periode_audit;
+                // $validatedDataNcr['periode_audit'] = $request->periode_audit;
                 $validatedDataNcr['proses_audit'] = $request->proses_audit;
                 $validatedDataNcr['tema_audit'] = $request->tema_audit;
                 $validatedDataNcr['jenis_temuan'] = $request->jenis_temuan;
@@ -339,6 +341,7 @@ class NcrController extends Controller
                 'tgl_action' => '',
                 'disetujui_oleh2' => '',
                 'disetujui_oleh2_jabatan' => '',
+                'disetujui_oleh2_jabatan_nm' => '',
                 'tgl_accgm2' => '',
                 'ttd_tl_gm' => 'mimes:jpeg,jpg,png',
                 'ttd_tl_verif_auditor' => 'mimes:jpeg,jpg,png',

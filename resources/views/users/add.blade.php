@@ -44,11 +44,20 @@
                                         placeholder="Masukkan Username">
                                 </div>
                             </div>
+                            <br>
                             <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Password</label>
                                 <div class="col-sm-6">
-                                    <input type="password" name="password" class="form-control" required id="password"
-                                        placeholder="Masukkan Password">
+                                    {{-- <input type="password" name="password" class="form-control" required id="password"
+                                        placeholder="Masukkan Password"> --}}
+                                    <div class="input-group">
+                                        <input type="password" name="password" class="form-control" required id="password"
+                                            placeholder="Masukkan Password">
+                                        <button type="button" class="btn btn-info" id="show_password_toggle">
+                                            {{-- <i class="bi bi-eye"></i> --}}
+                                            show
+                                        </button>
+                                    </div>
                                 </div>
                             </div><br><br>
                             <input type="submit" value="Simpan" class="btn btn-info"></input>
@@ -59,4 +68,20 @@
             </div>
         </div>
     </div>
+    <script>
+        const password_input = document.getElementById('password');
+        const show_password_toggle = document.getElementById('show_password_toggle');
+
+        show_password_toggle.addEventListener('click', function() {
+            if (password_input.type === 'password') {
+                password_input.type = 'text';
+                // show_password_toggle.innerHTML = '<i class="bi bi-eye-slash"></i>';
+                show_password_toggle.innerHTML = 'Hide';
+            } else {
+                password_input.type = 'password';
+                // show_password_toggle.innerHTML = '<i class="bi bi-eye"></i>';
+                show_password_toggle.innerHTML = 'Show';
+            }
+        });
+    </script>
 @endsection

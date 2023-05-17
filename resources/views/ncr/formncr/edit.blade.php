@@ -159,6 +159,14 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan diakui oleh (M/SM)</label>
+                                <div class="col-sm-6">
+                                    <input type="name" name="diakui_oleh_jabatan_nm" class="form-control" id="diakui_oleh_jabatan_nm"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui Oleh
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
@@ -193,7 +201,16 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui GM</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan disetujui Oleh (SM/GM)</label>
+                                <div class="col-sm-6">
+                                    <input type="name" name="disetujui_oleh1_jabatan_nm" class="form-control"
+                                        id="disetujui_oleh1_jabatan_nm"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui SM/GM</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_accgm1" class="form-control" id="tgl_accgm1"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
