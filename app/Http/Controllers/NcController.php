@@ -108,7 +108,7 @@ class NcController extends Controller
 
         $year = date('y');
         $theme = $nc->tema_audit;
-        $themename = DB::table('users')->where('id', $theme)->value('name');
+        $themename = DB::table('users')->where('id', $theme)->value('username');
         $process = $nc->proses_audit;
         $period = $nc->periode_audit;
         $lastNc = nc::where('tema_audit', $theme)
@@ -232,8 +232,10 @@ class NcController extends Controller
             $validatedDataNc = $request->validate([
                 'diakui_oleh' => '',
                 'diakui_oleh_jabatan' => '',
+                'diakui_oleh_jabatan_nm' => '',
                 'disetujui_oleh' => '',
                 'disetujui_oleh1_jabatan' => '',
+                'disetujui_oleh1_jabatan_nm' => '',
                 'tgl_accgm' => '',
                 'tgl_planaction' => '',
                 'bukti' => 'mimes:pdf',
@@ -282,6 +284,7 @@ class NcController extends Controller
                 'tgl_action' => '',
                 'disetujui_oleh_tl' => '',
                 'disetujui_oleh_tl_jabatan' => '',
+                'disetujui_oleh_tl_jabatan_nm' => '',
                 'tgl_accgm' => '',
                 'ttd_disetujui_oleh_tlnc' => 'mimes:jpeg,jpg,png',
                 'ttd_verifikator_tlnc' => 'mimes:jpeg,jpg,png',

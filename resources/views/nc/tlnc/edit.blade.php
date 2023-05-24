@@ -151,7 +151,7 @@
                             <!--<input type='hidden' class="form-control" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} name="id_nc" value=""readonly>-->
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Bab yang diaudit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Bab Yang Diaudit</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="bab_audit" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} id="bab_audit"
@@ -214,7 +214,7 @@
 
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Diakui oleh
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Diakui Oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_diakui_oleh_nc" class="form-control"
@@ -229,7 +229,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama diakui oleh (M/SM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Diakui Oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="diakui_oleh" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
@@ -238,7 +238,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">jabatan diakui oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan Diakui Oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <select name="diakui_oleh_jabatan" id="diakui_oleh_jabatan" class="form-control"
@@ -253,7 +253,16 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Jabatan Diakui Oleh (M/SM)</label>
+                                <div class="col-sm-6">
+                                    <input type="name" name="diakui_oleh_jabatan_nm" class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
+                                        id="diakui_oleh_jabatan_nm" value="{{ $nc->diakui_oleh_jabatan_nm }}">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui Oleh
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disetujui_oleh_nc" class="form-control"
@@ -268,7 +277,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Disetujui Oleh
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="disetujui_oleh" class="form-control"
@@ -278,7 +287,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan Disetujui Oleh
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh1_jabatan" id="disetujui_oleh1_jabatan"
@@ -294,7 +303,17 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui GM</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Jabatan Disetujui Oleh
+                                    (SM/GM)</label>
+                                <div class="col-sm-6">
+                                    <input type="name" name="disetujui_oleh1_jabatan_nm" class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
+                                        id="disetujui_oleh1_jabatan_nm" value="{{ $nc->disetujui_oleh1_jabatan_nm }}">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Disetujui GM</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_accgm" class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
@@ -350,8 +369,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-6 col-form-label">Uraian Pencegahan untuk menjamin
-                                    tidak terulang</label>
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Uraian Pencegahan Untuk Menjamin
+                                    Tidak Terulang</label>
                                 <div class="col-sm-6">
                                     <textarea class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
@@ -372,7 +391,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui Oleh
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disetujui_oleh_tlnc" class="form-control"
@@ -389,7 +408,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Disetujui Oleh
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="disetujui_oleh_tl" class="form-control"
@@ -400,19 +419,29 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan Disetujui Oleh
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh_tl_jabatan" id="disetujui_oleh_tl_jabatan"
                                         class="form-control"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
-                                        <option {{ $nc->disetujui_oleh_tl_jabatan == 'Senior Manager' ? 'selected' : '' }}>
+                                        <option {{ isset($tlnc->disetujui_oleh_tl_jabatan) && $tlnc->disetujui_oleh_tl_jabatan == 'Senior Manager' ? 'selected' : '' }}>
                                             Senior Manager</option>
-                                        <option
-                                            {{ $nc->disetujui_oleh_tl_jabatan == 'General manager' ? 'selected' : '' }}>
+                                        <option {{ isset($tlnc->disetujui_oleh_tl_jabatan) && $tlnc->disetujui_oleh_tl_jabatan == 'General manager' ? 'selected' : '' }}>
                                             General Manager</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Jabatan Disetujui Oleh
+                                    (SM/GM)</label>
+                                <div class="col-sm-6">
+                                    <input type="name" name="disetujui_oleh_tl_jabatan_nm" class="form-control"
+                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
+                                        id="disetujui_oleh_tl_jabatan_nm"
+                                        value="{{ isset($tlnc->disetujui_oleh_tl_jabatan_nm) ? $tlnc->disetujui_oleh_tl_jabatan_nm : '' }}">
                                 </div>
                             </div>
 
@@ -497,7 +526,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diverifikasi oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diverifikasi Oleh</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="verifikator"
                                         value="{{ isset($tlnc->verifikator) ? $tlnc->verifikator : '' }}"
@@ -520,7 +549,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-6 col-form-label">Rekomendasi tinjauan
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Rekomendasi Tinjauan
                                     manajemen</label>
                                 <div class="col-sm-6">
                                     <textarea type="name" name="rekomendasi" class="form-control"
@@ -530,7 +559,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Diverifikasi oleh
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Diverifikasi Oleh
                                     SM Departemen Tata Kelola Perusahaan</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_verifsm_tlnc"
@@ -548,7 +577,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-6 col-form-label">Diverifikasi oleh SM Departemen
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Diverifikasi Oleh SM Departemen
                                     Tata Kelola Perusahaan</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="namasm_verif"

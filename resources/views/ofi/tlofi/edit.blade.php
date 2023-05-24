@@ -170,23 +170,28 @@
                                             Produk</option>
                                         <option value="Proses" {{ $ofi->usulan_ofi == 'Proses' ? 'selected' : '' }}>
                                             Proses</option>
-                                        <option value="Sistem Mutu" {{ $ofi->usulan_ofi == 'Sistem Mutu' ? 'selected' : '' }}>
+                                        <option value="Sistem Mutu"
+                                            {{ $ofi->usulan_ofi == 'Sistem Mutu' ? 'selected' : '' }}>
                                             Sistem Mutu</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-6 col-form-label">Identitas No. Part/No. Tack/No. Dokumen</label>
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Identitas No. Part/No. Tack/No.
+                                    Dokumen</label>
                                 <div class="col-sm-6">
                                     <select name="identitas_ofi" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}
                                         id="identitas_ofi" class="form-control">
                                         <option value="">- Pilih -</option>
-                                        <option value="No. Part" {{ $ofi->identitas_ofi == 'No. Part' ? 'selected' : '' }}>
+                                        <option value="No. Part"
+                                            {{ $ofi->identitas_ofi == 'No. Part' ? 'selected' : '' }}>
                                             No. Part</option>
-                                        <option value="No. Tack" {{ $ofi->identitas_ofi == 'No. Tack' ? 'selected' : '' }}>
+                                        <option value="No. Tack"
+                                            {{ $ofi->identitas_ofi == 'No. Tack' ? 'selected' : '' }}>
                                             No. Tack</option>
-                                        <option value="No. Dokumen" {{ $ofi->identitas_ofi == 'No. Dokumen' ? 'selected' : '' }}>
+                                        <option value="No. Dokumen"
+                                            {{ $ofi->identitas_ofi == 'No. Dokumen' ? 'selected' : '' }}>
                                             No. Dokumen</option>
                                     </select>
                                 </div>
@@ -205,17 +210,6 @@
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Departemen yang
                                     mengerjakan</label>
                                 <div class="col-sm-6">
-                                    {{-- <input type="text" name="dept_ygmngrjkn" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} class="form-control"
-                                        id="dept_ygmngrjkn" value="{{ $ofi->dept_ygmngrjkn }}"> --}}
-                                    {{-- <select name="dept_ygmngrjkn" id="dept_ygmngrjkn" class="form-control"
-                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
-                                        <option value="">- Pilih -</option>
-                                        @foreach ($usersAuditee as $data_usersAuditee)
-                                            <option value="{{ $data_usersAuditee->id }}"
-                                                {{ $ofi->dept_ygmngrjkn == $data_usersAuditee->id ? 'selected' : '' }}>
-                                                {{ $data_usersAuditee->name }}</option>
-                                        @endforeach
-                                    </select> --}}
                                     <select name="objek_audit" {{ empty($tlofi) ? '' : 'disabled' }} id="objek_audit"
                                         class="form-control">
                                         <option value="">- Pilih -</option>
@@ -299,7 +293,7 @@
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Disetujui
-                                    Oleh</label>
+                                    Oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disetujui_oleh_ofi"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} class="form-control"
@@ -313,7 +307,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui Oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Disetujui Oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disetujui_oleh"
@@ -323,7 +317,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan Disetujui
                                     Oleh(M/SM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh_jabatan"
@@ -344,9 +338,9 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan disetujui Oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="disetujui_oleh_jabatan"
+                                    <input type="text" name="disetujui_oleh_jabatan_nm"
                                         {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }} class="form-control"
-                                        id="disetujui_oleh_jabatan" value="{{ $ofi->disetujui_oleh_jabatan }}">
+                                        id="disetujui_oleh_jabatan_nm" value="{{ $ofi->disetujui_oleh_jabatan_nm }}">
                                 </div>
                             </div>
 
@@ -406,17 +400,6 @@
                                 </div>
                             </div>
                             <br>
-
-                            {{-- <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan Oleh</label>
-                                <div class="col-sm-6">
-                                    <input type="text" name="disposisi_diselesaikan_oleh" class="form-control"
-                                        id="disposisi_diselesaikan_oleh"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
-                                        value="{{ $ofi->disposisi_diselesaikan_oleh }}">
-                                </div>
-                            </div> --}}
-
                             <br>
                         </div>
                     </div>
@@ -431,7 +414,7 @@
                                 <h2>Input Tindak Lanjut OFI</h2>
                             </div><br>
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">Tindak Lanjut Usulan
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Tindak Lanjut Usulan
                                     Peningkatan</label>
                                 <div class="col-sm-6">
                                     {{-- <input type="text" name="tl_usulanofi"
@@ -464,7 +447,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Ditindaklanjuti oleh</label>
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Nama ditindaklanjuti oleh</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="nama_pekerjatl"
                                         {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}
@@ -674,11 +657,11 @@
                     document.getElementById('lampiran2').disabled = false;
 
                     document.getElementById('lampiran3').disabled = false;
-                    
+
                     document.getElementById('lampiran4').disabled = false;
-                    
+
                     document.getElementById('lampiran5').disabled = false;
-                    
+
                     document.getElementById('lampiran6').disabled = false;
                 @endif
 
@@ -726,22 +709,22 @@
                     document.getElementById('bukti').value = '';
                     document.getElementById('bukti').disabled = true;
 
-                    
+
                     document.getElementById('lampiran1').value = '';
                     document.getElementById('lampiran1').disabled = true;
-                    
+
                     document.getElementById('lampiran2').value = '';
                     document.getElementById('lampiran2').disabled = true;
-                    
+
                     document.getElementById('lampiran3').value = '';
                     document.getElementById('lampiran3').disabled = true;
-                    
+
                     document.getElementById('lampiran4').value = '';
                     document.getElementById('lampiran4').disabled = true;
-                    
+
                     document.getElementById('lampiran5').value = '';
                     document.getElementById('lampiran5').disabled = true;
-                    
+
                     document.getElementById('lampiran6').value = '';
                     document.getElementById('lampiran6').disabled = true;
                 @endif

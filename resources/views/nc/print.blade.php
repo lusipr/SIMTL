@@ -186,10 +186,13 @@
             (M/SM)
         </td>
         <td style="width: 15%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
-            <img width="50" height="60" src="{{ asset('storage/' . $nc->ttd_diakui_oleh_nc) }}"
-                alt="ttd_diakui_oleh">
+            <img width="50" height="60" src="{{ asset('storage/' . $nc->ttd_diakui_oleh_nc) }}" alt="">
             <br>
-            <div style="border-bottom: 1px dotted #000;">{{ $nc->diakui_oleh }}</div>
+            <div>
+                {{ $nc->diakui_oleh }}
+            </div>
+            <div style="border-bottom: 1px dotted #000;">{{ $nc->diakui_oleh_jabatan }}
+                {{ $nc->diakui_oleh_jabatan_nm }}</div>
         </td>
         <td style="width: 2%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;
@@ -209,7 +212,9 @@
             <img width="50" height="60" src="{{ asset('storage/' . $nc->ttd_disetujui_oleh_nc) }}"
                 alt="ttd_disetujui_oleh">
             <br>
-            <div style="border-bottom: 1px dotted #000;">{{ $nc->disetujui_oleh }}</div>
+            <div>{{ $nc->disetujui_oleh }}</div>
+            <div style="border-bottom: 1px dotted #000;">{{ $nc->disetujui_oleh1_jabatan }}
+                {{ $nc->disetujui_oleh1_jabatan_nm }}</div>
         </td>
         <td style="width: 4%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;
@@ -410,8 +415,10 @@
                 src="{{ !empty($tlnc->ttd_disetujui_oleh_tlnc) ? asset('storage/' . $tlnc->ttd_disetujui_oleh_tlnc) : '' }}"
                 alt="Ttd disetujui oleh">
             <br>
+            <div>{{ !empty($tlnc->disetujui_oleh_tl) ? $tlnc->disetujui_oleh_tl : '' }}</div>
             <div style="border-bottom: 1px dotted #000;">
-                {{ !empty($tlnc->disetujui_oleh_tl) ? $tlnc->disetujui_oleh_tl : '' }}</div>
+                {{ !empty($tlnc->disetujui_oleh_tl_jabatan) ? $tlnc->disetujui_oleh_tl_jabatan : '' }}
+                {{ !empty($tlnc->disetujui_oleh_tl_jabatan_nm) ? $tlnc->disetujui_oleh_tl_jabatan_nm : '' }}</div>
         </td>
         <td style="width: 4%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             &nbsp;
@@ -696,7 +703,7 @@
         </td>
         <td style="width: 18%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">
             <div style="border-bottom: 1px dotted #000;">
-                {{ !empty($tlnc->tgl_verifsm) ? date('d-m-Y', strtotime($tlnc->tgl_verifsm))  : '' }}
+                {{ !empty($tlnc->tgl_verifsm) ? date('d-m-Y', strtotime($tlnc->tgl_verifsm)) : '' }}
             </div>
         </td>
         <td style="width: 2%; vertical-align: middle; border-top-width: 0px; border-bottom-width: 0px;">

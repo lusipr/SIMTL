@@ -43,7 +43,7 @@
                                         <th class="text-center">Proses</th>
                                         <th class="text-center">Tema</th>
                                         <th class="text-center">Objek</th>
-                                        <th class="text-center">Diselesaikan Oleh</th>
+                                        {{-- <th class="text-center">Diselesaikan Oleh</th> --}}
                                         <!--<th class="text-center">Dokumen</th>-->
                                         <th class="text-center">Tanggal</th>
                                         <th class="text-center">Tgl. Deadline</th>
@@ -62,7 +62,7 @@
                                             <td class="text-center">{{ $data_ofi->proses_audit }}</td>
                                             <td class="text-center">{{ $data_ofi->users_tema->name }}</td>
                                             <td class="text-center">{{ $data_ofi->users->name }}</td>
-                                            <td class="text-center">{{ $data_ofi->user_disposisi_diselesaikan_oleh->name }}</td>
+                                            {{-- <td class="text-center">{{ $data_ofi->user_disposisi_diselesaikan_oleh }}</td> --}}
                                             <!--<td class="text-center">{{ $data_ofi->dokumen }}</td>-->
                                             <td class="text-center">{{ date('d-m-Y', strtotime($data_ofi->tgl_terbitofi)) }}</td>
                                             <td class="text-center">{{ date('d-m-Y', strtotime($data_ofi->tgl_deadline)) }}</td>

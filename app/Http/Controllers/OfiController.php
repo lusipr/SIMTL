@@ -141,6 +141,7 @@ class OfiController extends Controller
         $dataSent = $request->except('_token', 'bukti', 'ttd_dept_pengusul', 'ttd_disetujui_oleh_ofi', 'ttd_disposisi');
 
         $request->validate([
+            'kepada'=> 'required',
             'bukti' => 'mimes:pdf',
             'ttd_dept_pengusul' => 'mimes:jpeg,jpg,png',
             'ttd_disetujui_oleh_ofi' => 'mimes:jpeg,jpg,png',

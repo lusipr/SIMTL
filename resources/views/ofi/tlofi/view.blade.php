@@ -19,6 +19,33 @@
                                         value="{{ $ofi->no_ofi }}">
                                 </div>
                             </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Kepada</label>
+                                <div class="col-sm-6">
+                                    <select name="kepada" disabled id="kepada" class="form-control" disabled>
+                                        <option value="Wakil Manajemen"
+                                            {{ $ofi->kepada == 'Wakil Manajemen' ? 'selected' : '' }}>
+                                            Wakil Manajemen</option>
+                                        <option value="Ketua Fungsi Kepatuhan Anti Penyuapan"
+                                            {{ $ofi->kepada == 'Ketua Fungsi Kepatuhan Anti Penyuapan' ? 'selected' : '' }}>
+                                            Ketua Fungsi Kepatuhan Anti Penyuapan</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Periode Audit</label>
+                                <div class="col-sm-6">
+                                    <select name="periode_audit" disabled id="periode_audit" class="form-control">
+                                        <option value="I" {{ $ofi->periode_audit == 'I' ? 'selected' : '' }}>
+                                            I</option>
+                                        <option value="II" {{ $ofi->periode_audit == 'II' ? 'selected' : '' }}>
+                                            II</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
                                 <div class="col-sm-6">
@@ -89,11 +116,11 @@
                                 <div class="col-sm-6">
                                     <select name="status" disabled id="status" class="form-control">
                                         <option value="">- Pilih -</option>
-                                        <option {{ $ofi->status == 'Data Belum Lengkap' ? 'selected' : '' }}>>Data Belum
+                                        <option {{ $ofi->status == 'Data Belum Lengkap' ? 'selected' : '' }}>Data Belum
                                             Lengkap</option>
-                                        <option {{ $ofi->status == 'Belum Ditindaklanjuti' ? 'selected' : '' }}>>Belum
+                                        <option {{ $ofi->status == 'Belum Ditindaklanjuti' ? 'selected' : '' }}>Belum
                                             Ditindaklanjuti</option>
-                                        <option {{ $ofi->status == 'Sudah Ditindaklanjuti' ? 'selected' : '' }}>>Sudah
+                                        <option {{ $ofi->status == 'Sudah Ditindaklanjuti' ? 'selected' : '' }}>Sudah
                                             Ditindaklanjuti</option>
                                     </select>
                                 </div>
@@ -135,11 +162,44 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">Usulan Peningkatan
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Usulan Peningkatan
                                     Produk/Proses/Sistem Mutu</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="usulan_ofi" disabled class="form-control"
-                                        id="usulan_ofi" value="{{ $ofi->usulan_ofi }}">
+                                    <select name="usulan_ofi" disabled id="usulan_ofi" class="form-control">
+                                        <option value="Produk" {{ $ofi->usulan_ofi == 'Produk' ? 'selected' : '' }}>
+                                            Produk</option>
+                                        <option value="Proses" {{ $ofi->usulan_ofi == 'Proses' ? 'selected' : '' }}>
+                                            Proses</option>
+                                        <option value="Sistem Mutu"
+                                            {{ $ofi->usulan_ofi == 'Sistem Mutu' ? 'selected' : '' }}>
+                                            Sistem Mutu</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Identitas No. Part/No. Tack/No.
+                                    Dokumen</label>
+                                <div class="col-sm-6">
+                                    <select name="identitas_ofi" disabled id="identitas_ofi" class="form-control">
+                                        <option value="No. Part"
+                                            {{ $ofi->identitas_ofi == 'No. Part' ? 'selected' : '' }}>
+                                            No. Part</option>
+                                        <option value="No. Tack"
+                                            {{ $ofi->identitas_ofi == 'No. Tack' ? 'selected' : '' }}>
+                                            No. Tack</option>
+                                        <option value="No. Dokumen"
+                                            {{ $ofi->identitas_ofi == 'No. Dokumen' ? 'selected' : '' }}>
+                                            No. Dokumen</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">No. Identitas</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="no_identitas_ofi" disabled class="form-control"
+                                        id="no_identitas_ofi" value="{{ $ofi->no_identitas_ofi }}">
                                 </div>
                             </div>
 
@@ -147,16 +207,6 @@
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Departemen yang
                                     mengerjakan</label>
                                 <div class="col-sm-6">
-                                    {{-- <input type="text" name="dept_ygmngrjkn" disabled class="form-control"
-                                        id="dept_ygmngrjkn" value="{{ $ofi->dept_ygmngrjkn }}"> --}}
-                                    {{-- <select name="dept_ygmngrjkn" id="dept_ygmngrjkn" class="form-control" disabled>
-                                        <option value="">- Pilih -</option>
-                                        @foreach ($usersAuditee as $data_usersAuditee)
-                                            <option value="{{ $data_usersAuditee->id }}"
-                                                {{ $ofi->dept_ygmngrjkn == $data_usersAuditee->id ? 'selected' : '' }}>
-                                                {{ $data_usersAuditee->name }}</option>
-                                        @endforeach
-                                    </select> --}}
                                     <select name="objek_audit" {{ empty($tlofi) ? '' : 'disabled' }} id="objek_audit"
                                         class="form-control">
                                         <option value="">- Pilih -</option>
@@ -217,7 +267,7 @@
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui
-                                    Oleh</label>
+                                    Oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disetujui_oleh_ofi" disabled class="form-control"
                                         id="ttd_disetujui_oleh_ofi" value="{{ $ofi->ttd_disetujui_oleh_ofi }}">
@@ -230,10 +280,36 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Disetujui Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Disetujui Oleh
+                                    (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disetujui_oleh" disabled class="form-control"
                                         id="disetujui_oleh" value="{{ $ofi->disetujui_oleh }}">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan Disetujui
+                                    Oleh(M/SM)</label>
+                                <div class="col-sm-6">
+                                    <select name="disetujui_oleh_jabatan" disabled id="disetujui_oleh_jabatan"
+                                        class="form-control">
+                                        <option value="Manager"
+                                            {{ $ofi->disetujui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>
+                                            Manager</option>
+                                        <option value="Senior Manager"
+                                            {{ $ofi->disetujui_oleh_jabatan == 'Senior Manager' ? 'selected' : '' }}>
+                                            Senior Manager</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Jabatan Disetujui Oleh
+                                    (M/SM)</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="disetujui_oleh_jabatan_nm" disabled class="form-control"
+                                        id="disetujui_oleh_jabatan_nm" value="{{ $ofi->disetujui_oleh_jabatan_nm }}">
                                 </div>
                             </div>
 
@@ -273,12 +349,18 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="row-mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan Oleh</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="disposisi_diselesaikan_oleh" disabled
-                                        class="form-control" id="disposisi_diselesaikan_oleh"
-                                        value="{{ $ofi->disposisi_diselesaikan_oleh }}">
+                                    <select name="disposisi_diselesaikan_oleh" id="disposisi_diselesaikan_oleh"
+                                        class="form-control" disabled>
+                                        <option value="">- Pilih -</option>
+                                        @foreach ($usersAuditee as $data_usersAuditee)
+                                            <option value="{{ $data_usersAuditee->id }}"
+                                                {{ $ofi->disposisi_diselesaikan_oleh == $data_usersAuditee->id ? 'selected' : '' }}>
+                                                {{ $data_usersAuditee->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <br>
@@ -298,9 +380,8 @@
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Tindak Lanjut Usulan
                                     Peningkatan</label>
                                 <div class="col-sm-6">
-                                    <input type="text" name="tl_usulanofi" disabled
-                                        value="{{ $tlofi->tl_usulanofi }}" class="form-control" id="tl_usulanofi"
-                                        placeholder="Masukkan tindak lanjut usulan" style="font-style:italic">
+                                    <textarea type="text" name="tl_usulanofi" disabled class="form-control" id="tl_usulanofi"
+                                        placeholder="Masukkan tindak lanjut usulan" style="font-style:italic">{{ isset($tlofi->tl_usulanofi) ? $tlofi->tl_usulanofi : '' }}</textarea>
                                 </div>
                             </div>
 
@@ -335,6 +416,74 @@
                                         class="form-control" id="tgl_tl">
                                 </div>
                             </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Bukti</label>
+                                <div class="col-sm-6">
+                                    <input type="file" name="bukti" id="bukti" class="form-control"
+                                        accept="application/pdf" disabled>
+                                    <p class="help-block">
+                                        <font color="red">"Format file .pdf"</font>
+                                    </p>
+                                    <input type="text" class="form-control" value="{{ $ofi->bukti }}" disabled>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Lampiran 1</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="lampiran1" id="lampiran1" class="form-control"
+                                        placeholder="Masukkan nama lampiran jika ada" value="{{ $ofi->lampiran1 }}"
+                                        disabled>
+                                </div>
+                            </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Lampiran 2</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="lampiran2" id="lampiran2" class="form-control"
+                                        placeholder="Masukkan nama lampiran jika ada" value="{{ $ofi->lampiran2 }}"
+                                        disabled>
+                                </div>
+                            </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Lampiran 3</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="lampiran3" id="lampiran3" class="form-control"
+                                        placeholder="Masukkan nama lampiran jika ada" value="{{ $ofi->lampiran3 }}"
+                                        disabled>
+                                </div>
+                            </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Lampiran 4</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="lampiran4" id="lampiran4" class="form-control"
+                                        placeholder="Masukkan nama lampiran jika ada" value="{{ $ofi->lampiran4 }}"
+                                        disabled>
+                                </div>
+                            </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Lampiran 5</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="lampiran5" id="lampiran5" class="form-control"
+                                        placeholder="Masukkan nama lampiran jika ada" value="{{ $ofi->lampiran5 }}"
+                                        disabled>
+                                </div>
+                            </div>
+
+                            <div class="row-mb-3">
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Lampiran 6</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="lampiran6" id="lampiran6" class="form-control"
+                                        placeholder="Masukkan nama lampiran jika ada" value="{{ $ofi->lampiran6 }}"
+                                        disabled>
+                                </div>
+                            </div>
+                            <br>
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Uraian Verifikasi</label>

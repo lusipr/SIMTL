@@ -34,9 +34,11 @@ class Nc extends Model
         'ttd_diakui_oleh_nc',
         'diakui_oleh',
         'diakui_oleh_jabatan',
+        'diakui_oleh_jabatan_nm',
         'ttd_disetujui_oleh',
         'disetujui_oleh',
         'disetujui_oleh1_jabatan',
+        'disetujui_oleh1_jabatan_nm',
         'tgl_accgm',
         'tgl_planaction',
     ];
