@@ -86,7 +86,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Bab yang diaudit</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="bab_audit" class="form-control" id="bab_audit"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
@@ -94,7 +94,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Dokumen Acuan</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="dok_acuan" class="form-control" id="dok_acuan"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
@@ -102,7 +102,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian Ketidaksesuaian</label>
                                 <div class="col-sm-6">
                                     <textarea class="form-control" name="uraian_nc" id="uraian_nc" rows="5"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}></textarea>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}></textarea>
                                 </div>
                             </div>
 
@@ -110,7 +110,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Kategori</label>
                                 <div class="col-sm-6">
                                     <select name="kategori" id="kategori" class="form-control"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option>Mayor</option>
                                         <option>Minor</option>
@@ -123,7 +123,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Auditor</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_auditor_nc" class="form-control" id="ttd_auditor_nc"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
                                     </p>
@@ -134,7 +134,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Auditor</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="nama_auditor" class="form-control" id="nama_auditor"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
@@ -144,7 +144,7 @@
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_diakui_oleh_nc" class="form-control"
                                         id="ttd_diakui_oleh_nc"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
                                     </p>
@@ -152,12 +152,12 @@
                             </div> --}}
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diakui oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan diakui oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_diakui_oleh_nc" class="form-control"
                                         id="ttd_diakui_oleh_nc"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
                                     </p>
@@ -168,7 +168,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Nama diakui oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="diakui_oleh" class="form-control" id="diakui_oleh"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
@@ -177,7 +177,7 @@
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <select name="diakui_oleh_jabatan" id="diakui_oleh_jabatan" class="form-control"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option>Manager</option>
                                         <option>Senior Manager</option>
@@ -189,7 +189,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan diakui oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="diakui_oleh_jabatan_nm" class="form-control" id="diakui_oleh_jabatan_nm"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
@@ -199,7 +199,7 @@
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disetujui_oleh_nc" class="form-control"
                                         id="ttd_disetujui_oleh_nc"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
                                     </p>
@@ -211,7 +211,7 @@
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="disetujui_oleh" class="form-control" id="disetujui_oleh"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
@@ -221,7 +221,7 @@
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh1_jabatan" id="disetujui_oleh1_jabatan"
                                         class="form-control"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option>Senior Manager</option>
                                         <option>General Manager</option>
@@ -234,7 +234,7 @@
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="disetujui_oleh1_jabatan_nm" class="form-control" id="disetujui_oleh1_jabatan_nm"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
 
@@ -242,7 +242,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_accgm" class="form-control" id="tgl_accgm"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -250,7 +250,7 @@
                                     Penyelesaian</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_planaction" class="form-control" id="tgl_planaction"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled') }}>
                                 </div>
                             </div>
                             <br>

@@ -16,8 +16,8 @@
             <th class="text-center">Uraian Temuan</th>
             <th class="text-center">Uraian Perbaikan</th>
             {{-- !--<th class="text-center">Dokumen</th>--> --}}
-            <th class="text-center">Tanggal</th>
-            <th class="text-center">Tgl. Deadline</th>
+            <th class="text-center">Tgl Terbit</th>
+            <th class="text-center">Tgl Deadline</th>
             <th class="text-center">Status</th>
             {{-- <th class="text-center">Bukti</th> --}}
         </tr>

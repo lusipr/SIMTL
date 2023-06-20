@@ -18,7 +18,7 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th style="width: 4%;" class="text-center">No</th>
-                                        <th class="text-center">NIP</th>
+                                        <th class="text-center">Kode</th>
                                         <th class="text-center">Nama Departemen</th>
                                         <th class="text-center">Role</th>
                                         <th class="text-center">Username</th>
@@ -39,7 +39,7 @@
                                                 <a href="{{ url('data-departemen/edit/' . $user->id) }}"
                                                     class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
                                                 <a href="{{ url('data-departemen/delete/' . $user->id) }}"
-                                                    class="btn btn-danger"><i class="ti-trash"></i></a>
+                                                    class="btn btn-danger"><i class="ti-trash" onclick="confirmDelete(event)"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -62,4 +62,22 @@
             }).then((result) => {})
         </script>
     @endif
+
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault(); // Menghentikan tautan hapus agar tidak langsung mengarahkan ke URL
+
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin menghapus data ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = event.target.href; // Mengarahkan ke URL penghapusan jika pengguna yakin
+                }
+            });
+        }
+    </script>
 @endsection

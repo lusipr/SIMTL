@@ -284,7 +284,7 @@ class NcrController extends Controller
 
     public function store_tlncr(Request $request, Ncr $ncr, $ref_page = '')
     {
-        if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditee') {
+        if (auth()->user()->role == 'Admin1' || auth()->user()->role == 'Auditee') {
             $validatedDataNcr = $request->validate([
                 'diakui_oleh' => '',
                 'diakui_oleh_jabatan' => '',
@@ -317,7 +317,7 @@ class NcrController extends Controller
                 $validatedDataNcr['ttd_auditee_gm_sm'] = $request->file('ttd_auditee_gm_sm')->store('ttd_auditee_gm_sm');
             }
 
-            if (auth()->user()->role == 'Admin') {
+            if (auth()->user()->role == 'Admin1') {
                 $validatedDataNcr['no_ncr'] = $request->no_ncr;
                 // $validatedDataNcr['periode_audit'] = $request->periode_audit;
                 $validatedDataNcr['proses_audit'] = $request->proses_audit;
@@ -362,7 +362,7 @@ class NcrController extends Controller
 
             $validatedDataTLNcr['id_ncr'] = $ncr->id_ncr;
 
-            if (auth()->user()->role == 'Admin') {
+            if (auth()->user()->role == 'Admin1') {
                 $validatedDataTLNcr['uraian_verifikasi'] = $request->uraian_verifikasi;
                 $validatedDataTLNcr['hasil_verif'] = $request->hasil_verif;
                 $validatedDataTLNcr['verifikator'] = $request->verifikator;

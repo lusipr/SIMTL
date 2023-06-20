@@ -21,9 +21,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Periode Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Periode audit</label>
                                 <div class="col-sm-6">
-                                    <select name="periode_audit" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}
+                                    <select name="periode_audit" {{ auth()->user()->role == 'Admin1' ? '' : 'disabled' }}
                                         id="periode_audit" class="form-control" disabled>
                                         <option value="">- Pilih -</option>
                                         <option value="I" {{ $ofi->periode_audit == 'I' ? 'selected' : '' }}>
@@ -35,9 +35,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Proses audit</label>
                                 <div class="col-sm-6">
-                                    <select name="proses_audit" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}
+                                    <select name="proses_audit" {{ auth()->user()->role == 'Admin1' ? '' : 'disabled' }}
                                         id="proses_audit" class="form-control" disabled>
                                         <option value="">- Pilih -</option>
                                         <option value="Internal" {{ $ofi->proses_audit == 'Internal' ? 'selected' : '' }}>
@@ -49,7 +49,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">Tanggal Terbit OFI</label>
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Tanggal terbit OFI</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_terbitofi" class="form-control" id="tgl_terbitofi"
                                         value="{{ $ofi->tgl_terbitofi }}" disabled>
@@ -57,7 +57,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal deadline OFI</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_deadline" id="tgl_deadline" class="form-control"
                                         value="{{ $ofi->tgl_deadline }}" disabled>
@@ -77,7 +77,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">Dari Bagian/Departemen</label>
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Dari bagian/departemen</label>
                                 <div class="col-sm-6">
                                     {{-- <input type="text" name="asal_dept" class="form-control" id="asal_dept"> --}}
                                     <select name="asal_dept" id="asal_dept" class="form-control">
@@ -107,8 +107,8 @@
                             </div> --}}
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">Usulan Peningkatan
-                                    Produk/Proses/Sistem Mutu</label>
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Usulan peningkatan
+                                    produk/proses/sistem mutu</label>
                                 <div class="col-sm-6">
                                     <select name="usulan_ofi" id="usulan_ofi" class="form-control">
                                         <option value="">- Pilih -</option>
@@ -140,7 +140,7 @@
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Departemen yang
-                                    Mengerjakan</label>
+                                    mengerjakan</label>
                                 <div class="col-sm-6">
                                     {{-- <input type="text" name="dept_ygmngrjkn" class="form-control" id="dept_ygmngrjkn"> --}}
                                     {{-- <select name="dept_ygmngrjkn" id="dept_ygmngrjkn" class="form-control">
@@ -164,21 +164,21 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian Permasalahan</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian permasalahan</label>
                                 <div class="col-sm-6">
                                     <textarea name="uraian_permasalahan" class="form-control" id="uraian_permasalahan" rows="5"></textarea>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Usulan Peningkatan</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Usulan peningkatan</label>
                                 <div class="col-sm-6">
                                     <textarea name="usulan_peningkatan" class="form-control" id="usulan_peningkatan" rows="5"></textarea>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diusulkan
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan diusulkan
                                     oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_dept_pengusul" class="form-control"
@@ -197,7 +197,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Diusulkan</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal diusulkan</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_diusulkan" class="form-control" id="tgl_diusulkan"
                                         value="{{ $ofi->tgl_terbitofi }}">
@@ -205,12 +205,12 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui Oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan disetujui oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disetujui_oleh_ofi" class="form-control"
                                         id="ttd_disetujui_oleh_ofi"
-                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : 'disabled' }}>
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
                                     </p>
@@ -218,21 +218,21 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui Oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disetujui_oleh" class="form-control"
                                         id="disetujui_oleh"
-                                        {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : 'disabled' }}>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">jabatan disetujui Oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">jabatan disetujui oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh_jabatan" id="disetujui_oleh_jabatan"
-                                        class="form-control" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                        class="form-control" {{ auth()->user()->role == 'Admin1' ? '' : 'disabled' }}>
                                         <option value="">- Pilih -</option>
                                         <option value="Manager">Manager</option>
                                         <option value="Senior Manager">Senior Manager</option>
@@ -241,18 +241,18 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan disetujui Oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan disetujui oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disetujui_oleh_jabatan_nm" class="form-control"
-                                        id="disetujui_oleh_jabatan_nm" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                        id="disetujui_oleh_jabatan_nm" {{ auth()->user()->role == 'Admin1' ? '' : 'disabled' }}>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Disetujui</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui</label>
                                 <div class="col-sm-6">
-                                    <input type="date" name="tgl_disetujui" class="form-control" id="tgl_disetujui" {{ auth()->user()->role == 'Admin' ? '' : 'disabled' }}>
+                                    <input type="date" name="tgl_disetujui" class="form-control" id="tgl_disetujui" {{ auth()->user()->role == 'Admin1' ? '' : 'disabled' }}>
                                 </div>
                             </div>
 
@@ -262,7 +262,7 @@
                                 <div class="col-sm-6">
                                     <select name="disposisi" id="disposisi" class="form-control"
                                         onchange="doChangeDisposisi(this)"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}>
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}>
                                         <option value="">- Pilih -</option>
                                         <option>OFI ditolak</option>
                                         <option>OFI diterima</option>
@@ -271,8 +271,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diselesaikan
-                                    Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan diselesaikan
+                                    oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disposisi" class="form-control" id="ttd_disposisi">
                                     <p class="help-block">
@@ -282,7 +282,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan oleh</label>
                                 <div class="col-sm-6">
                                     <select name="disposisi_diselesaikan_oleh" id="disposisi_diselesaikan_oleh"
                                         class="form-control">

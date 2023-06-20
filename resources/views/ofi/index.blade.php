@@ -13,7 +13,7 @@
                             <a href="{{ url('data-ofi/excel') }}" target="_blank"
                                 style="background-color: #107c41; margin-bottom: 20px; margin-left: auto; margin-right: 20px;"
                                 class="btn btn-success">Excel</a>
-                            @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
+                            @if (auth()->user()->role == 'Admin1' || auth()->user()->role == 'Auditor')
                                 <a href="{{ url('data-ofi/add') }}" style="margin-bottom:20px"
                                     class="btn btn-success">Tambah
                                     OFI</a>
@@ -64,8 +64,10 @@
                                             <td class="text-center">{{ $data_ofi->users->name }}</td>
                                             {{-- <td class="text-center">{{ $data_ofi->user_disposisi_diselesaikan_oleh }}</td> --}}
                                             <!--<td class="text-center">{{ $data_ofi->dokumen }}</td>-->
-                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_ofi->tgl_terbitofi)) }}</td>
-                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_ofi->tgl_deadline)) }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_ofi->tgl_terbitofi)) }}
+                                            </td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_ofi->tgl_deadline)) }}
+                                            </td>
                                             <td class="text-center">{{ $data_ofi->status }}</td>
                                             <td class="text-center">
                                                 @if (!empty($data_ofi->bukti))
@@ -78,13 +80,13 @@
                                                     class="btn btn-secondary"><i class="ti-printer"></i></a>
                                                 <a href="{{ url('data-ofi/tlofi/input/' . $data_ofi->id_ofi) }}"
                                                     class="btn btn-warning"><i class="ti-plus"></i></a>
-                                                @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
+                                                @if (auth()->user()->role == 'Admin1' || auth()->user()->role == 'Auditor')
                                                     <a href="{{ url('data-ofi/edit/' . $data_ofi->id_ofi) }}"
                                                         class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
                                                 @endif
-                                                @if (auth()->user()->role == 'Admin')
+                                                @if (auth()->user()->role == 'Admin1')
                                                     <a href="{{ url('data-ofi/delete/' . $data_ofi->id_ofi) }}"
-                                                        class="btn btn-danger"><i class="ti-trash"></i></a>
+                                                        class="btn btn-danger" onclick="confirmDelete(event)"><i class="ti-trash"></i></a>
                                                 @endif
                                             </td>
                                         </tr>
@@ -108,4 +110,22 @@
             }).then((result) => {})
         </script>
     @endif
+
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault(); // Menghentikan tautan hapus agar tidak langsung mengarahkan ke URL
+
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin menghapus data ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = event.target.href; // Mengarahkan ke URL penghapusan jika pengguna yakin
+                }
+            });
+        }
+    </script>
 @endsection

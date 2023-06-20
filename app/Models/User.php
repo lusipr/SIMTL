@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ncr::class, 'id', 'objek_audit');
     }
+
+    public function ofi()
+    {
+        return $this->hasMany(Ofi::class, 'id', 'objek_audit');
+    }
 }

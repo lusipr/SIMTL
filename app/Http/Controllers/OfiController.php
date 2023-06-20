@@ -229,7 +229,7 @@ class OfiController extends Controller
 
     public function store_tlofi(Request $request, Ofi $ofi, $ref_page = '')
     {
-        if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditee') {
+        if (auth()->user()->role == 'Admin1' || auth()->user()->role == 'Auditee') {
             $validatedDataOfi = $request->validate([
                 'bukti' => 'mimes:pdf',
                 'lampiran1' => '',
@@ -259,7 +259,7 @@ class OfiController extends Controller
                 $validatedDataOfi['ttd_disposisi'] = $request->file('ttd_disposisi')->store('ttd_disposisi');
             }
 
-            if (auth()->user()->role == 'Admin') {
+            if (auth()->user()->role == 'Admin1') {
                 $validatedDataOfi['no_ofi'] = $request->no_ofi;
                 // $validatedDataOfi['periode_audit'] = $request->periode_audit;
                 $validatedDataOfi['proses_audit'] = $request->proses_audit;
@@ -305,7 +305,7 @@ class OfiController extends Controller
 
             $validatedDataTLOfi['id_ofi'] = $ofi->id_ofi;
 
-            if (auth()->user()->role == 'Admin') {
+            if (auth()->user()->role == 'Admin1') {
                 $validatedDataTLOfi['uraian_verif'] = $request->uraian_verif;
                 $validatedDataTLOfi['hasil_verif'] = $request->hasil_verif;
                 $validatedDataTLOfi['nama_verifikator'] = $request->nama_verifikator;

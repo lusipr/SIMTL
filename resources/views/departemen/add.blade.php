@@ -12,14 +12,14 @@
                         <form action="{{ url('data-departemen/add') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">NIP</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Kode</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="nip" class="form-control" required id="nip"
                                         placeholder="Masukkan NIP">
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Departemen</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama departemen</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="name" class="form-control" required id="name"
                                         placeholder="Masukkan Nama Departemen">

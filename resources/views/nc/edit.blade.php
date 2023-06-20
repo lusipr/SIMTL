@@ -104,28 +104,28 @@
                             </div>
 
                             <!--<div class="row-mb-3">
-                                                                                    <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
-                                                                                    <div class="col-sm-6">
-                                                                                        <select name="status" {{ empty($tlnc) ? '' : 'disabled' }} id="status" class="form-control">
-                                                                                            <option value="">- Pilih -</option>
-                                                                                            <option {{ $nc->status == 'Data Belum Lengkap' ? 'selected' : '' }}>Data Belum Lengkap</option>
-                                                                                            <option {{ $nc->status == 'Belum Ditindaklanjuti' ? 'selected' : '' }}>Belum Ditindaklanjuti</option>
-                                                                                            <option {{ $nc->status == 'Sudah Ditindaklanjuti' ? 'selected' : '' }}>Sudah Ditindaklanjuti</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <br>
+                                                                                                <label for="colFormLabel" class="col-sm-2 col-form-label">Status</label>
+                                                                                                <div class="col-sm-6">
+                                                                                                    <select name="status" {{ empty($tlnc) ? '' : 'disabled' }} id="status" class="form-control">
+                                                                                                        <option value="">- Pilih -</option>
+                                                                                                        <option {{ $nc->status == 'Data Belum Lengkap' ? 'selected' : '' }}>Data Belum Lengkap</option>
+                                                                                                        <option {{ $nc->status == 'Belum Ditindaklanjuti' ? 'selected' : '' }}>Belum Ditindaklanjuti</option>
+                                                                                                        <option {{ $nc->status == 'Sudah Ditindaklanjuti' ? 'selected' : '' }}>Sudah Ditindaklanjuti</option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <br>
 
-                                                                                <div class="row-mb-3">
-                                                                                    <label for="colFormLabel" class="col-sm-2 col-form-label">Bukti</label>
-                                                                                    <div class="col-sm-6">
-                                                                                        <input type="file" name="bukti" {{ empty($tlnc) ? '' : 'disabled' }} id="bukti" class="form-control"
-                                                                                            accept="application/pdf">
-                                                                                        <p class="help-block">
-                                                                                            <font color="red">"Format file .pdf"</font>
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>-->
+                                                                                            <div class="row-mb-3">
+                                                                                                <label for="colFormLabel" class="col-sm-2 col-form-label">Bukti</label>
+                                                                                                <div class="col-sm-6">
+                                                                                                    <input type="file" name="bukti" {{ empty($tlnc) ? '' : 'disabled' }} id="bukti" class="form-control"
+                                                                                                        accept="application/pdf">
+                                                                                                    <p class="help-block">
+                                                                                                        <font color="red">"Format file .pdf"</font>
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -202,7 +202,7 @@
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_diakui_oleh_nc"
-                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
+                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
                                         class="form-control" id="ttd_diakui_oleh_nc"
                                         value="{{ $nc->ttd_diakui_oleh_nc }}">
                                     <p class="help-block">
@@ -217,7 +217,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Nama diakui oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="diakui_oleh"
-                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
+                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
                                         class="form-control" id="diakui_oleh" value="{{ $nc->diakui_oleh }}">
                                 </div>
                             </div>
@@ -226,8 +226,8 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">jabatan diakui oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
-                                    <select name="diakui_oleh_jabatan" 
-                                    {{ empty($tlnc) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
+                                    <select name="diakui_oleh_jabatan"
+                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
                                         id="diakui_oleh_jabatan" class="form-control">
                                         <option value="">- Pilih -</option>
                                         <option {{ $nc->diakui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>Manager
@@ -244,7 +244,7 @@
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disetujui_oleh_nc"
-                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
+                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
                                         class="form-control" id="ttd_disetujui_oleh_nc"
                                         value="{{ $nc->ttd_disetujui_oleh_nc }}">
                                     <p class="help-block">
@@ -260,7 +260,7 @@
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
                                     <input type="name" name="disetujui_oleh"
-                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
+                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
                                         class="form-control" id="disetujui_oleh" value="{{ $nc->disetujui_oleh }}">
                                 </div>
                             </div>
@@ -269,8 +269,8 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">jabatan disetujui oleh
                                     (SM/GM)</label>
                                 <div class="col-sm-6">
-                                    <select name="disetujui_oleh1_jabatan" 
-                                    {{ empty($tlnc) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
+                                    <select name="disetujui_oleh1_jabatan"
+                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
                                         id="disetujui_oleh1_jabatan" class="form-control">
                                         <option value="">- Pilih -</option>
                                         <option {{ $nc->disetujui_oleh1_jabatan == 'Senior Manager' ? 'selected' : '' }}>
@@ -285,7 +285,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui GM</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_accgm"
-                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
+                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditee' ? '' : 'disabled')) : 'disabled' }}
                                         class="form-control" id="tgl_accgm" value="{{ $nc->tgl_accgm }}">
                                 </div>
                             </div>
@@ -294,7 +294,7 @@
                                     Penyelesaian</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_planaction"
-                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled')) : 'disabled' }}
+                                        {{ empty($tlnc) ? (auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Auditor' ? '' : 'disabled')) : 'disabled' }}
                                         class="form-control" id="tgl_planaction" value="{{ $nc->tgl_planaction }}">
                                 </div>
                             </div>

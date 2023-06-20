@@ -12,7 +12,7 @@
                         <form action="{{ url('data-user/add') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">NIP</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Kode</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="nip" class="form-control" required id="nip"
                                         placeholder="Masukkan NIP">
@@ -30,7 +30,7 @@
                                 <div class="col-sm-6">
                                     <select name="role" id="role" class="form-control">
                                         <option>- Pilih -</option>
-                                        <option>Admin</option>
+                                        <option>Admin1</option>
                                         <option>Admin2</option>
                                         <option>Auditor</option>
                                         <option>Auditee</option>

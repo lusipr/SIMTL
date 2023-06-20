@@ -58,9 +58,13 @@
                     <input type="password" class="form-control @error('password') is-invalid @enderror"
                         placeholder="Password" name="password" required value="{{ old('password') }}">
                 </div>
+                <div style="color:red">
+                    <p>Lupa username atau password hubungi admin1
+                    </p>
+                </div>
                 <button type="submit" class="btn btn-primary" name="btn-login">Masuk</button>
             </form>
-            <br \>
+            <br>
         </div>
     </div>
 </body>

@@ -228,7 +228,7 @@ class NcController extends Controller
 
     public function store_tlnc(Request $request, Nc $nc, $ref_page = '')
     {
-        if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditee') {
+        if (auth()->user()->role == 'Admin1' || auth()->user()->role == 'Auditee') {
             $validatedDataNc = $request->validate([
                 'diakui_oleh' => '',
                 'diakui_oleh_jabatan' => '',
@@ -260,7 +260,7 @@ class NcController extends Controller
                 $validatedDataNc['ttd_disetujui_oleh_nc'] = $request->file('ttd_disetujui_oleh_nc')->store('ttd_disetujui_oleh_nc');
             }
 
-            if (auth()->user()->role == 'Admin') {
+            if (auth()->user()->role == 'Admin1') {
                 $validatedDataNc['opsi_temuan'] = $request->opsi_temuan;
                 $validatedDataNc['no_nc'] = $request->no_nc;
                 $validatedDataNc['proses_audit'] = $request->proses_audit;
@@ -305,7 +305,7 @@ class NcController extends Controller
 
             $validatedDataTLNc['id_nc'] = $nc->id_nc;
 
-            if (auth()->user()->role == 'Admin') {
+            if (auth()->user()->role == 'Admin1') {
                 $validatedDataTLNc['uraian_verifikasi'] = $request->uraian_verifikasi;
                 $validatedDataTLNc['hasil_verif'] = $request->hasil_verif;
                 $validatedDataTLNc['verifikator'] = $request->verifikator;

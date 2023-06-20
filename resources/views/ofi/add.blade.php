@@ -23,7 +23,7 @@
                             </div> --}}
 
                             <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis temuan</label>
                                 <div class="col-sm-6">
                                     <input class="form-control" type="text" value="OFI" id="jenis_temuan"
                                         name="jenis_temuan" readonly>
@@ -32,7 +32,7 @@
                             <br>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Periode Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Periode audit</label>
                                 <div class="col-sm-6">
                                     <select name="periode_audit" id="periode_audit" class="form-control">
                                         <option value="">- Pilih -</option>
@@ -43,7 +43,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Proses audit</label>
                                 <div class="col-sm-6">
                                     <select name="proses_audit" id="proses_audit" class="form-control">
                                         <option value="">- Pilih -</option>
@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tema audit</label>
                                 <div class="col-sm-6">
                                     <select name="tema_audit" id="tema_audit" class="form-control">
                                         <option value="">- Pilih -</option>
@@ -67,7 +67,7 @@
                             </div>
                             <br>
                             <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Objek Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Objek audit</label>
                                 <div class="col-sm-6">
                                     <select name="objek_audit" id="objek_audit" class="form-control">
                                         <option value="">- Pilih -</option>
@@ -81,7 +81,7 @@
                             <br>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit OFI</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal terbit OFI</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_terbitofi" class="form-control" id="tgl_terbitofi"
                                         placeholder="Pilih Tanggal">
@@ -90,10 +90,10 @@
                             <br>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline OFI</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal deadline OFI</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_deadline" class="form-control" id="tgl_deadline"
-                                        placeholder="Pilih Tanggal">
+                                        placeholder="Pilih Tanggal" readonly>
                                 </div>
                             </div>
                             <br>

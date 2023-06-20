@@ -88,14 +88,14 @@
                                                 <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/print/' . $data_monitoringtl->id) : url('data-ofi/print/' . $data_monitoringtl->id) }}"
                                                     target="_blank" class="btn btn-secondary"><i class="ti-printer"></i></a>
                                                 <!--<a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/tlncr/view/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/tlofi/view/' . $data_monitoringtl->id . '/monitoring-tl') }}"
-                                                            class="btn btn-warning"><i class="ti-eye"></i></a>
-                                                        @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
+                                                                class="btn btn-warning"><i class="ti-eye"></i></a>
+                                                            @if (auth()->user()->role == 'Admin1' || auth()->user()->role == 'Auditor')
     <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/tlncr/input/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/tlofi/input/' . $data_monitoringtl->id . '/monitoring-tl') }}"
-                                                                class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
+                                                                    class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
     @endif-->
-                                                @if (auth()->user()->role == 'Admin')
+                                                @if (auth()->user()->role == 'Admin1')
                                                     <a href="{{ $data_monitoringtl->type == 'ncr' ? url('data-ncr/delete/' . $data_monitoringtl->id . '/monitoring-tl') : url('data-ofi/delete/' . $data_monitoringtl->id . '/monitoring-tl') }}"
-                                                        class="btn btn-danger"><i class="ti-trash"></i></a>
+                                                        class="btn btn-danger" onclick="confirmDelete(event)"><i class="ti-trash"></i></a>
                                                 @endif
                                             </td>
                                         </tr>
@@ -119,4 +119,22 @@
             }).then((result) => {})
         </script>
     @endif
+
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault(); // Menghentikan tautan hapus agar tidak langsung mengarahkan ke URL
+
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin menghapus data ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = event.target.href; // Mengarahkan ke URL penghapusan jika pengguna yakin
+                }
+            });
+        }
+    </script>
 @endsection

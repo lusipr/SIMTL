@@ -15,11 +15,9 @@
             <th class="text-center">Diselesaikan Oleh</th>
             <th class="text-center">Uraian Permasalahan</th>
             <th class="text-center">Usulan Peningkatan</th>
-            <!--<th class="text-center">Dokumen</th>-->
-            <th class="text-center">Tanggal</th>
-            <th class="text-center">Tgl. Deadline</th>
+            <th class="text-center">Tgl Terbit</th>
+            <th class="text-center">Tgl Deadline</th>
             <th class="text-center">Status</th>
-            {{-- <th class="text-center">Bukti</th> --}}
         </tr>
     </thead>
     <tbody>
@@ -32,18 +30,12 @@
                 <td class="text-center">{{ $data_ofi->proses_audit }}</td>
                 <td class="text-center">{{ $data_ofi->users_tema->name }}</td>
                 <td class="text-center">{{ $data_ofi->users->name }}</td>
-                <td class="text-center">{{ $data_ofi->disposisi_diselesaikan_oleh }}</td>
+                <td class="text-center">{{ !empty($data_ofi->user_disposisi_diselesaikan_oleh->name) ? $data_ofi->user_disposisi_diselesaikan_oleh->name : '' }}</td>
                 <td class="text-center">{{ $data_ofi->uraian_permasalahan }}</t>
-                    <td class="text-center">{{ $data_ofi->usulan_peningkatan }}</t>
-                {{-- <!--<td class="text-center">{{ $data_ofi->dokumen }}</td>--> --}}
+                <td class="text-center">{{ $data_ofi->usulan_peningkatan }}</t>
                 <td class="text-center">{{ $data_ofi->tgl_terbitofi }}</t>
                 <td class="text-center">{{ $data_ofi->tgl_deadline }}</td>
                 <td class="text-center">{{ $data_ofi->status }}</td>
-                {{-- <td class="text-center">
-                    @if (!empty($data_ofi->bukti))
-                        <a href="{{ asset('storage/' . $data_ofi->bukti) }}" target="_blank">Lihat Bukti</a>
-                    @endif
-                </td> --}}
             </tr>
         @endforeach
     </tbody>

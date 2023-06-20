@@ -19,7 +19,7 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Tema</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama tema</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="name" value="{{ $user->name }}" class="form-control"
                                         required id="name" placeholder="Masukkan Nama Tema">
@@ -51,18 +51,6 @@
                             <input type="submit" value="Simpan" class="btn btn-info"></input>
                             <a href="{{ url('data-tema') }}" title="Batal" class="btn btn-secondary">Batal</a>
                         </form>
-                        {{-- <form action="{{ url('data-tema/edit/' . $tema->id_tema) }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Tema</label>
-                                <div class="col-sm-6">
-                                    <input type="text" name="nama_tema" value="{{ $tema->nama_tema }}" class="form-control"
-                                        required id="nama_tema" placeholder="Masukkan nama tema">
-                                </div>
-                            </div><br><br>
-                            <input type="submit" value="Simpan" class="btn btn-info"></input>
-                            <a href="{{ url('data-tema') }}" title="Batal" class="btn btn-secondary">Batal</a>
-                        </form> --}}
                     </div>
                 </div>
             </div>

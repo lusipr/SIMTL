@@ -13,7 +13,7 @@
                             <a href="{{ url('data-ncr/excel') }}" target="_blank"
                                 style="background-color: #107c41; margin-bottom: 20px; margin-left: auto; margin-right: 20px;"
                                 class="btn btn-success">Excel</a>
-                            @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
+                            @if (auth()->user()->role == 'Admin1' || auth()->user()->role == 'Auditor')
                                 <a href="{{ url('data-ncr/add') }}" style="margin-bottom: 20px;"
                                     class="btn btn-success">Tambah
                                     NCR</a>
@@ -63,8 +63,10 @@
                                             <td class="text-center">{{ $data_ncr->users_tema->name }}</td>
                                             <td class="text-center">{{ $data_ncr->users->name }}</td>
                                             <!--<td class="text-center">{{ $data_ncr->dokumen }}</td>-->
-                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_ncr->tgl_terbitncr)) }}</td>
-                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_ncr->tgl_deadline)) }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_ncr->tgl_terbitncr)) }}
+                                            </td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data_ncr->tgl_deadline)) }}
+                                            </td>
                                             <td class="text-center">{{ $data_ncr->status }}</td>
                                             <td class="text-center">
                                                 @if (!empty($data_ncr->bukti))
@@ -77,13 +79,14 @@
                                                     class="btn btn-secondary"><i class="ti-printer"></i></a>
                                                 <a href="{{ url('data-ncr/tlncr/input/' . $data_ncr->id_ncr) }}"
                                                     class="btn btn-warning"><i class="ti-plus"></i></a>
-                                                @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
+                                                @if (auth()->user()->role == 'Admin1' || auth()->user()->role == 'Auditor')
                                                     <a href="{{ url('data-ncr/edit/' . $data_ncr->id_ncr) }}"
                                                         class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
                                                 @endif
-                                                @if (auth()->user()->role == 'Admin')
+                                                @if (auth()->user()->role == 'Admin1')
                                                     <a href="{{ url('data-ncr/delete/' . $data_ncr->id_ncr) }}"
-                                                        class="btn btn-danger"><i class="ti-trash"></i></a>
+                                                        class="btn btn-danger" onclick="confirmDelete(event)"><i
+                                                            class="ti-trash"></i></a>
                                                 @endif
                                             </td>
                                         </tr>
@@ -107,4 +110,22 @@
             }).then((result) => {})
         </script>
     @endif
+
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault(); // Menghentikan tautan hapus agar tidak langsung mengarahkan ke URL
+
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin menghapus data ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = event.target.href; // Mengarahkan ke URL penghapusan jika pengguna yakin
+                }
+            });
+        }
+    </script>
 @endsection

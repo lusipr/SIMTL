@@ -13,7 +13,7 @@
                             <a href="{{ url('data-nc/excel') }}" target="_blank"
                                 style="background-color: #107c41; margin-bottom: 20px; margin-left: auto; margin-right: 20px;"
                                 class="btn btn-success">Excel</a>
-                            @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
+                            @if (auth()->user()->role == 'Admin1' || auth()->user()->role == 'Auditor')
                                 <a href="{{ url('data-nc/add') }}" style="margin-bottom: 20px;"
                                     class="btn btn-success">Tambah
                                     NC</a>
@@ -81,11 +81,11 @@
                                                     class="btn btn-secondary"><i class="ti-printer"></i></a>
                                                 <a href="{{ url('data-nc/tlnc/input/' . $data_nc->id_nc) }}"
                                                     class="btn btn-warning"><i class="ti-plus"></i></a>
-                                                @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Auditor')
+                                                @if (auth()->user()->role == 'Admin1' || auth()->user()->role == 'Auditor')
                                                     <a href="{{ url('data-nc/edit/' . $data_nc->id_nc) }}"
                                                         class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
                                                 @endif
-                                                @if (auth()->user()->role == 'Admin')
+                                                @if (auth()->user()->role == 'Admin1')
                                                     <a href="{{ url('data-nc/delete/' . $data_nc->id_nc) }}"
                                                         class="btn btn-danger"><i class="ti-trash"></i></a>
                                                 @endif

@@ -35,7 +35,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Periode Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Periode audit</label>
                                 <div class="col-sm-6">
                                     <select name="periode_audit" disabled id="periode_audit" class="form-control">
                                         <option value="I" {{ $ofi->periode_audit == 'I' ? 'selected' : '' }}>
@@ -47,7 +47,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Proses audit</label>
                                 <div class="col-sm-6">
                                     <select name="proses_audit" disabled id="proses_audit" class="form-control">
                                         <option value="Internal" {{ $ofi->proses_audit == 'Internal' ? 'selected' : '' }}>
@@ -59,7 +59,7 @@
                             </div>
 
                             <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tema audit</label>
                                 <div class="col-sm-6">
                                     <select name="tema_audit" id="tema_audit" class="form-control" disabled>
                                         <option value="">- Pilih -</option>
@@ -74,7 +74,7 @@
                             <br>
 
                             <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Objek Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Objek audit</label>
                                 <div class="col-sm-6">
                                     <select name="objek_audit" id="objek_audit" class="form-control" disabled>
                                         <option value="">- Pilih -</option>
@@ -88,7 +88,7 @@
                             </div>
                             <br>
                             <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis temuan</label>
                                 <div class="col-sm-6">
                                     <input class="form-control" type="text" value="OFI" id="jenis_temuan"
                                         name="jenis_temuan" disabled>
@@ -96,7 +96,7 @@
                             </div>
                             <br>
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit OFI</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal terbit OFI</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_terbitofi" disabled class="form-control"
                                         id="tgl_terbitofi" value="{{ $ofi->tgl_terbitofi }}">
@@ -104,7 +104,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline OFI</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal deadline OFI</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_deadline" disabled class="form-control"
                                         id="tgl_deadline" value="{{ $ofi->tgl_deadline }}">
@@ -138,10 +138,8 @@
                             <div class="d-sm-flex justify-content-between align-items-center">
                             </div><br>
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">Dari Bagian/Departemen</label>
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Dari bagian/departemen</label>
                                 <div class="col-sm-6">
-                                    {{-- <input type="text" name="asal_dept" disabled class="form-control"
-                                        id="asal_dept" value="{{ $ofi->asal_dept }}"> --}}
                                     <select name="asal_dept" id="asal_dept" class="form-control" disabled>
                                         <option value="">- Pilih -</option>
                                         @foreach ($usersAuditee as $data_usersAuditee)
@@ -162,8 +160,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-6 col-form-label">Usulan Peningkatan
-                                    Produk/Proses/Sistem Mutu</label>
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Usulan peningkatan
+                                    produk/proses/sistem mutu</label>
                                 <div class="col-sm-6">
                                     <select name="usulan_ofi" disabled id="usulan_ofi" class="form-control">
                                         <option value="Produk" {{ $ofi->usulan_ofi == 'Produk' ? 'selected' : '' }}>
@@ -178,8 +176,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-6 col-form-label">Identitas No. Part/No. Tack/No.
-                                    Dokumen</label>
+                                <label for="colFormLabel" class="col-sm-6 col-form-label">Identitas (No. Part/No. Tack/No.
+                                    Dokumen)</label>
                                 <div class="col-sm-6">
                                     <select name="identitas_ofi" disabled id="identitas_ofi" class="form-control">
                                         <option value="No. Part"
@@ -220,7 +218,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian Permasalahan</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian permasalahan</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="uraian_permasalahan" disabled class="form-control"
                                         id="uraian_permasalahan" value="{{ $ofi->uraian_permasalahan }}">
@@ -228,7 +226,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian Peningkatan</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian peningkatan</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="usulan_peningkatan" disabled class="form-control"
                                         id="usulan_peningkatan" value="{{ $ofi->usulan_peningkatan }}">
@@ -236,7 +234,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diusulkan
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan diusulkan
                                     oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_dept_pengusul" disabled class="form-control"
@@ -258,7 +256,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Diusulkan</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal diusulkan</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_diusulkan" disabled class="form-control"
                                         id="tgl_diusulkan" value="{{ $ofi->tgl_diusulkan }}">
@@ -266,8 +264,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui
-                                    Oleh (M/SM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan disetujui
+                                    oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disetujui_oleh_ofi" disabled class="form-control"
                                         id="ttd_disetujui_oleh_ofi" value="{{ $ofi->ttd_disetujui_oleh_ofi }}">
@@ -280,7 +278,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Disetujui Oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disetujui_oleh" disabled class="form-control"
@@ -289,8 +287,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan Disetujui
-                                    Oleh(M/SM)</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui
+                                    oleh(M/SM)</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh_jabatan" disabled id="disetujui_oleh_jabatan"
                                         class="form-control">
@@ -305,7 +303,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Jabatan Disetujui Oleh
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan disetujui oleh
                                     (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disetujui_oleh_jabatan_nm" disabled class="form-control"
@@ -314,7 +312,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Disetujui</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_disetujui" disabled class="form-control"
                                         id="tgl_disetujui" value="{{ $ofi->tgl_disetujui }}">
@@ -336,8 +334,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diselesaikan
-                                    Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan diselesaikan
+                                    oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disposisi" disabled class="form-control"
                                         id="ttd_disposisi" value="{{ $ofi->ttd_disposisi }}">
@@ -350,7 +348,7 @@
                             </div>
 
                             <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan oleh</label>
                                 <div class="col-sm-6">
                                     <select name="disposisi_diselesaikan_oleh" id="disposisi_diselesaikan_oleh"
                                         class="form-control" disabled>
@@ -377,8 +375,8 @@
                                 <h2>Input Tindak Lanjut OFI</h2>
                             </div><br>
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">Tindak Lanjut Usulan
-                                    Peningkatan</label>
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Tindak lanjut usulan
+                                    peningkatan</label>
                                 <div class="col-sm-6">
                                     <textarea type="text" name="tl_usulanofi" disabled class="form-control" id="tl_usulanofi"
                                         placeholder="Masukkan tindak lanjut usulan" style="font-style:italic">{{ isset($tlofi->tl_usulanofi) ? $tlofi->tl_usulanofi : '' }}</textarea>
@@ -386,7 +384,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Ditindaklanjuti
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan ditindaklanjuti
                                     oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_tlofi_oleh" disabled
@@ -410,7 +408,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">Tanggal Tindak Lanjut</label>
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Tanggal tindak lanjut</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_tl" disabled value="{{ $tlofi->tgl_tl }}"
                                         class="form-control" id="tgl_tl">
@@ -486,7 +484,7 @@
                             <br>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">Uraian Verifikasi</label>
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Uraian verifikasi</label>
                                 <div class="col-sm-6">
                                     <textarea type="text" name="uraian_verif" disabled class="form-control" id="uraian_verif" rows="5"
                                         placeholder="Masukkan uraian verifikasi" style="font-style:italic">{{ $tlofi->uraian_verif }}</textarea>
@@ -494,7 +492,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Hasil Verifikasi</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Hasil verifikasi</label>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="hasil_verif" disabled
                                         {{ $tlofi->hasil_verif == 'efektif' ? 'checked' : '' }} id="inlineRadio1"
@@ -510,8 +508,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diverifikasi
-                                    Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan diverifikasi
+                                    oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_tlofi_verif" disabled
                                         value="{{ $tlofi->ttd_tlofi_verif }}" class="form-control" id="ttd_tlofi_verif"
@@ -525,7 +523,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diverifikasi Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diverifikasi oleh</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="nama_verifikator" disabled
                                         value="{{ $tlofi->nama_verifikator }}" class="form-control"
@@ -534,7 +532,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Verifikasi</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal verifikasi</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_verif" disabled value="{{ $tlofi->tgl_verif }}"
                                         class="form-control" id="tgl_verif">

@@ -36,30 +36,12 @@
                                             <td class="text-center">
                                                 <a href="{{ url('data-tema/edit/' . $user->id) }}"
                                                     class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
-                                                <a href="{{ url('data-tema/delete/' . $user->id) }}"
-                                                    class="btn btn-danger"><i class="ti-trash"></i></a>
+                                                <a href="{{ url('data-tema/delete/' . $user->id) }}" class="btn btn-danger"
+                                                    onclick="confirmDelete(event)"><i class="ti-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-                                {{-- <tbody>
-                                    @foreach ($tema as $tema)
-                                        <tr>
-                                            <td class="text-center">{{ $loop->index + 1 }}</td> --}}
-                                            {{-- <td class="text-center">{{ $user->nip }}</td> --}}
-                                            {{-- <td class="text-center">{{ $tema->nama_tema }}</td> --}}
-                                            {{-- <td class="text-center">{{ $user->role }}</td> --}}
-                                            {{-- <td class="text-center">{{ $tema->username }}</td> --}}
-                                            {{-- <td class="text-center">{{ $user->password }}</td> --}}
-                                            {{-- <td class="text-center">
-                                                <a href="{{ url('data-tema/edit/' . $tema->id_tema) }}"
-                                                    class="btn btn-primary"><i class="ti-pencil-alt"></i></a>
-                                                <a href="{{ url('data-tema/delete/' . $tema->id_tema) }}"
-                                                    class="btn btn-danger"><i class="ti-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody> --}}
                             </table>
                         </div>
                     </div>
@@ -78,4 +60,22 @@
             }).then((result) => {})
         </script>
     @endif
+
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault(); // Menghentikan tautan hapus agar tidak langsung mengarahkan ke URL
+
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin menghapus data ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = event.target.href; // Mengarahkan ke URL penghapusan jika pengguna yakin
+                }
+            });
+        }
+    </script>
 @endsection

@@ -14,7 +14,7 @@
                             </div><br>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis temuan</label>
                                 <div class="col-sm-6">
                                     <input class="form-control" type="text" value="OFI" id="jenis_temuan"
                                         name="jenis_temuan" {{ empty($tlofi) ? '' : 'disabled' }} readonly>
@@ -25,7 +25,7 @@
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">No. OFI</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="no_ofi" {{ empty($tlofi) ? '' : 'disabled' }}
-                                        class="form-control" id="no_ofi" value="{{ $ofi->no_ofi }}">
+                                        class="form-control" id="no_ofi" value="{{ $ofi->no_ofi }}" readonly>
                                 </div>
                             </div>
 
@@ -46,7 +46,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Periode Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Periode audit</label>
                                 <div class="col-sm-6">
                                     <select name="periode_audit" {{ empty($tlofi) ? '' : 'disabled' }} id="periode_audit"
                                         class="form-control">
@@ -59,7 +59,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Proses audit</label>
                                 <div class="col-sm-6">
                                     <select name="proses_audit" {{ empty($tlofi) ? '' : 'disabled' }} id="proses_audit"
                                         class="form-control">
@@ -87,7 +87,7 @@
                             </div> --}}
 
                             <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tema audit</label>
                                 <div class="col-sm-6">
                                     <select name="tema_audit" {{ empty($tlofi) ? '' : 'disabled' }} id="tema_audit"
                                         class="form-control">
@@ -103,7 +103,7 @@
                             <br>
 
                             <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Objek Audit</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Objek audit</label>
                                 <div class="col-sm-6">
                                     <select name="objek_audit" {{ empty($tlofi) ? '' : 'disabled' }} id="objek_audit"
                                         class="form-control">
@@ -120,7 +120,7 @@
                             <br>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit OFI</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal terbit OFI</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_terbitofi" {{ empty($tlofi) ? '' : 'disabled' }}
                                         class="form-control" id="tgl_terbitofi" value="{{ $ofi->tgl_terbitofi }}">
@@ -128,10 +128,10 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Deadline</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal deadline OFI</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_deadline" {{ empty($tlofi) ? '' : 'disabled' }}
-                                        class="form-control" id="tgl_deadline" value="{{ $ofi->tgl_deadline }}">
+                                        class="form-control" id="tgl_deadline" value="{{ $ofi->tgl_deadline }}" readonly>
                                 </div>
                             </div>
                             <br>
@@ -148,7 +148,7 @@
                                 <h2>Edit Form OFI</h2>
                             </div><br>
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">Dari Bagian/Departemen</label>
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">Dari bagian/departemen</label>
                                 <div class="col-sm-6">
                                     {{-- <input type="text" name="asal_dept" {{ empty($tlofi) ? '' : 'disabled' }} class="form-control" id="asal_dept"
                                         value="{{ $ofi->asal_dept }}"> --}}
@@ -182,8 +182,8 @@
                             </div> --}}
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Usulan Peningkatan
-                                    Produk/Proses/Sistem Mutu</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Usulan peningkatan
+                                    produk/proses/sistem mutu</label>
                                 <div class="col-sm-6">
                                     <select name="usulan_ofi" {{ empty($tlofi) ? '' : 'disabled' }} id="usulan_ofi"
                                         class="form-control">
@@ -192,30 +192,35 @@
                                             Produk</option>
                                         <option value="Proses" {{ $ofi->usulan_ofi == 'Proses' ? 'selected' : '' }}>
                                             Proses</option>
-                                        <option value="Sistem Mutu" {{ $ofi->usulan_ofi == 'Sistem Mutu' ? 'selected' : '' }}>
+                                        <option value="Sistem Mutu"
+                                            {{ $ofi->usulan_ofi == 'Sistem Mutu' ? 'selected' : '' }}>
                                             Sistem Mutu</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Identitas No. Part/No. Tack/No. Dokumen</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Identitas (No. Part/No. Tack/No.
+                                    Dokumen)</label>
                                 <div class="col-sm-6">
                                     <select name="identitas_ofi" {{ empty($tlofi) ? '' : 'disabled' }} id="identitas_ofi"
                                         class="form-control">
                                         <option value="">- Pilih -</option>
-                                        <option value="No. Part" {{ $ofi->identitas_ofi == 'No. Part' ? 'selected' : '' }}>
+                                        <option value="No. Part"
+                                            {{ $ofi->identitas_ofi == 'No. Part' ? 'selected' : '' }}>
                                             No. Part</option>
-                                        <option value="No. Tack" {{ $ofi->identitas_ofi == 'No. Tack' ? 'selected' : '' }}>
+                                        <option value="No. Tack"
+                                            {{ $ofi->identitas_ofi == 'No. Tack' ? 'selected' : '' }}>
                                             No. Tack</option>
-                                        <option value="No. Dokumen" {{ $ofi->identitas_ofi == 'No. Dokumen' ? 'selected' : '' }}>
+                                        <option value="No. Dokumen"
+                                            {{ $ofi->identitas_ofi == 'No. Dokumen' ? 'selected' : '' }}>
                                             No. Dokumen</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-4 col-form-label">No identitas</label>
+                                <label for="colFormLabel" class="col-sm-4 col-form-label">No.Identitas</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="no_identitas_ofi" {{ empty($tlofi) ? '' : 'disabled' }}
                                         class="form-control" id="no_identitas_ofi" value="{{ $ofi->no_identitas_ofi }}">
@@ -226,17 +231,6 @@
                                 <label for="colFormLabel" class="col-sm-4 col-form-label">Departemen yang
                                     mengerjakan</label>
                                 <div class="col-sm-6">
-                                    {{-- <input type="text" name="dept_ygmngrjkn" {{ empty($tlofi) ? '' : 'disabled' }} class="form-control" id="dept_ygmngrjkn"
-                                        value="{{ $ofi->dept_ygmngrjkn }}"> --}}
-                                    {{-- <select name="dept_ygmngrjkn" {{ empty($tlofi) ? '' : 'disabled' }}
-                                        id="dept_ygmngrjkn" class="form-control">
-                                        <option value="">- Pilih -</option>
-                                        @foreach ($usersAuditee as $data_usersAuditee)
-                                            <option value="{{ $data_usersAuditee->id }}"
-                                                {{ $ofi->dept_ygmngrjkn == $data_usersAuditee->id ? 'selected' : '' }}>
-                                                {{ $data_usersAuditee->name }}</option>
-                                        @endforeach
-                                    </select> --}}
                                     <select name="objek_audit" {{ empty($tlofi) ? '' : 'disabled' }} id="objek_audit"
                                         class="form-control">
                                         <option value="">- Pilih -</option>
@@ -250,7 +244,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian Permasalahan</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian permasalahan</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="uraian_permasalahan"
                                         {{ empty($tlofi) ? '' : 'disabled' }} class="form-control"
@@ -259,7 +253,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian Peningkatan</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian peningkatan</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="usulan_peningkatan" {{ empty($tlofi) ? '' : 'disabled' }}
                                         class="form-control" id="usulan_peningkatan"
@@ -268,7 +262,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diusulkan
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan diusulkan
                                     oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_dept_pengusul" {{ empty($tlofi) ? '' : 'disabled' }}
@@ -291,7 +285,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Diusulkan</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal diusulkan</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_diusulkan" {{ empty($tlofi) ? '' : 'disabled' }}
                                         class="form-control" id="tgl_diusulkan" value="{{ $ofi->tgl_diusulkan }}">
@@ -299,12 +293,14 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui
-                                    Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan disetujui
+                                    oleh (M/SM)</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disetujui_oleh_ofi"
                                         {{ empty($tlofi) ? '' : 'disabled' }} class="form-control"
-                                        id="ttd_disetujui_oleh_ofi" value="{{ $ofi->ttd_disetujui_oleh_ofi }}">
+                                        id="ttd_disetujui_oleh_ofi"
+                                        {{ auth()->user()->role == 'Admin1' ? '' : 'disabled' }}
+                                        value="{{ $ofi->ttd_disetujui_oleh_ofi }}">
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
                                     </p>
@@ -314,18 +310,21 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Nama disetujui oleh</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disetujui_oleh" {{ empty($tlofi) ? '' : 'disabled' }}
-                                        class="form-control" id="disetujui_oleh" value="{{ $ofi->disetujui_oleh }}">
+                                        class="form-control" id="disetujui_oleh"
+                                        {{ auth()->user()->role == 'Admin1' ? '' : 'disabled' }}
+                                        value="{{ $ofi->disetujui_oleh }}">
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Jabatan disetujui oleh</label>
                                 <div class="col-sm-6">
                                     <select name="disetujui_oleh_jabatan" {{ empty($tlofi) ? '' : 'disabled' }}
-                                        id="disetujui_oleh_jabatan" class="form-control">
+                                        id="disetujui_oleh_jabatan" class="form-control"
+                                        {{ auth()->user()->role == 'Admin1' ? '' : 'disabled' }}>
                                         <option value="">- Pilih -</option>
                                         <option value="Manager"
                                             {{ $ofi->disetujui_oleh_jabatan == 'Manager' ? 'selected' : '' }}>
@@ -339,19 +338,23 @@
 
                             <div class="mb-3">
                                 <label for="colFormLabel" class="col-sm-2 col-form-label">Nama jabatan disetujui
-                                    Oleh</label>
+                                    oleh</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="disetujui_oleh_jabatan_nm"
                                         {{ empty($tlofi) ? '' : 'disabled' }} class="form-control"
-                                        id="disetujui_oleh_jabatan_nm" value="{{ $ofi->disetujui_oleh_jabatan_nm }}">
+                                        id="disetujui_oleh_jabatan_nm"
+                                        {{ auth()->user()->role == 'Admin1' ? '' : 'disabled' }}
+                                        value="{{ $ofi->disetujui_oleh_jabatan_nm }}">
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Disetujui</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui</label>
                                 <div class="col-sm-6">
                                     <input type="date" name="tgl_disetujui" {{ empty($tlofi) ? '' : 'disabled' }}
-                                        class="form-control" id="tgl_disetujui" value="{{ $ofi->tgl_disetujui }}">
+                                        class="form-control" id="tgl_disetujui"
+                                        {{ auth()->user()->role == 'Admin1' ? '' : 'disabled' }}
+                                        value="{{ $ofi->tgl_disetujui }}">
                                 </div>
                             </div>
 
@@ -360,7 +363,7 @@
                                     Manajemen</label>
                                 <div class="col-sm-6">
                                     <select name="disposisi" {{ empty($tlofi) ? '' : 'disabled' }} id="disposisi"
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
                                         class="form-control" onchange="doChangeDisposisi(this)">
                                         <option>- Pilih -</option>
                                         <option {{ $ofi->disposisi == 'OFI ditolak' ? 'selected' : '' }}>OFI ditolak
@@ -372,11 +375,11 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diselesaikan
-                                    Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan diselesaikan
+                                    oleh</label>
                                 <div class="col-sm-6">
                                     <input type="file" name="ttd_disposisi" {{ empty($tlofi) ? '' : 'disabled' }}
-                                        {{ auth()->user()->role == 'Admin' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
+                                        {{ auth()->user()->role == 'Admin1' ? '' : (auth()->user()->role == 'Admin2' ? '' : 'disabled') }}
                                         class="form-control" id="ttd_disposisi" value="{{ $ofi->ttd_disposisi }}">
                                     <p class="help-block">
                                         <font color="red">"Format file .jpeg,jpg,png"</font>
@@ -387,7 +390,7 @@
                             </div>
 
                             <div class="row-mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan Oleh</label>
+                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan oleh</label>
                                 <div class="col-sm-6">
                                     <select name="disposisi_diselesaikan_oleh" {{ empty($tlofi) ? '' : 'disabled' }}
                                         id="disposisi_diselesaikan_oleh" class="form-control">
@@ -400,15 +403,6 @@
                                     </select>
                                 </div>
                             </div>
-
-                            {{-- <div class="mb-3">
-                                <label for="colFormLabel" class="col-sm-2 col-form-label">Diselesaikan Oleh</label>
-                                <div class="col-sm-6">
-                                    <input type="text" name="disposisi_diselesaikan_oleh"
-                                        {{ empty($tlofi) ? '' : 'disabled' }} class="form-control"
-                                        id="disposisi_diselesaikan_oleh" value="{{ $ofi->disposisi_diselesaikan_oleh }}">
-                                </div>
-                            </div> --}}
 
                             <br>
                             @if (empty($tlofi))

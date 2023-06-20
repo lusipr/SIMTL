@@ -19,7 +19,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Periode Audit</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Periode audit</label>
                             <div class="col-sm-6">
                                 <select name="periode_audit" disabled id="periode_audit" class="form-control">
                                     <option value="I" {{ $ncr->periode_audit == 'I' ? 'selected' : '' }}>
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Proses Audit</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Proses audit</label>
                             <div class="col-sm-6">
                                 <select name="proses_audit" disabled id="proses_audit" class="form-control">
                                     <option value="Internal" {{ $ncr->proses_audit == 'Internal' ? 'selected' : '' }}>
@@ -56,7 +56,7 @@
                         </div> --}}
 
                         <div class="row-mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tema Audit</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tema audit</label>
                             <div class="col-sm-6">
                                 <select name="tema_audit" id="tema_audit" class="form-control" disabled>
                                     <option value="">- Pilih -</option>
@@ -71,7 +71,7 @@
                         <br>
 
                         <div class="row-mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Objek Audit</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Objek audit</label>
                             <div class="col-sm-6">
                                 <select name="objek_audit" id="objek_audit" class="form-control" disabled>
                                     <option value="">- Pilih -</option>
@@ -85,7 +85,7 @@
                         </div>
                         <br>
                         <div class="row-mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis Temuan</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Jenis temuan</label>
                             <div class="col-sm-6">
                                 <input class="form-control" type="text" value="NCR" id="jenis_temuan"
                                     name="jenis_temuan" disabled>
@@ -100,7 +100,7 @@
                         </div>
                         <br>
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Terbit NCR</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal terbit NCR</label>
                             <div class="col-sm-6">
                                 <input type="date" name="tgl_terbitncr" disabled class="form-control" id="tgl_terbitncr"
                                     value="{{ $ncr->tgl_terbitncr }}">
@@ -145,7 +145,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Dokumen Acuan</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Dokumen acuan</label>
                             <div class="col-sm-6">
                                 <input type="text" name="dok_acuan" disabled class="form-control" id="dok_acuan"
                                     value="{{ $ncr->dok_acuan }}">
@@ -153,7 +153,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian Ketidaksesuaian</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian ketidaksesuaian</label>
                             <div class="col-sm-6">
                                 <textarea class="form-control" name="uraian_ncr" disabled id="uraian_ncr" rows="5">{{ $ncr->uraian_ncr }}</textarea>
                             </div>
@@ -172,7 +172,7 @@
                         <br>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Auditor</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan auditor</label>
                             <div class="col-sm-6">
                                 <input type="file" name="ttd_auditor" disabled class="form-control" id="ttd_auditor"
                                     value="{{ $ncr->ttd_auditor }}">
@@ -184,7 +184,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Nama Auditor</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Nama auditor</label>
                             <div class="col-sm-6">
                                 <input type="name" name="nama_auditor" disabled class="form-control"
                                     id="nama_auditor" value="{{ $ncr->nama_auditor }}">
@@ -192,7 +192,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diakui Oleh
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan diakui oleh
                                 (M/SM)</label>
                             <div class="col-sm-6">
                                 <input type="file" name="ttd_auditee" disabled class="form-control" id="ttd_auditee"
@@ -205,7 +205,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Nama diakui Oleh (M/SM)</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Nama diakui oleh (M/SM)</label>
                             <div class="col-sm-6">
                                 <input type="name" name="diakui_oleh" disabled class="form-control" id="diakui_oleh"
                                     value="{{ $ncr->diakui_oleh }}">
@@ -290,8 +290,8 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-4 col-form-label">Rencana Tanggal
-                                Penyelesaian</label>
+                            <label for="colFormLabel" class="col-sm-4 col-form-label">Rencana tanggal
+                                penyelesaian</label>
                             <div class="col-sm-6">
                                 <input type="date" name="tgl_planaction" disabled class="form-control"
                                     id="tgl_planaction" value="{{ $ncr->tgl_planaction }}">
@@ -313,7 +313,7 @@
                         <!--<input type='hidden' class="form-control" name="id_ncr" disabled value=""readonly>-->
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Akar Penyebab Masalah</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Akar penyebab masalah</label>
                             <div class="col-sm-6">
                                 <textarea name="akar_masalah" disabled class="form-control" id="akar_masalah" rows="5"
                                     placeholder="Masukkan akar penyebab masalah" style="font-style:italic">{{ $tlncr->akar_masalah }}</textarea>
@@ -321,7 +321,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian Perbaikan</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Uraian perbaikan</label>
                             <div class="col-sm-6">
                                 <textarea name="uraian_perbaikan" disabled class="form-control" id="uraian_perbaikan" rows="5"
                                     placeholder="Masukkan uraian perbaikan" style="font-style:italic">{{ $tlncr->uraian_perbaikan }}</textarea>
@@ -329,7 +329,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-6 col-form-label">Uraian Pencegahan untuk menjamin
+                            <label for="colFormLabel" class="col-sm-6 col-form-label">Uraian pencegahan untuk menjamin
                                 tidak terulang</label>
                             <div class="col-sm-6">
                                 <textarea class="form-control" name="uraian_pencegahan" disabled id="uraian_pencegahan" rows="5"
@@ -338,7 +338,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Penyelesaian</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal penyelesaian</label>
                             <div class="col-sm-6">
                                 <input type="date" name="tgl_action" disabled value="{{ $tlncr->tgl_action }}"
                                     class="form-control" id="tgl_action">
@@ -346,7 +346,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Disetujui Oleh
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan disetujui oleh
                                 (SM/GM)</label>
                             <div class="col-sm-6">
                                 <input type="file" name="ttd_tl_gm" class="form-control" disabled id="ttd_tl_gm"
@@ -394,7 +394,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Disetujui</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal disetujui</label>
                             <div class="col-sm-6">
                                 <input type="date" name="tgl_accgm2" disabled value="{{ $tlncr->tgl_accgm2 }}"
                                     class="form-control" id="tgl_accgm2">
@@ -415,7 +415,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-6 col-form-label">Uraian Verifikasi</label>
+                            <label for="colFormLabel" class="col-sm-6 col-form-label">Uraian verifikasi</label>
                             <div class="col-sm-6">
                                 <textarea class="form-control" name="uraian_verifikasi" disabled id="uraian_verifikasi" rows="5"
                                     placeholder="Masukkan uraian verifikasi" style="font-style:italic">{{ $tlncr->uraian_verifikasi }}</textarea>
@@ -423,7 +423,7 @@
                         </div>
 
                         <div class="row-mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Hasil Verifikasi</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Hasil verifikasi</label>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="hasil_verif" disabled
                                     {{ $tlncr->hasil_verif == 'efektif' ? 'checked' : '' }} id="inlineRadio1"
@@ -441,7 +441,7 @@
                         <br>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda Tangan Diverifikasi
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanda tangan diverifikasi
                                 oleh</label>
                             <div class="col-sm-6">
                                 <input type="file" name="ttd_tl_verif_auditor" disabled
@@ -465,7 +465,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal Verifikasi</label>
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Tanggal verifikasi</label>
                             <div class="col-sm-6">
                                 <input type="date" name="tgl_verif" disabled value="{{ $tlncr->tgl_verif }}"
                                     class="form-control" id="tgl_verif">
@@ -482,7 +482,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-6 col-form-label">Uraian catatan TKP</label>
+                            <label for="colFormLabel" class="col-sm-6 col-form-label">Uraian catatan verifikasi SM Dept. Tata Kelola Perusahaan </label>
                             <div class="col-sm-6">
                                 <textarea type="name" name="uraian_catatan_tkp" class="form-control" disabled
                                     id="uraian_catatan_tkp" rows="5" placeholder="Masukkan uraian_catatan_tkp tinjauan"
@@ -491,9 +491,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda Tangan Diverifikasi oleh SM
-                                Departemen
-                                Tata Kelola Perusahaan</label>
+                            <label for="colFormLabel" class="col-sm-6 col-form-label">Tanda tangan diverifikasi oleh SM
+                                Dept. Tata Kelola Perusahaan</label>
                             <div class="col-sm-6">
                                 <input type="file" name="ttd_tl_verif_adm" disabled
                                     value="{{ $tlncr->ttd_tl_verif_adm }}" class="form-control" id="ttd_tl_verif_adm"
@@ -507,7 +506,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="colFormLabel" class="col-sm-6 col-form-label">Diverifikasi oleh SM Departemen
+                            <label for="colFormLabel" class="col-sm-6 col-form-label">Diverifikasi oleh SM Dept.
                                 Tata Kelola Perusahaan</label>
                             <div class="col-sm-6">
                                 <input type="name" name="namasm_verif" disabled value="{{ $tlncr->namasm_verif }}"

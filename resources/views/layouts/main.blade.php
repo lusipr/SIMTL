@@ -70,7 +70,7 @@
                             <li>
                                 <a href="{{ url('/') }}"><i class="ti-dashboard"></i><span>Dashboard</span></a>
                             </li>
-                            @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Admin2')
+                            @if (auth()->user()->role == 'Admin1')
                                 {{-- <li>
                                 <a href="#" aria-expanded="true"><i class="ti-layout"></i><span>Input Data</span></a>
                                 <ul class="collapse">
@@ -83,7 +83,7 @@
                                     <a href="#" aria-expanded="true"><i class="ti-layout"></i><span>Master
                                             Data</span></a>
                                     <ul class="collapse">
-                                        <li><a href="{{ url('/data-nc') }}">Data NC</a></li>
+                                        {{-- <li><a href="{{ url('/data-nc') }}">Data NC</a></li> --}}
                                         <li><a href="{{ url('/data-ncr') }}">Data NCR</a></li>
                                         <li><a href="{{ url('/data-ofi') }}">Data OFI</a></li>
                                     </ul>
@@ -107,12 +107,28 @@
                                 </li>
                                 <hr
                                     style="display: block; height: 1px; border: 0; border-top: 1px solid #343e50; margin: 1em 0; margin-left: 32px; margin-right: 32px;">
+                            @elseif (auth()->user()->role == 'Admin2')
+                                <li>
+                                    <a href="#" aria-expanded="true"><i class="ti-layout"></i><span>Master
+                                            Data</span></a>
+                                    <ul class="collapse">
+                                        {{-- <li><a href="{{ url('/data-nc') }}">Data NC</a></li> --}}
+                                        <li><a href="{{ url('/data-ncr') }}">Data NCR</a></li>
+                                        <li><a href="{{ url('/data-ofi') }}">Data OFI</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/monitoring-tl') }}"><i class="ti-write"></i><span>Monitoring
+                                            Tindak Lanjut</span></a>
+                                </li>
+                                <hr
+                                    style="display: block; height: 1px; border: 0; border-top: 1px solid #343e50; margin: 1em 0; margin-left: 32px; margin-right: 32px;">
                             @elseif (auth()->user()->role == 'Auditor')
                                 <li>
                                     <a href="#" aria-expanded="true"><i class="ti-layout"></i><span>Master
                                             Data</span></a>
                                     <ul class="collapse">
-                                        <li><a href="{{ url('/data-nc') }}">Data NC</a></li>
+                                        {{-- <li><a href="{{ url('/data-nc') }}">Data NC</a></li> --}}
                                         <li><a href="{{ url('/data-ncr') }}">Data NCR</a></li>
                                         <li><a href="{{ url('/data-ofi') }}">Data OFI</a></li>
                                     </ul>
@@ -127,7 +143,7 @@
                                     <a href="#" aria-expanded="true"><i class="ti-layout"></i><span>Master
                                             Data</span></a>
                                     <ul class="collapse">
-                                        <li><a href="{{ url('/data-nc') }}">Data NC</a></li>
+                                        {{-- <li><a href="{{ url('/data-nc') }}">Data NC</a></li> --}}
                                         <li><a href="{{ url('/data-ncr') }}">Data NCR</a></li>
                                         <li><a href="{{ url('/data-ofi') }}">Data OFI</a></li>
                                     </ul>
